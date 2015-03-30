@@ -7,7 +7,7 @@
 */
 
 /**** Chemins de l'application ***/
-$nom_projet = "/garros";
+$nom_projet = "/rollandGorras";
 $racine="c:/wamp/apps".$nom_projet;
 /*      *********				***/
 
