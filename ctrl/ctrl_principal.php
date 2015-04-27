@@ -45,7 +45,7 @@ function ctrl_admin_joueur(){
 	global $racine,$nom_projet;
 	$_SESSION['page']="_admin_joueur";
 
-	include_once "$racine/vue/admin/joueur.php";
+	include_once "$racine/ctrl/joueur.php";
 }
 
 // page d'administration pour les partie
