@@ -1,5 +1,5 @@
 <!--
-index d'administration
+Page des joueurs
 -->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -19,10 +19,17 @@ index d'administration
 </head>
 <body>
 test
-<?php print($item);?>
 
-<?php print(htmlentities($item->nom));?>
 
-<?php var_dump($item); ?>
+<?php //var_dump($item); ?>
+
+<?php 
+	for ($i=0;$i<count($item);$i++){
+		foreach ($item[$i] as $data){
+			echo $data . ' ';
+		};
+		echo ' <br>';
+	};	
+?>
 </body>
 </html>
