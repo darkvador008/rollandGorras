@@ -1,14 +1,7 @@
-<!--
-index d'administration
--->
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
-    </head>
-    <body>
-        Page d'administration des parties
+<?php 	require "C:/wamp/www/vue/header.php"; ?>  
+
+
+
 
         <style>
 table, th, td {
@@ -18,7 +11,17 @@ table, th, td {
         <table class="tb">
 
 		  <tr>
-		    <th>un joueur</th>
+		    <th>
+		    <div class="btn-group">
+			  <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+			  	First Player
+			  <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" role="menu">
+			  	<li>un joueur</li>
+			  	<li>un autre</li>
+			  </ul>
+			</div></th>
 		    <th rowspan="2">img</th>
 		    <th>deuxieme tour</th>
 		    <th rowspan="2">img</th>
@@ -27,7 +30,8 @@ table, th, td {
 		    <th>finaliste</th>
 		  </tr>
 		  <tr>
-		    <td>deuxieme</td>
+		  	<template id="tp">
+		    <td>deuxieme</td></template>
 		    <td>sd</td>
 		    <td></td>
 		    <td></td>
@@ -89,5 +93,5 @@ table, th, td {
 		    <td></td>
 		  </tr>
 		</table>
-    </body>
-</html>
+
+<?php 	require "C:/wamp/www/vue/footer.php"; ?>  

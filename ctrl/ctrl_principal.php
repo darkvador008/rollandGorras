@@ -27,7 +27,10 @@ function affMenuPrincipal(){
 		$msg="$nbvisit ème passage sur notre page";
 		setcookie("nbvisite",$nbvisit);
 	}
-	include_once "$racine/vue/template.php";
+	//require("header.php");
+	//require("footer.php");
+	include_once "$racine/vue/header.php";
+	include_once "$racine/vue/footer.php";
 }
 
 // page d'administration
