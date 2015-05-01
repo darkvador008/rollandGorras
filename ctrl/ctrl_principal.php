@@ -8,7 +8,7 @@
 
 /**** Chemins de l'application ***/
 $nom_projet = "/rollandGorras";
-$racine="c:/wamp/apps".$nom_projet;
+$racine="c:/wamp/www";
 /*      *********				***/
 
 // début de la session
@@ -27,7 +27,7 @@ function affMenuPrincipal(){
 		$msg="$nbvisit ème passage sur notre page";
 		setcookie("nbvisite",$nbvisit);
 	}
-	include_once "$racine/vue/menu_principal.php";
+	include_once "$racine/vue/template.php";
 }
 
 // page d'administration

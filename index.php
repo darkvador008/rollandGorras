@@ -1,6 +1,6 @@
 <?php
 
-include_once "../../apps/rollandGorras/ctrl/ctrl_principal.php";
+include_once "ctrl/ctrl_principal.php";
 
 
 ?>
