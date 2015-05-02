@@ -1,4 +1,4 @@
-<?php 	require "C:/wamp/www/vue/header.php"; ?>  
+<?php 	require "$racine/vue/header.php"; ?>  
 
 
 
@@ -94,4 +94,4 @@ table, th, td {
 		  </tr>
 		</table>
 
-<?php 	require "C:/wamp/www/vue/footer.php"; ?>  
+<?php 	require "$racine/vue/footer.php"; ?>  

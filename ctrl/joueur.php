@@ -16,7 +16,17 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
 
 }
 else{ // méthode POST
+	if(isset($_POST['_adminJoueur_btcCreer'])){
+		include_once"$racine/model/daoJoueur.php";
+		$nomJoueur = $_POST['name'];
+		$nationaliteJoueur = $_POST['nationality'];
+		$dateJoueur = $_POST['bornDate'];
+		echo '<br> nom joueur '.$nomJoueur. '<br> nationalit&eacute; : '.$nationaliteJoueur. '<br> date de naissance : '.$dateJoueur;
 
+		daoJoueur::addJoueur($nomJoueur,$nationaliteJoueur,$dateJoueur);
+		
+
+	}
 
 
 }

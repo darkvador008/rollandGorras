@@ -8,7 +8,7 @@
 
 /**** Chemins de l'application ***/
 $nom_projet = "/rollandGorras";
-$racine="c:/wamp/www";
+$racine="c:/wamp/www".$nom_projet;
 /*      *********				***/
 
 // début de la session
@@ -66,8 +66,18 @@ function ctrl_admin_partie(){
 */
 	//  
 if ($_SERVER['REQUEST_METHOD']=="POST"){
+	if (isset($_SESSION['page'])){
+		if ($_SESSION['page']=='_admin'){
+			echo 'retour admin';
+		}elseif ($_SESSION['page']=='_admin_joueur') {
+			echo 'retour admin joueur';
+			ctrl_admin_joueur();
+		}elseif ($_SESSION['page']=='_admin_partie') {
+			echo 'retour admin partie';
+		}
 
-	echo "string";
+	}
+
 }else{
 	if (isset($_GET['page'])) {
 			// page d'administration principale

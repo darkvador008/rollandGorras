@@ -1,36 +1,51 @@
 <!--
 Page des joueurs
 -->
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title></title>
-<link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.4/flatly/bootstrap.min.css" rel="stylesheet">
-
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
-
-</head>
-<body>
-test
-
-
-
+<?php 	require "$racine/vue/header.php"; ?>  
 <?php //var_dump($item); ?>
-
-<?php 
+<!-- Affiche la liste des joueurs -->
+<table>
+	<tr>
+		<td> Nom</td>
+		<td> Nationalite </td>
+		<td> Date de naissance </td>
+	</tr>	
+	<?php 
 	for ($i=0;$i<count($item);$i++){
+		echo'<tr>';
 		foreach ($item[$i] as $data){
+			echo'<td>';
 			echo $data . ' ';
+			echo '</td>';	
 		};
 		echo ' <br>';
+		echo'</tr>';	
 	};	
-?>
-</body>
-</html>
+	?>
+</table>
+<br/><br/><br/>
+<!-- Tableau de rajout de joueur-->
+<form method="post" action=<?php print("$nom_projet/index.php");?>>
+	<table class="tb">
+		<tr>	
+			<td> Nom : </td>
+			<td> <input type="text" name="name"/> </td>
+		</tr>
+		<tr>
+			<td> Nationalit&eacute; : </td>
+			<td> <input type="text" name="nationality"/> </td>
+		</tr>
+		<tr>
+			<td> Date de naissance : </td>
+			<td> <input type="date" name="bornDate"/></td>
+		</tr>
+		<tr>
+			<td> <input type="submit" value="Ajouter" name="_adminJoueur_btcCreer"/></td>
+		</tr>	
+
+
+	</table>
+</form>
+
+
+<?php 	require "$racine/vue/footer.php"; ?>  

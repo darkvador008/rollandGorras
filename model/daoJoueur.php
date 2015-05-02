@@ -12,9 +12,11 @@ class daoJoueur{
 		// connexion à la DB garrosdb
 		self::$db=mysql_select_db("garrosdb");
 	}
+
 	private static function deconnect(){
 		mysql_close(self::$link);
 	}
+
 	public static function getListeJoueur(){
 		self::connectDB();
 		$query = "SELECT * FROM player LIMIT 0 , 30";
@@ -30,8 +32,19 @@ class daoJoueur{
 		self::deconnect();
 		return $items;
 	}
+
+	public static function addJoueur($nom,$nationalite,$date){
+		self::connectDB();
+		$nomJoueur = mysql_real_escape_string($nom);
+		$nationaliteJoueur = mysql_real_escape_string($nationalite);
+		$sql = "INSERT INTO player VALUES (NULL, '$nomJoueur', '$nationaliteJoueur', '$date')";
+		mysql_query($sql);
+		self::deconnect();
+	}
+
 	public static function getTest(){
 		return 'hello';
 	}
+
 }
 ?>
