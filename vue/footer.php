@@ -2,7 +2,7 @@
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12" align="center">
                     <p>Copyright &copy; Your Website 2014</p>
                 </div>
             </div>

@@ -59,6 +59,20 @@ function ctrl_admin_partie(){
 	include_once "$racine/vue/admin/partie.php";
 }
 
+// Page de login
+function ctrl_login(){
+	global $racine,$nom_projet;
+	$_SESSION['page']="_login";
+	include_once "$racine/vue/admin/login.php";
+}
+
+// Gestion du login
+function ctrl_gestion_login(){
+	global $racine,$nom_projet;
+	$_SESSION['page']="_login";
+	include_once "$racine/ctrl/login.php";
+}
+
 /*
 *
 *		DEBUT CONTROLEUR
@@ -74,6 +88,9 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
 			ctrl_admin_joueur();
 		}elseif ($_SESSION['page']=='_admin_partie') {
 			echo 'retour admin partie';
+		}elseif ($_SESSION['page']=='_login'){
+			echo 'retour';
+			ctrl_gestion_login();
 		}
 
 	}
@@ -93,6 +110,11 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
 			// page d'administration des parties
 		if ($_GET['page']=="_admin_partie") {
 			ctrl_admin_partie();
+		}
+		
+		if ($_GET['page']=='_login'){
+			
+			ctrl_login();
 		}
 	}else{
 		affMenuPrincipal();

@@ -56,8 +56,15 @@
                         <li>
                             <a href="<?php print("$nom_projet/index.php?page=_admin_partie");?>">Admin Partie</a>
                         </li>
+						<li>
+							<a href="#">login</a>
+						</li>
                     </ul>
+					
+					
+
                 </div>
+
                 <!-- /.navbar-collapse -->
             </div>
             <!-- /.container -->
