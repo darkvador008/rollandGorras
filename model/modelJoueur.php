@@ -25,6 +25,13 @@ function joueurLoad(){
 
 }
 
+function addJoueur($nom,$nationalite,$date){
+	include_once 'daoJoueur.php';
+	 daoJoueur::addJoueur($nom,$nationalite,$date);
+	
+
+}
+
 
 class item {
 	
