@@ -9,100 +9,34 @@
 
 </style>
 
-
-<table class="tb">
-
-  <tr>
-    <th>
-        <div class="btn-group">
-          <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-            First Player
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-            <li>un joueur</li>
-            <li>un autre</li>
-        </ul>
-    </div></th>
-    <th rowspan="2">img</th>
-    <th>deuxieme tour</th>
-    <th rowspan="2">img</th>
-    <th>demi finale</th>
-    <th>img</th>
-    <th>finaliste</th>
-</tr>
-<tr>
-    <template id="tp">
-        <td>deuxieme</td></template>
-        <td>sd</td>
-        <td></td>
-        <td></td>
-        <td></td>
-
-    </tr>
-    <tr>
-        <td>troisieme</td>
-        <td rowspan = "2">img</td>
-        <td>zzzzs</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>quatrieme</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>cinquieme</td>
-        <td rowspan = "2">img</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>sixxieme</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>septieme</td>
-        <td rowspan = "2">img</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>huitieme</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-</table>
-
+    <div class="form-group">
+      <label for="sel1">Select list (select one):</label>
+      <select class="form-control" id="sel1">
+	<?php 
+	for ($i=0;$i<count($item);$i++){
+		echo'<option value=$i>';
+		echo $item[$i]->nom;
+		echo '</option>';	
+	};	
+	?>
+      </select>
+</div>
 
 
 
 <table border='0' cellspacing='0' width='100%' class="NONE">
         <tr>
 
-            <td width='25%'class='JH'> <a name='b14'>Joueur 1</a></a></td>
+            <td width='25%'class='JH'> <a name='b14'><div class="btn-group">
+          <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+            First Player
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+ <li>test<li>
+ 
+        </ul>
+    </div></a></a></td>
             <td width='25%'class='JH' rowspan=2><a name='b6'>&nbsp;</a></td>
             <td width='25%'class='JH' rowspan=4><a name='b2'>&nbsp;</a></td>
             <td width='25%'class='JH' rowspan=8><a name='b0'>&nbsp;</a></td>

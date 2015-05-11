@@ -11,8 +11,7 @@
         <!-- /.container -->
     </footer>
 
-    <!-- jQuery -->
-    <script src="vue/js/jquery.js"></script>
+
 
     <!-- Bootstrap Core JavaScript -->
     <script src="vue/js/bootstrap.min.js"></script>

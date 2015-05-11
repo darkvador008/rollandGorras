@@ -56,7 +56,7 @@ function ctrl_admin_partie(){
 	global $racine,$nom_projet;
 	$_SESSION['page']="_admin_partie";
 
-	include_once "$racine/vue/admin/partie.php";
+	include_once "$racine/ctrl/partie.php";
 }
 
 // Page de login
