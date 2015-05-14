@@ -13,6 +13,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
 	include_once"$racine/model/modelJoueur.php";
 	$item = item::getJoueurs();
 	include_once"$racine/vue/admin/joueur.php";
+	
 
 }
 else{ // méthode POST
