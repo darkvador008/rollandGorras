@@ -1,5 +1,5 @@
 <!--
-Page des joueurs
+Page des joueurs ADMINISTRATION
 -->
 <?php 	require "$racine/vue/header.php"; ?>  
 <?php //var_dump($item); ?>
@@ -34,7 +34,7 @@ Page des joueurs
       </div>
     </div>
   </form>
-</div>
+
 
 
 <!-- Affiche la liste des joueurs -->
@@ -62,5 +62,5 @@ Page des joueurs
 	</tbody>
 </table>
 
-
+</div>
 <?php 	require "$racine/vue/footer.php"; ?>  

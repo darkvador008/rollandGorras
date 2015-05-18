@@ -73,6 +73,13 @@ function ctrl_gestion_login(){
 	include_once "$racine/ctrl/login.php";
 }
 
+// Gestion de la page des joueurs  (client)
+function ctrl_joueur(){
+	global $racine,$nom_projet;
+	$_SESSION['page']="_joueur";
+	include_once "$racine/ctrl/joueur.php";
+}
+
 /*
 *
 *		DEBUT CONTROLEUR
@@ -115,6 +122,11 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
 		if ($_GET['page']=='_login'){
 			
 			ctrl_login();
+		}
+		
+		if ($_GET['page']=='_joueur'){
+			
+			ctrl_joueur();
 		}
 	}else{
 		affMenuPrincipal();

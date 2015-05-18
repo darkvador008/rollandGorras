@@ -46,7 +46,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="#">Joueurs</a>
+                            <a href="<?php print("$nom_projet/index.php?page=_joueur");?>">Joueurs</a>
                         </li>
                         <li>
                             <a href="#">Parties</a>
