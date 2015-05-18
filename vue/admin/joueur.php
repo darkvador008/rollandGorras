@@ -3,13 +3,50 @@ Page des joueurs
 -->
 <?php 	require "$racine/vue/header.php"; ?>  
 <?php //var_dump($item); ?>
+
+
+<!-- Tableau de rajout de joueur-->
+<div class="container">
+  <h2>Ajouter Joueur</h2>
+  <form class="form-horizontal" role="form" method="post" action=<?php print("$nom_projet/index.php");?>>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="nom">Nom :</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="name"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="Nationalite">Nationalité :</label>
+      <div class="col-sm-10">          
+         <input type="text" class="form-control" name="nationality"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="naissance">Date de naissance :</label>
+      <div class="col-sm-10">          
+         <input type="date" class="form-control" name="bornDate"/>
+      </div>
+    </div>
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default" value="Ajouter" name="_adminJoueur_btcCreer">Ajouter</button>
+
+      </div>
+    </div>
+  </form>
+</div>
+
+
 <!-- Affiche la liste des joueurs -->
-<table>
-	<tr>
-		<td> Nom</td>
-		<td> Nationalite </td>
-		<td> Date de naissance </td>
-	</tr>	
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Nationalite</th>
+        <th>Date de naissance</th>
+      </tr>
+    </thead>
+<tbody>
 	<?php 
 	for ($i=0;$i<count($item);$i++){
 		echo'<tr>';
@@ -22,30 +59,8 @@ Page des joueurs
 		echo'</tr>';	
 	};	
 	?>
+	</tbody>
 </table>
-<br/><br/><br/>
-<!-- Tableau de rajout de joueur-->
-<form method="post" action=<?php print("$nom_projet/index.php");?>>
-	<table class="tb">
-		<tr>	
-			<td> Nom : </td>
-			<td> <input type="text" name="name"/> </td>
-		</tr>
-		<tr>
-			<td> Nationalit&eacute; : </td>
-			<td> <input type="text" name="nationality"/> </td>
-		</tr>
-		<tr>
-			<td> Date de naissance : </td>
-			<td> <input type="date" name="bornDate"/></td>
-		</tr>
-		<tr>
-			<td> <input type="submit" value="Ajouter" name="_adminJoueur_btcCreer"/></td>
-		</tr>	
-
-
-	</table>
-</form>
 
 
 <?php 	require "$racine/vue/footer.php"; ?>  
