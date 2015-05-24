@@ -16,13 +16,15 @@
                 ?>
             </select>
         </td>
-        
-        <td width='25%'class='JH' rowspan=2><a name='b6'>&nbsp;</a><button type="button" class="btn btn-default scorebtntop" aria-label="Left Align">
+        <!--
+        ><button type="button" class="btn btn-default scorebtntop" aria-label="Left Align">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button>
         <button type="button" class="btn btn-default scorebtntop" aria-label="Left Align">
         <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-        </button></td>
+        </button>
+    -->
+        <td width='25%'class='JH' rowspan=2><a name='b6'>&nbsp;</a></td>
 
     <td width='25%'class='JH' rowspan=4><a name='b2'>&nbsp;</a></td>
     <td width='25%'class='JH' rowspan=8><a name='b0'>&nbsp;</a></td>
@@ -45,13 +47,7 @@
     </td>
 
     <!-- SCORE BTN -->
-    <td class='JHS' rowspan=2><a name='b6'>&nbsp;</a><button type="button" class="btn btn-default scorebtn" aria-label="Left Align">
-        <div >
-        <span class="glyphicon glyphicon-plus " aria-hidden="true"></span>
-        </button>
-        <button type="button" class="btn btn-default scorebtn" aria-label="Left Align">
-        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-        </button></div></td>
+    <td class='JHS' rowspan=2><a name='b6'>&nbsp;</a></td>
 </td>
 </tr>
 <tr>
@@ -70,7 +66,7 @@
             ?>
         </select>
     </td>
-    <td class='JB' rowspan=2><a name='b5'>&nbsp;</a></td>
+    <td class='JB' rowspan=2><a name='t1'>&nbsp;</a></td>
     <td class='JHS' rowspan=4><a name='b2'>&nbsp;</a></td>
 </tr>
 <tr>

@@ -11,25 +11,27 @@ Page des joueurs ADMINISTRATION
   <form class="form-horizontal" role="form" method="post" action=<?php print("$nom_projet/index.php");?>>
     <div class="form-group">
       <label class="control-label col-sm-2" for="nom">Nom :</label>
+
       <div class="col-sm-10">
-        <input type="text" class="form-control" name="name"/>
+        <input type="text" class="form-control" name="name" id="nom"/>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="Nationalite">Nationalité :</label>
       <div class="col-sm-10">          
-         <input type="text" class="form-control" name="nationality"/>
+         <input type="text" class="form-control" name="nationality" id="nationality"/>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="naissance">Date de naissance :</label>
       <div class="col-sm-10">          
-         <input type="date" class="form-control" name="bornDate"/>
+         <input type="date" class="form-control" name="bornDate" id="bornDate"/>
       </div>
     </div>
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default" value="Ajouter" name="_adminJoueur_btcCreer">Ajouter</button>
+
+              <button type="submit" class="btn btn-default" value="Ajouter" id="addPlayer" >Ajouter</button>
 
       </div>
     </div>
@@ -38,7 +40,7 @@ Page des joueurs ADMINISTRATION
 
 
 <!-- Affiche la liste des joueurs -->
-<table class="table table-striped">
+<table class="table table-striped" id="tt">
     <thead>
       <tr>
         <th>Nom</th>

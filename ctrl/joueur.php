@@ -24,7 +24,9 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
 
 }
 else{ // méthode POST
-	if(isset($_POST['_adminJoueur_btcCreer'])){
+
+	if(isset($_POST['name'], $_POST['nationality'], $_POST['bornDate'])){
+
 		include_once"$racine/model/modelJoueur.php";
 		$nomJoueur = $_POST['name'];
 		$nationaliteJoueur = $_POST['nationality'];

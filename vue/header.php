@@ -19,6 +19,7 @@
         <![endif]-->
         <!-- jQuery -->
         <script src="vue/js/jquery.js"></script>
+            <script src="vue/js/ajax.js"></script>
     </head>
     <body>
         <!-- Navigation -->
