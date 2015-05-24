@@ -1,5 +1,7 @@
 .imgHeader{
 	height:30%;
+	margin-bottom: 30px;
+
 
 }
 .tb{
@@ -8,6 +10,15 @@
 
 .sel{
 	border: none;
+	margin-bottom: 2px;
+	width:100%;
+}
+.scorebtn{
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+.scorebtntop{
+	margin-bottom: 20px;
 }
 
 table.select.mine{
