@@ -1,11 +1,18 @@
 .imgHeader{
-	height:50%;
+	height:30%;
 
 }
 .tb{
 	border: 1px solid black;
 }
 
+.sel{
+	border: none;
+}
+
+table.select.mine{
+	border:none;
+}
 td.JH  { border-bottom:1px solid black; vertical-align:bottom;}
 td.JB  { border-bottom:1px solid black; border-right:1px solid black; vertical-align:bottom;}
 td.JHS { border-right:1px solid black; vertical-align:top;}
