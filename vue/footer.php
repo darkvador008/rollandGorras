@@ -15,6 +15,7 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="vue/js/bootstrap.min.js"></script>
+    <script src="vue/js/partie.js"></script>
 
 </body>
 

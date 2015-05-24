@@ -1,16 +1,5 @@
 <?php   require "$racine/vue/header.php"; ?>
 
-<script>
-function checkDuplicate() {
-    var selOne= document.getElementById("sel1").value;
-    var selTwo= document.getElementById("sel2").value;
-
-    if (selOne==selTwo){//|| selThree...
-        alert("same values in select")
-    }
-
-}
-</script>
 <style>
 //table, th, td {    border: 1px solid black;}
 </style>
@@ -18,10 +7,10 @@ function checkDuplicate() {
     <tr>
         <td class='JH'>
             <select class="form-control" id="sel1" onchange="checkDuplicate()">
-                <option value="player">Joueur 1</option>
+                <option value="player1">Joueur 1</option>
                 <?php
                 for ($i=0;$i<count($item);$i++){
-                echo'<option value=$i>';
+                echo"<option value=' $i '>";
                     echo $item[$i]->nom;
                 echo '</option>';
                 };
@@ -38,10 +27,10 @@ function checkDuplicate() {
     <tr>
         <td class='JB'>
             <select class="form-control" id="sel2" onchange="checkDuplicate()">
-                <option value="player">Joueur 2</option>
+                <option value="player2">Joueur 2</option>
                 <?php
                 for ($i=0;$i<count($item);$i++){
-                echo'<option value=$i>';
+                echo"<option value=' $i '>";
                     echo $item[$i]->nom;
                 echo '</option>';
                 };
