@@ -4,6 +4,13 @@
 
 
 }
+.containerPartie{
+
+	min-width: 335px;
+	width: 100%;
+
+
+}
 .tb{
 	border: 1px solid black;
 }

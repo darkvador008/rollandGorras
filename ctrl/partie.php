@@ -16,9 +16,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
 	include_once"$racine/vue/admin/partie.php";
 		$_SESSION['players'] = $item;
 
-	foreach($_SESSION['players'] as $truc) {
-    echo $truc->nom, '<br>';
-	}
+
 
 
 }
