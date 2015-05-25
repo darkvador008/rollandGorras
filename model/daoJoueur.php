@@ -26,18 +26,18 @@ class daoJoueur{
 			$item=new item();
 			$item->nom=$ligne['nom'];
 			$item->nationalite=$ligne['nationalite'];
-			$item->annif=$ligne['naissance'];
+			$item->image=$ligne['image'];
 			$items[]=$item;
 		}
 		self::deconnect();
 		return $items;
 	}
 
-	public static function addJoueur($nom,$nationalite,$date){
+	public static function addJoueur($nom,$nationalite,$image){
 		self::connectDB();
 		$nomJoueur = mysql_real_escape_string($nom);
 		$nationaliteJoueur = mysql_real_escape_string($nationalite);
-		$sql = "INSERT INTO player VALUES (NULL, '$nomJoueur', '$nationaliteJoueur', '$date')";
+		$sql = "INSERT INTO player VALUES (NULL, '$nomJoueur', '$nationaliteJoueur', '$image')";
 		mysql_query($sql);
 		self::deconnect();
 	}

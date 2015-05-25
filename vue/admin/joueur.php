@@ -8,7 +8,7 @@ Page des joueurs ADMINISTRATION
 <!-- Tableau de rajout de joueur-->
 <div class="container">
   <h2>Ajouter Joueur</h2>
-  <form class="form-horizontal" role="form" method="post" action=<?php print("$nom_projet/index.php");?>>
+  <form class="form-horizontal" role="form" method="post" action=<?php print("$nom_projet/index.php");?>  enctype="multipart/form-data">
     <div class="form-group">
       <label class="control-label col-sm-2" for="nom">Nom :</label>
 
@@ -23,9 +23,13 @@ Page des joueurs ADMINISTRATION
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="naissance">Date de naissance :</label>
+      <label class="control-label col-sm-2" for="naissance">Image profil :</label>
       <div class="col-sm-10">          
-         <input type="date" class="form-control" name="bornDate" id="bornDate"/>
+         <!--<input type="text" class="form-control" name="imgAvatar" id="imgAvatar"/>-->
+		<input type="file" class="form-control" name="imgAvatar" id="imgAvatar" value="addPlayer" enctype="multipart/form-data">
+
+			
+					
       </div>
     </div>
     <div class="form-group">        
@@ -40,15 +44,15 @@ Page des joueurs ADMINISTRATION
 
 
 <!-- Affiche la liste des joueurs -->
-<table class="table table-striped" id="tt">
+<table class="table table-striped" >
     <thead>
       <tr>
         <th>Nom</th>
         <th>Nationalite</th>
-        <th>Date de naissance</th>
+        <th>Image</th>
       </tr>
     </thead>
-<tbody>
+<tbody id="tt">
 	<?php 
 	for ($i=0;$i<count($item);$i++){
 		echo'<tr>';
@@ -57,7 +61,7 @@ Page des joueurs ADMINISTRATION
 			echo $data . ' ';
 			echo '</td>';	
 		};
-		echo ' <br>';
+		
 		echo'</tr>';	
 	};	
 	?>

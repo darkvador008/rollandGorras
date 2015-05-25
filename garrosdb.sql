@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2015 at 03:45 PM
+-- Generation Time: May 25, 2015 at 02:43 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -44,28 +44,38 @@ CREATE TABLE IF NOT EXISTS `player` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(60) CHARACTER SET utf8 NOT NULL,
   `nationalite` varchar(30) CHARACTER SET utf8 DEFAULT NULL,
-  `naissance` date DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=161 ;
 
 --
 -- Dumping data for table `player`
 --
 
-INSERT INTO `player` (`id`, `nom`, `nationalite`, `naissance`) VALUES
-(1, 'pierre', 'espagnole', '2015-03-11'),
-(2, 'erick', 'belge', '2015-03-06'),
-(3, 'toto', 'belge', '2015-05-18'),
-(4, 'oloo tata', 'francais', '2015-05-18'),
-(8, 'aaaa', 'bbbb', '0000-00-00'),
-(9, 'aaa', 'aaa', '0000-00-00'),
-(10, 'xxx', 'xxx', '2014-08-02'),
-(11, 'eaz', 'eza', '0000-00-00'),
-(12, '', '', '0000-00-00'),
-(13, '', '', '0000-00-00'),
-(14, '', '', '0000-00-00'),
-(15, 'eza', 'eza', '0000-00-00'),
-(16, 'aa', 'zz', '0000-00-00');
+INSERT INTO `player` (`id`, `nom`, `nationalite`, `image`) VALUES
+(138, 'aaa', '', ''),
+(139, 'aaa', 'bbb', ''),
+(140, 'aaa', 'bbb', '100_9047.jpg'),
+(141, 'aaa', 'bbb', '100_9047.jpg'),
+(142, 'aaa', 'bbb', '100_9047.jpg'),
+(143, 'aaa', 'bbb', '100_9047.jpg'),
+(144, 'aaa', 'bbb', '100_9047.jpg'),
+(145, 'ccc', '', ''),
+(146, 'ccc', '', ''),
+(147, 'a', '', ''),
+(148, 'a', '', '100_9047.jpg'),
+(149, 'a', '', ''),
+(150, 'a', '', '00654_HD.jpg'),
+(151, 'a', '', '00654_HD.jpg'),
+(152, 'aa', '', '100_9048.jpg'),
+(153, 'a', '', ''),
+(154, 'aa', '', '100_9047.jpg'),
+(155, 'a', '', ''),
+(156, 'c', '', ''),
+(157, 'c', '', '11.jpg'),
+(158, 'a', '', '11.jpg'),
+(159, 'a', '', '100_9047.jpg'),
+(160, 'aa', 'zz', '11.jpg');
 
 -- --------------------------------------------------------
 
