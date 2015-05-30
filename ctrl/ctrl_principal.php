@@ -59,6 +59,13 @@ function ctrl_admin_partie(){
 	include_once "$racine/ctrl/partie.php";
 }
 
+function ctrl_admin_creer_partie(){
+	global $racine,$nom_projet;
+	$_SESSION['page']="_admin_creer_partie";
+
+	include_once "$racine/ctrl/creerPartie.php";
+}
+
 // Page de login
 function ctrl_login(){
 	global $racine,$nom_projet;
@@ -78,6 +85,13 @@ function ctrl_joueur(){
 	global $racine,$nom_projet;
 	$_SESSION['page']="_joueur";
 	include_once "$racine/ctrl/joueur.php";
+}
+// Gestion de la page des joueurs  (client)
+function ctrl_parties_client(){
+	global $racine,$nom_projet;
+	$_SESSION['page']="_parties_client";
+
+	include_once "$racine/ctrl/partiesClient.php";
 }
 
 /*
@@ -112,11 +126,18 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
 			// page d'administration des joueurs
 		if($_GET['page']=="_admin_joueur"){
 			ctrl_admin_joueur();
+		}		
+		if($_GET['page']=="_parties_client"){
+			ctrl_parties_client();
 		}
 
 			// page d'administration des parties
 		if ($_GET['page']=="_admin_partie") {
 			ctrl_admin_partie();
+		}		
+
+		if ($_GET['page']=="_admin_creer_partie") {
+			ctrl_admin_creer_partie();
 		}
 		
 		if ($_GET['page']=='_login'){

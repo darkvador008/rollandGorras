@@ -42,13 +42,16 @@
                             <a href="<?php print("$nom_projet/index.php?page=_joueur");?>">Joueurs</a>
                         </li>
                         <li>
-                            <a href="#">Parties</a>
+                            <a href="<?php print("$nom_projet/index.php?page=_parties_client");?>">Parties</a>
                         </li>
                         <li>
                             <a href="<?php print("$nom_projet/index.php?page=_admin_joueur");?>">Admin Joueur</a>
                         </li>
                         <li>
                             <a href="<?php print("$nom_projet/index.php?page=_admin_partie");?>">Admin Partie</a>
+                        </li>     
+                         <li>
+                            <a href="<?php print("$nom_projet/index.php?page=_admin_creer_partie");?>">Admin Creer Partie</a>
                         </li>
                     </ul>
                     <ul class="nav pull-right">

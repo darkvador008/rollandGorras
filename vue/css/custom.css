@@ -14,9 +14,14 @@
 .tb{
 	border: 1px solid black;
 }
+.crtPrt{
+	width: 100%;
+	display: inline-block;
+}
 
 .sel{
-	border: none;
+	max-width: 100px;
+
 	margin-bottom: 2px;
 	width:100%;
 }

@@ -1,4 +1,3 @@
-
 function checkDuplicate() {
     var selOne = document.getElementById("sel1").value;
     var selTwo = document.getElementById("sel2").value;
@@ -8,14 +7,15 @@ function checkDuplicate() {
     }
 }
 
-function disableInputs(){
-//$("#validerbtn").on("click", function(){
+function disableInputs(boo) {
+
+    $("select").each(function(e, r) {
+        console.log(r.id);
+        $("#" + r.id).prop('disabled', boo);
+    });
 
 
-
-	$("select").each(function(e,r){
-		console.log(r.id);
-		$("#"+r.id).prop('disabled',true);
-	});
 
 }
+
+
