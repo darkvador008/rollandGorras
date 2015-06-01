@@ -24,6 +24,7 @@ class daoJoueur{
 		$items=array();
 		while($ligne=mysql_fetch_assoc($res)){
 			$item=new item();
+			$item->monID=$ligne['id'];
 			$item->nom=$ligne['nom'];
 			$item->nationalite=$ligne['nationalite'];
 			$item->image=$ligne['image'];

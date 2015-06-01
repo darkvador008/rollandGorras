@@ -1,8 +1,13 @@
 <!--
 Page des joueurs ADMINISTRATION
+
+http://www.sanwebe.com/2012/04/ajax-add-delete-sql-records-jquery-php
+
+
 -->
 <?php 	require "$racine/vue/header.php"; ?>  
-<?php //var_dump($item); ?>
+
+<?php var_dump($item); ?>
 
 
 <!-- Tableau de rajout de joueur-->
@@ -47,20 +52,36 @@ Page des joueurs ADMINISTRATION
 <table class="table table-striped" >
     <thead>
       <tr>
+	    <th>ID</th>
         <th>Nom</th>
         <th>Nationalite</th>
         <th>Image</th>
+		<th>Modifier utilisateur</th>
       </tr>
     </thead>
 <tbody id="tt">
 	<?php 
+	
 	for ($i=0;$i<count($item);$i++){
-		echo'<tr>';
-		foreach ($item[$i] as $data){
+		echo'<tr id ="responds">';
+		echo '<td>'.$item[$i]->monID.' </td>';
+		echo '<td>'.$item[$i]->nom.' </td>';
+		echo '<td>'.$item[$i]->nationalite.' </td>';
+		echo '<td>'.$item[$i]->image.' </td>';
+		/*foreach ($item[$i] as $data){
+		    
 			echo'<td>';
+			echo '['.$item[$i]->monID.' ]';
 			echo $data . ' ';
 			echo '</td>';	
 		};
+		*/
+		
+		echo '<td>aa 
+				<div class="del_wrapper"><a href="#" class="del_button" id="del-'.$item[$i]->monID.'">
+				<img src="vue/img/icon_del.gif" border="0" />
+				</a></div>
+			</td>';
 		
 		echo'</tr>';	
 	};	
@@ -69,4 +90,5 @@ Page des joueurs ADMINISTRATION
 </table>
 
 </div>
+
 <?php 	require "$racine/vue/footer.php"; ?>  

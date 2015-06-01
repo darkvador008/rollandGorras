@@ -32,10 +32,13 @@
 		<option value="t4">Terrain 4</option>
 
 	</select>
+	
+		<button  class="btn btn-info "  onclick="disableInputs(true)">Valider</button>
+		<button type="submit" class="btn btn-warning " name="modifier" onclick="disableInputs(false)">Modifier</button>
 </form>
 </div>
 
-	<button type="submit" class="btn btn-info " name="valider" onclick="disableInputs(true)">Valider</button>
+	<button type="submit" class="btn btn-info " name="valider" onclick="disableInputs(true)">Valider2</button>
 	<button type="submit" class="btn btn-warning " name="modifier" onclick="disableInputs(false)">Modifier</button>
 </div>
 <?php   require "$racine/vue/footer.php"; ?>
