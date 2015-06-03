@@ -41,7 +41,7 @@ else{ // méthode POST
 		$nationaliteJoueur = $_POST['nationality'];
 		$avatar = $_POST['imgAvatar'];
 		//echo '<br> nom joueur '.$nomJoueur. '<br> nationalit&eacute; : '.$nationaliteJoueur. '<br> date de naissance : '.$dateJoueur;
-		echo '<tr><td>'.$nomJoueur. '</td><td>'.$nationaliteJoueur. '</td><td>'.$avatar.'</td></tr>';
+		echo '<tr><td></td><td>'.$nomJoueur. '</td><td>'.$nationaliteJoueur. '</td><td>'.$avatar.'</td></tr>';
 		addJoueur($nomJoueur,$nationaliteJoueur,$avatar);
 		
 

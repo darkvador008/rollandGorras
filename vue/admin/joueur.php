@@ -7,7 +7,7 @@ http://www.sanwebe.com/2012/04/ajax-add-delete-sql-records-jquery-php
 -->
 <?php 	require "$racine/vue/header.php"; ?>  
 
-<?php var_dump($item); ?>
+<?php // var_dump($item); ?>
 
 
 <!-- Tableau de rajout de joueur-->

@@ -73,10 +73,18 @@ function ctrl_login(){
 	include_once "$racine/vue/admin/login.php";
 }
 
+
 // Gestion du login
 function ctrl_gestion_login(){
 	global $racine,$nom_projet;
 	$_SESSION['page']="_login";
+	include_once "$racine/ctrl/login.php";
+}
+
+// Gestion du login
+function ctrl_gestion_login_deco(){
+	global $racine,$nom_projet;
+	$_SESSION['page']="_login_deco";
 	include_once "$racine/ctrl/login.php";
 }
 
@@ -143,6 +151,11 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
 		if ($_GET['page']=='_login'){
 			
 			ctrl_login();
+		}
+		
+	if ($_GET['page']=='+deconexion'){
+			
+			ctrl_gestion_login_deco();
 		}
 		
 		if ($_GET['page']=='_joueur'){
