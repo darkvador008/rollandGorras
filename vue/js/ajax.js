@@ -24,7 +24,7 @@ $(document).ready(function() {
             //console.log(myData);
             jQuery.ajax({
             type: "POST", // HTTP method POST or GET
-            url: "index.php?page=_admin_joueur?_adminJoueur_btcCreer", //Where to make Ajax calls
+            url: "index.php?page=_admin_joueur", //Where to make Ajax calls
             dataType:"text", // Data type, HTML, json etc.
             data:myData, //Form variables
             success:function(response){
@@ -69,16 +69,19 @@ $(document).ready(function() {
          
             jQuery.ajax({
             type: "POST", // HTTP method POST or GET
-            url: "response.php", //Where to make Ajax calls
+            url: "index.php?page=_admin_joueur", //Where to make Ajax calls
             dataType:"text", // Data type, HTML, json etc.
             data:myData, //Form variables
             success:function(response){
                 //on success, hide  element user wants to delete.
+                console.log(response);
                 $('#item_'+DbNumberID).fadeOut();
             },
             error:function (xhr, ajaxOptions, thrownError){
                 //On error, we alert user
-                alert(thrownError);
+                console.log(thrownError);
+                console.log(ajaxOptions);
+                
             }
             });
     });

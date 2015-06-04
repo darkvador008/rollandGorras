@@ -46,6 +46,9 @@ else{ // méthode POST
 		
 
 	}
+	elseif(isset($_POST["recordToDelete"])){
+		echo'ici tu peux delete le joueur';
+	}
 
 
 }
