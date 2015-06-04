@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -19,7 +19,7 @@
         <![endif]-->
         <!-- jQuery -->
         <script src="vue/js/jquery.js"></script>
-            <script src="vue/js/ajax.js"></script>
+        <script src="vue/js/ajax.js"></script>
     </head>
     <body>
         <!-- Navigation -->
@@ -28,48 +28,61 @@
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Ronlad Gorras</a>
+                    <a class="navbar-brand" href="index.php">Ronlad Gorras</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="<?php print("$nom_projet/index.php?page=_joueur");?>">Joueurs</a>
+                            <a href="<?php print("$nom_projet/index.php?page=_joueur"); ?>">Joueurs</a>
                         </li>
                         <li>
-                            <a href="<?php print("$nom_projet/index.php?page=_parties_client");?>">Parties</a>
+                            <a href="<?php print("$nom_projet/index.php?page=_parties_client"); ?>">Parties</a>
                         </li>
-                        <li>
-                            <a href="<?php print("$nom_projet/index.php?page=_admin_joueur");?>">Admin Joueur</a>
-                        </li>
-                        <li>
-                            <a href="<?php print("$nom_projet/index.php?page=_admin_partie");?>">Admin Partie</a>
-                        </li>     
-                         <li>
-                            <a href="<?php print("$nom_projet/index.php?page=_admin_creer_partie");?>">Admin Creer Partie</a>
-                        </li>
+
+
+                        <?php
+                        // On démarre la session (ceci est indispensable dans toutes les pages de notre section membre)
+                        //session_start ();
+                        // On récupère nos variables de session
+                        if (isset($_SESSION['login']) && isset($_SESSION['password'])) {
+
+                            echo'<li><a href="' . $nom_projet . '/index.php?page=_admin_joueur">Admin Joueur</a></li>';
+                            echo'<li><a href="' . $nom_projet . '/index.php?page=_admin_partie">Admin Partie</a></li>';
+                            echo'<li><a href="' . $nom_projet . '/index.php?page=_admin_creer_partie">Admin Creer Partie</a></li>';
+
+                            //echo 'Votre login est '.$_SESSION['login'].' et votre mot de passe est '.$_SESSION['password'].'.';
+                            //echo '<br />';
+                            // On affiche un lien pour fermer notre session
+                            echo '<li><a href="' . $nom_projet . '/model/logout.php">logout</a></li>';
+                        } else {
+                            echo 'Les variables ne sont pas déclarées.';
+                        }
+                        ?>
+
+
+
                     </ul>
                     <ul class="nav pull-right">
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
                             <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
-                                <form method="post" action="login" accept-charset="UTF-8">
-                                    <input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="username">
-                                    <input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="password">
-                                    <input style="float: left; margin-right: 10px;" type="checkbox" name="remember-me" id="remember-me" value="1">
-                                    <label class="string optional" for="user_remember_me"> Remember me</label>
-                                    <input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Sign In">
+                                <form role="form" method="post" action=<?php print($nom_projet."/index.php?page=_login"); ?>>
+                                    <input style="margin-bottom: 15px;" type="text" placeholder="Login"  name="login" required="">
+                                    <input style="margin-bottom: 15px;" type="password" placeholder="Password"  name="password" required="">
+
+                                    <button type="submit" class="btn btn-info btn-sm" name="adminLogin_btcLogin">S'identifier</button>
                                     <br>
                                 </form>
                             </div>
                         </li>
                     </ul>
-                    
+
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
@@ -78,6 +91,9 @@
         <!-- Full Width Image Header with Logo -->
         <!-- Image backgrounds are set within the full-width-pics.css file. -->
         <header class="image-bg-fluid-height">
-            <img class="img-responsive img-center imgHeader" src="tenis.jpg" alt="">
+            <img class="img-responsive img-center imgHeader" src="tenis.jpg"  alt="">
         </header>
         <!-- Content Section -->
+
+<?php print("$nom_projet/index.php?page=_login"); ?>
+		
