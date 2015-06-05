@@ -47,7 +47,10 @@ else{ // méthode POST
 
 	}
 	elseif(isset($_POST["recordToDelete"])){
-		echo'ici tu peux delete le joueur';
+		include_once"$racine/model/modelJoueur.php";
+		$idj = $_POST['recordToDelete'];
+		delJoueur($idj);
+		echo $idj;
 	}
 
 

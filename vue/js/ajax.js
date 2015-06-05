@@ -28,7 +28,7 @@ $(document).ready(function() {
             dataType:"text", // Data type, HTML, json etc.
             data:myData, //Form variables
             success:function(response){
-                //console.log(response);
+                console.log(response);
                 $("#tt").append(response);
                 //$("#nom").val(''); //empty text field on successful
                 //$("#addPlayer").show(); //show submit button
@@ -41,17 +41,6 @@ $(document).ready(function() {
             }
             });
     });
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	
 	
@@ -75,7 +64,8 @@ $(document).ready(function() {
             success:function(response){
                 //on success, hide  element user wants to delete.
                 console.log(response);
-                $('#item_'+DbNumberID).fadeOut();
+                $("#responds").remove();
+                //$('#item_'+DbNumberID).fadeOut();
             },
             error:function (xhr, ajaxOptions, thrownError){
                 //On error, we alert user

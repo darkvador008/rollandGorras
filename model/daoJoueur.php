@@ -41,6 +41,13 @@ class daoJoueur{
 		$sql = "INSERT INTO player VALUES (NULL, '$nomJoueur', '$nationaliteJoueur', '$image')";
 		mysql_query($sql);
 		self::deconnect();
+	}	
+	public static function delJoueur($idj){
+		self::connectDB();
+		$id = mysql_real_escape_string($idj);
+		$sql = "DELETE FROM player WHERE id=".$idj;
+		mysql_query($sql);
+		self::deconnect();
 	}
 
 	public static function getTest(){

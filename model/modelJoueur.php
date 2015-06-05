@@ -28,8 +28,10 @@ function joueurLoad(){
 function addJoueur($nom,$nationalite,$imgAvatar){
 	include_once 'daoJoueur.php';
 	 daoJoueur::addJoueur($nom,$nationalite,$imgAvatar);
-	
-
+}
+function delJoueur($idj){
+	include_once 'daoJoueur.php';
+	 daoJoueur::delJoueur($idj);
 }
 
 

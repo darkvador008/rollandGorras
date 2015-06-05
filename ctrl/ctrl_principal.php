@@ -8,7 +8,7 @@
 
 /* * ** Chemins de l'application ** */
 $nom_projet = "/rollandGorras";
-$racine = "c:/wamp/www" . $nom_projet;
+$racine = "/opt/lampp/htdocs" . $nom_projet;
 /* * ********				** */
 
 // début de la session
