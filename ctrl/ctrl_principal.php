@@ -63,7 +63,7 @@ function ctrl_admin_partie() {
 function ctrl_admin_creer_partie() {
     global $racine, $nom_projet;
     $_SESSION['page'] = "_admin_creer_partie";
-    echo("<script>console.log('function ctrl admin creer partie ');</script>");
+    //echo("<script>console.log('function ctrl admin creer partie ');</script>");
 
     include_once "$racine/ctrl/creerPartie.php";
 }
@@ -131,11 +131,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
             ctrl_gestion_login();
         } elseif ($_SESSION['page'] == '_admin_creer_partie') {
-            echo("<script>console.log('controleur post _admin_creer_partie');</script>");
+            //echo("<script>console.log('controleur post _admin_creer_partie');</script>");
             ctrl_admin_creer_partie();
         }
     } else {
-        echo("<script>console.log('aaa');</script>");
+       // echo("<script>console.log('aaa');</script>");
         echo 'ctrl principal else post';
         ctrl_index();
     }
@@ -160,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
 
         if ($_GET['page'] == "_admin_creer_partie") {
-            echo("<script>console.log('controleur get _admin_creer_partie');</script>");
+            //echo("<script>console.log('controleur get _admin_creer_partie');</script>");
             ctrl_admin_creer_partie();
         }
 

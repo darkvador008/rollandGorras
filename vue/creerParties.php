@@ -7,9 +7,9 @@
                 <option value="player1">Joueur 1</option>
                 <?php
                 for ($i = 0; $i < count($item); $i++) {
-                    echo"<option value=' $i '>";
+                    echo"<option value='".$item[$i]->monID."'>";
                     //echo $item[$i]->nom;
-                    echo $item[$i]->monID;
+                    echo $item[$i]->nom ;
                     echo '</option>';
                 };
                 ?>
@@ -19,19 +19,18 @@
                 <option value="player2">Joueur 2</option>
                 <?php
                 for ($i = 0; $i < count($item); $i++) {
-                    echo"<option value=' $i '>";
-                    //echo $item[$i]->nom;
-                    echo $item[$i]->monID;
+                    echo"<option value='".$item[$i]->monID."'>";
+                    echo $item[$i]->nom;
                     echo '</option>';
                 };
                 ?>
             </select>
             <label class="col-md-1 txtc"> ON </label>
             <select class="form-control sel col-md-2" id="ter" onchange="checkDuplicate()">
-                <option value="t1">Terrain 1</option>
-                <option value="t2">Terrain 2</option>
-                <option value="t3">Terrain 3</option>
-                <option value="t4">Terrain 4</option>
+                <option value="1">Terrain 1</option>
+                <option value="2">Terrain 2</option>
+                <option value="3">Terrain 3</option>
+                <option value="4">Terrain 4</option>
             </select>
 
     </div >

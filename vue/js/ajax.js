@@ -87,8 +87,8 @@ $(document).ready(function() {
             //$("#addPlayer").hide(); //hide submit button
            
            //build a post data structure
-            var myData = 'playerID1='+ $("#j1 option:selected").text()+'&' 
-                        + 'playerID2='+ $("#j2 option:selected").text() + '&'
+            var myData = 'playerID1='+ $("#j1 option:selected").val()+'&' 
+                        + 'playerID2='+ $("#j2 option:selected").val() + '&'
                         + 'terrainID='+ $("#ter").val();
             console.log(myData);
 
