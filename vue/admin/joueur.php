@@ -63,7 +63,7 @@ http://www.sanwebe.com/2012/04/ajax-add-delete-sql-records-jquery-php
 	<?php 
 	
 	for ($i=0;$i<count($item);$i++){
-		echo'<tr id ="responds">';
+		echo'<tr id =responds_'.$item[$i]->monID.'>';
 		echo '<td>'.$item[$i]->monID.' </td>';
 		echo '<td>'.$item[$i]->nom.' </td>';
 		echo '<td>'.$item[$i]->nationalite.' </td>';

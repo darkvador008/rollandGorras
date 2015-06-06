@@ -42,11 +42,12 @@ $(document).ready(function() {
 
 
     //##### Send delete Ajax request to _admin_joueur #########
-    $("body").on("click", "#responds .del_button", function(e) {
+    $("body").on("click", "#tt .del_button", function(e) {
         console.log('aaaaaaaaaaaaaaaaaaaaaaaaa');
         e.preventDefault();
         var clickedID = this.id.split('-'); //Split ID string (Split works as PHP explode)
         var DbNumberID = clickedID[1]; //and get number from array
+        console.log('clicked id = '+DbNumberID);
         var myData = 'recordToDelete=' + DbNumberID; //build a post data structure
 
         $('#item_' + DbNumberID).addClass("sel"); //change background of this element by adding class
@@ -59,8 +60,8 @@ $(document).ready(function() {
             data: myData, //Form variables
             success: function(response) {
                 //on success, hide  element user wants to delete.
-                console.log(response);
-                $("#responds").remove();
+                console.log("test"+response);
+                $("#responds_"+DbNumberID).remove();
                 //$('#item_'+DbNumberID).fadeOut();
             },
             error: function(xhr, ajaxOptions, thrownError) {
