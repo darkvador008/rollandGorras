@@ -8,7 +8,8 @@
 
 /* * ** Chemins de l'application ** */
 $nom_projet = "/rollandGorras";
-$racine = "/opt/lampp/htdocs" . $nom_projet;
+//$racine = "/opt/lampp/htdocs" . $nom_projet;
+$racine = "c:/wamp/www" . $nom_projet;
 /* * ********				** */
 
 // début de la session
@@ -62,6 +63,7 @@ function ctrl_admin_partie() {
 function ctrl_admin_creer_partie() {
     global $racine, $nom_projet;
     $_SESSION['page'] = "_admin_creer_partie";
+    echo("<script>console.log('function ctrl admin creer partie ');</script>");
 
     include_once "$racine/ctrl/creerPartie.php";
 }
@@ -128,6 +130,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             echo("<script>console.log('aaa');</script>");
 
             ctrl_gestion_login();
+        } elseif ($_SESSION['page'] == '_admin_creer_partie') {
+            echo("<script>console.log('controleur post _admin_creer_partie');</script>");
+            ctrl_admin_creer_partie();
         }
     } else {
         echo("<script>console.log('aaa');</script>");
@@ -155,6 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
 
         if ($_GET['page'] == "_admin_creer_partie") {
+            echo("<script>console.log('controleur get _admin_creer_partie');</script>");
             ctrl_admin_creer_partie();
         }
 

@@ -21,7 +21,7 @@ class daoPartie{
 
 		self::connectDB();
 
-		$sql = "INSERT INTO partie VALUES ('', '$PlayerID1', '$PlayerID2','NULL', '$terrainID')";
+		$sql = "INSERT INTO partie VALUES ('', '$PlayerID1', '$PlayerID2','NULL', '1')";
 		mysql_query($sql);
 		self::deconnect();
 	}

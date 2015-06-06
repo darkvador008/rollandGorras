@@ -7,9 +7,10 @@
                 <option value="player1">Joueur 1</option>
                 <?php
                 for ($i = 0; $i < count($item); $i++) {
-                echo"<option value=' $i '>";
-                    echo $item[$i]->nom;
-                echo '</option>';
+                    echo"<option value=' $i '>";
+                    //echo $item[$i]->nom;
+                    echo $item[$i]->monID;
+                    echo '</option>';
                 };
                 ?>
             </select>
@@ -18,9 +19,10 @@
                 <option value="player2">Joueur 2</option>
                 <?php
                 for ($i = 0; $i < count($item); $i++) {
-                echo"<option value=' $i '>";
-                    echo $item[$i]->nom;
-                echo '</option>';
+                    echo"<option value=' $i '>";
+                    //echo $item[$i]->nom;
+                    echo $item[$i]->monID;
+                    echo '</option>';
                 };
                 ?>
             </select>
