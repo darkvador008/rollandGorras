@@ -1,6 +1,6 @@
 function checkDuplicate() {
-    var selOne = document.getElementById("sel1").value;
-    var selTwo = document.getElementById("sel2").value;
+    var selOne = document.getElementById("j1").value;
+    var selTwo = document.getElementById("j2").value;
 
     if (selOne == selTwo) { //|| selThree...
         alert("select are the same");

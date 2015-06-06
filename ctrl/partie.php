@@ -26,7 +26,7 @@ else{ // méthode POST
 	}
 
 
-}
+
 
 
 

@@ -30,6 +30,8 @@ else{ // méthode POST
 		$p2 = $_POST['PlayerID2'];
 		$tid = $_POST['terrainID'];
 		//echo '<br> nom joueur '.$nomJoueur. '<br> nationalit&eacute; : '.$nationaliteJoueur. '<br> date de naissance : '.$dateJoueur;
+		$id1=getIDPlayer($PlayerID1);
+		echo 'tet';
 		addPartie($PlayerID1,$PlayerID2,$terrainID);
 		
 

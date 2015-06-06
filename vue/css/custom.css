@@ -4,9 +4,17 @@
 
 
 }
+
+.txtc{
+	text-align: center;
+}
+.btnCreer{
+
+	margin-left: 10px
+}
 .containerPartie{
 
-	min-width: 335px;
+
 	width: 100%;
 
 
@@ -20,7 +28,7 @@
 }
 
 .sel{
-	max-width: 100px;
+	max-width: 120px;
 
 	margin-bottom: 2px;
 	width:100%;

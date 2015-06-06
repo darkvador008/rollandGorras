@@ -50,6 +50,16 @@ class daoJoueur{
 		self::deconnect();
 	}
 
+	public static function getIDPlayer($nom){
+		self::connectDB;
+		$nom=mysql_real_escape_string($nom);
+		$sql="SELECT id FROM player WHERE nom=".$nom;
+		$result = mysql_query($sql);
+		self::deconnect;
+		return mysql_result($result, 0);
+
+		
+	}
 	public static function getTest(){
 		return 'hello';
 	}

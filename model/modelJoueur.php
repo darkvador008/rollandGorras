@@ -33,6 +33,10 @@ function delJoueur($idj){
 	include_once 'daoJoueur.php';
 	 daoJoueur::delJoueur($idj);
 }
+function getIDPlayer($name){
+	include_once 'daoJoueur.php';
+	 daoJoueur::getIDPlayer($name);
+}
 
 
 class item {
