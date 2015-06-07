@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: May 30, 2015 at 06:52 PM
--- Server version: 5.6.17
--- PHP Version: 5.5.12
+-- Host: localhost
+-- Generation Time: Jun 07, 2015 at 03:49 PM
+-- Server version: 5.6.16
+-- PHP Version: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -32,18 +32,19 @@ CREATE TABLE IF NOT EXISTS `partie` (
   `playerID2` int(11) NOT NULL,
   `jour` date DEFAULT NULL,
   `terrainID` int(11) NOT NULL,
+  `tour` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `playerID1` (`playerID1`),
   KEY `playerID2` (`playerID2`),
   KEY `terrainID` (`terrainID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `partie`
 --
 
-INSERT INTO `partie` (`id`, `playerID1`, `playerID2`, `jour`, `terrainID`) VALUES
-(1, 141, 145, NULL, 2);
+INSERT INTO `partie` (`id`, `playerID1`, `playerID2`, `jour`, `terrainID`, `tour`) VALUES
+(1, 187, 189, NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -57,29 +58,16 @@ CREATE TABLE IF NOT EXISTS `player` (
   `nationalite` varchar(30) CHARACTER SET utf8 DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=161 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=191 ;
 
 --
 -- Dumping data for table `player`
 --
 
 INSERT INTO `player` (`id`, `nom`, `nationalite`, `image`) VALUES
-(141, 'aaa', 'bbb', '100_9047.jpg'),
-(143, 'aaa', 'bbb', '100_9047.jpg'),
-(144, 'aaa', 'bbb', '100_9047.jpg'),
-(145, 'ccc', '', ''),
-(147, 'a', '', ''),
-(148, 'a', '', '100_9047.jpg'),
-(149, 'a', '', ''),
-(150, 'a', '', '00654_HD.jpg'),
-(151, 'a', '', '00654_HD.jpg'),
-(152, 'aa', '', '100_9048.jpg'),
-(153, 'a', '', ''),
-(154, 'aa', '', '100_9047.jpg'),
-(157, 'c', '', '11.jpg'),
-(158, 'a', '', '11.jpg'),
-(159, 'a', '', '100_9047.jpg'),
-(160, 'aa', 'zz', '11.jpg');
+(187, 'zdqd', 'azd', ''),
+(189, 'df', 'eee', ''),
+(190, 'zze', 'Ã©eÃ©', '');
 
 -- --------------------------------------------------------
 
@@ -141,9 +129,9 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Constraints for table `partie`
 --
 ALTER TABLE `partie`
-  ADD CONSTRAINT `fk_terrain` FOREIGN KEY (`terrainID`) REFERENCES `terrain` (`id`),
   ADD CONSTRAINT `fk_player1` FOREIGN KEY (`playerID1`) REFERENCES `player` (`id`),
-  ADD CONSTRAINT `fk_player2` FOREIGN KEY (`playerID2`) REFERENCES `player` (`id`);
+  ADD CONSTRAINT `fk_player2` FOREIGN KEY (`playerID2`) REFERENCES `player` (`id`),
+  ADD CONSTRAINT `fk_terrain` FOREIGN KEY (`terrainID`) REFERENCES `terrain` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
