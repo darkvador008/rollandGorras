@@ -27,7 +27,9 @@ else{
 
     	$tour = $_POST['tour'];
     	echo("<script>console.log('tour set');</script>");
-    	getParties($tour);
+    	$parties=getParties($tour);
+    	echo $parties;
+    	
 
 	}
 

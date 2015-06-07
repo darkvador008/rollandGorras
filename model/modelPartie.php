@@ -8,6 +8,7 @@ function addPartie($PlayerID1,$PlayerID2,$terrainID){
 
 function getParties($tour){
 	include_once 'daoPartie.php';
-	 daoPartie::getParties($tour);
+	 $parties=daoPartie::getParties($tour);
+	 return $parties;
 }
 ?>

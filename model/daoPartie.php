@@ -21,10 +21,13 @@ class daoPartie {
 		$parties=array();
 		while($ligne=mysql_fetch_assoc($res)){
 			$parties[0]=$ligne['id'];
+			$parties[1]=$ligne['playerID1'];
+			$parties[2]=$ligne['playerID2'];
 			
 		}
 		self::deconnect();
-		return $parties;
+
+		return serialize($parties);
 
 		
 	}
