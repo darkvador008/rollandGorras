@@ -17,13 +17,27 @@ class daoPartie{
 
 
 	public static function addPartie($PlayerID1,$PlayerID2,$terrainID){
-
-
 		self::connectDB();
-
 		$sql = "INSERT INTO partie VALUES ('', '$PlayerID1', '$PlayerID2','NULL', '1')";
 		mysql_query($sql);
 		self::deconnect();
+	}	
+
+	public static function getParties($tour){
+
+		self::connectDB();
+		$sql = "SELECT * FROM partie where tour=".$tour;
+
+		$res=mysql_query($sql);
+		$parties=array();
+		while($ligne=mysql_fetch_assoc($res)){
+			$parties[0]=$ligne['id'];
+			
+		}
+		self::deconnect();
+		return $parties;
+
+		
 	}
 
 	public static function getTest(){

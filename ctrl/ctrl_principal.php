@@ -8,8 +8,8 @@
 
 /* * ** Chemins de l'application ** */
 $nom_projet = "/rollandGorras";
-//$racine = "/opt/lampp/htdocs" . $nom_projet;
-$racine = "c:/wamp/www" . $nom_projet;
+$racine = "/opt/lampp/htdocs" . $nom_projet;
+//$racine = "c:/wamp/www" . $nom_projet;
 /* * ********				** */
 
 // début de la session
@@ -125,6 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             ctrl_admin_joueur();
         } elseif ($_SESSION['page'] == '_admin_partie') {
             echo 'retour admin partie';
+            ctrl_admin_partie();
         } elseif ($_SESSION['page'] == '_login') {
             echo 'retour';
             echo("<script>console.log('aaa');</script>");

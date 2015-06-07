@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Full Width Pics - Start Bootstrap Template</title>
+        <title>Rolland Gorras</title>
         <!-- Bootstrap Core CSS -->
         <link href="vue/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom CSS -->

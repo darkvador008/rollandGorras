@@ -19,19 +19,19 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 } else { // méthode POST
     //echo("<script>console.log('post ctrl creer partie : " . $_POST['PlayerID1'] . " ');</script>");
     // Rentre ici
-    if (isset($_POST['PlayerID1'], $_POST['PlayerID2'], $_POST['terrainID'])) {
+    if (isset($_POST['playerID1'], $_POST['playerID2'], $_POST['terrainID'])) {
         
         // ne rentre pas
         include_once"$racine/model/modelPartie.php";
         echo("<script>console.log('post ok');</script>");
-        $p1 = $_POST['PlayerID1'];
-        $p2 = $_POST['PlayerID2'];
+        $p1 = $_POST['playerID1'];
+        $p2 = $_POST['playerID2'];
         $tid = $_POST['terrainID'];
         //echo '<br> nom joueur '.$nomJoueur. '<br> nationalit&eacute; : '.$nationaliteJoueur. '<br> date de naissance : '.$dateJoueur;
-        $id1 = getIDPlayer($PlayerID1);
+        $id1 = getIDPlayer($playerID1);
         echo 'tet';
 
-        addPartie($PlayerID1, $PlayerID2, $terrainID);
+        addPartie($playerID1, $playerID2, $terrainID);
     }
 }
 ?>

@@ -1,5 +1,6 @@
 <?php   require "$racine/vue/header.php"; ?>
 
+<script src="vue/js/adminPartie.js"></script>
 
 
 <div class="containerPartie">

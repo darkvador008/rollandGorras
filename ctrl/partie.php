@@ -16,26 +16,22 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
 	include_once"$racine/vue/admin/partie.php";
 		$_SESSION['players'] = $item;
 
-
-
-
 }
-else{ // méthode POST
 
+
+else{ 
+	echo("pooooooooooost");
+
+    if (isset($_POST['tour'])) {
+ 		include_once"$racine/model/modelPartie.php";
+
+    	$tour = $_POST['tour'];
+    	echo("<script>console.log('tour set');</script>");
+    	getParties($tour);
 
 	}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+}
 ?>
