@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 07, 2015 at 03:49 PM
+-- Generation Time: Jun 08, 2015 at 07:23 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -33,18 +33,24 @@ CREATE TABLE IF NOT EXISTS `partie` (
   `jour` date DEFAULT NULL,
   `terrainID` int(11) NOT NULL,
   `tour` int(11) NOT NULL,
+  `scorej1` int(11) NOT NULL,
+  `scorej2` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `playerID1` (`playerID1`),
   KEY `playerID2` (`playerID2`),
   KEY `terrainID` (`terrainID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
 
 --
 -- Dumping data for table `partie`
 --
 
-INSERT INTO `partie` (`id`, `playerID1`, `playerID2`, `jour`, `terrainID`, `tour`) VALUES
-(1, 187, 189, NULL, 1, 1);
+INSERT INTO `partie` (`id`, `playerID1`, `playerID2`, `jour`, `terrainID`, `tour`, `scorej1`, `scorej2`) VALUES
+(1, 187, 189, NULL, 1, 1, 0, 0),
+(10, 187, 190, '2015-06-08', 1, 1, 0, 0),
+(15, 189, 190, '2015-06-08', 1, 1, 0, 0),
+(16, 190, 190, '2015-06-08', 1, 1, 0, 0),
+(21, 190, 189, '2015-06-08', 1, 1, 0, 0),
 
 -- --------------------------------------------------------
 
@@ -83,6 +89,21 @@ CREATE TABLE IF NOT EXISTS `point` (
   `joueur2ID` int(11) NOT NULL,
   `pointJ2` int(11) NOT NULL,
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `set`
+--
+
+CREATE TABLE IF NOT EXISTS `set` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `partie_id` int(11) NOT NULL,
+  `j1` int(11) NOT NULL,
+  `j2` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `partie_id` (`partie_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------

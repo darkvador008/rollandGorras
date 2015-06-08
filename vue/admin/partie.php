@@ -11,8 +11,9 @@
      <div class="panel-heading p1">Joueur1     VS      Joueur2</div>
      <div class="panel-body">
         <div class="row">
-            <div class="col-md-4 scrj1">Score j1= 15</div><div class="col-md-4"><button type="button" class="btn btn-default scorebtntop" aria-label="Left Align">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <div class="col-md-4 scrj1">Score j1= 15</div><div class="col-md-4">
+            <button type="button" class="btn btn-default scorebtntop" id="plus" aria-label="Left Align">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 
         </button></div><div class="col-md-4"><button type="button" class="btn btn-default scorebtntop" aria-label="Left Align">
         <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
         </button></div>

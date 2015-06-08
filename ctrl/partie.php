@@ -17,9 +17,15 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
 		$_SESSION['players'] = $item;
 
 }
+elseif(isset($_POST['scorej1']) && isset($_POST['scorej2'])){
+	//click sur boutton + ou -
+	echo "click click";
+	$sj1 = $_POST['scorej1'];
+	$sj2 = $_POST['scorej2'];
 
+}
 
-else{ 
+else{ //POST
     if (isset($_POST['tour'])) {
     	include_once"$racine/model/modelJoueur.php";
  		include_once"$racine/model/modelPartie.php";
@@ -29,8 +35,7 @@ else{
     	echo $parties;
     	
 	}
-
-
-
 }
+
+
 ?>
