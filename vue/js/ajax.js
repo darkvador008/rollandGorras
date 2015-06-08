@@ -1,5 +1,4 @@
-
-$(document).ready(function() {
+    $(document).ready(function() {
 
     //##### send add record Ajax request to _admin_joueur #########
     $("#addPlayer").click(function(e) {
@@ -24,8 +23,6 @@ $(document).ready(function() {
             }
         });
     });
-
-
 
 
     //##### Send delete Ajax request to _admin_joueur #########
@@ -62,12 +59,35 @@ $(document).ready(function() {
 
 
     //##### send add record Ajax request to _admin_creer_partie #########
-    $("#addPartie").click(function(e) {
+    $("[name='valider']").click(function(e) {
         console.log('cccccccccccccccccccccccccc');
-        e.preventDefault();
+        e.preventDefault();name
 
+        console.log(e.target.id);
+        var j1=new String();
+        var j2=new String();
+        switch(e.target.id){
+            case 'addPartie':
+                j1="j1";
+                j2="j2";
+                break;
+            case 'addPartie2':
+                j1="j12";
+                j2="j22";
+                break;            
+            case 'addPartie3':
+                j1="j13";
+                j2="j23";
+                break;            
+            case 'addPartie4':
+                j1="j14";
+                j2="j24";
+                break;
+
+        }
         //build a post data structure
-        var myData = 'playerID1=' + $("#j1 option:selected").text() + '&' + 'playerID2=' + $("#j2 option:selected").text() + '&' + 'terrainID=' + $("#ter").val();
+        console.log(j1);
+        var myData = 'playerID1=' + $("#"+j1+" option:selected").val() + '&' + 'playerID2=' + $("#j2 option:selected").val() + '&' + 'terrainID=1';
         console.log(myData);
 
         jQuery.ajax({

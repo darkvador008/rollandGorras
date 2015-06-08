@@ -20,17 +20,14 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
 
 
 else{ 
-	echo("pooooooooooost");
-
     if (isset($_POST['tour'])) {
+    	include_once"$racine/model/modelJoueur.php";
  		include_once"$racine/model/modelPartie.php";
 
     	$tour = $_POST['tour'];
-    	echo("<script>console.log('tour set');</script>");
     	$parties=getParties($tour);
     	echo $parties;
     	
-
 	}
 
 
