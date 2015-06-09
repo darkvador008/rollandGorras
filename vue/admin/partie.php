@@ -15,15 +15,15 @@
         <div class="row">
             <div class="col-md-4 scrj1">Score j1= 15</div><div class="col-md-4">
             <button type="button" class="btn btn-default scorebtntop" aria-label="Left Align">
-        <span class="glyphicon glyphicon-plus " aria-hidden="true" id="plus1"></span> 
+        <span class="glyphicon glyphicon-plus " aria-hidden="true" id="plus1" name="bouton"></span> 
         </button></div><div class="col-md-4"><button type="button" class="btn btn-default scorebtntop" aria-label="Left Align">
-        <span class="glyphicon glyphicon-minus" aria-hidden="true" id="minus1"></span>
+        <span class="glyphicon glyphicon-minus" aria-hidden="true" id="minus1" name="bouton"></span>
         </button></div>
        
             <div class="col-md-4 scrj2" >Score j1= 15</div><div class="col-md-4"><button type="button" class="btn btn-default scorebtntop" aria-label="Left Align">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true" id="plus2"></span>
+        <span class="glyphicon glyphicon-plus" aria-hidden="true" id="plus2" name="bouton"></span>
         </button></div><div class="col-md-4"><button type="button" class="btn btn-default scorebtntop" aria-label="Left Align">
-        <span class="glyphicon glyphicon-minus" aria-hidden="true" id="minus2"></span>
+        <span class="glyphicon glyphicon-minus" aria-hidden="true" id="minus2" name="bouton"></span>
         </button></div>
         
         </div>

@@ -19,10 +19,14 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
 }
 
 
-elseif(isset($_POST['scorej1']) && isset($_POST['scorej2']) && ($_POST['action']=='plus')){
+elseif(isset($_POST['scorej1']) && isset($_POST['scorej2']) && isset($_POST['partie_id']) && ($_POST['action']=='plus')){
+	include_once"$racine/model/modelPartie.php";
 	echo "click sur boutton+";
 	$sj1 = $_POST['scorej1'];
 	$sj2 = $_POST['scorej2'];
+	$partie_id=$_POST['partie_id'];
+	$numb=$_POST['numButton'];
+	scorePlus($sj1,$sj2,$partie_id,$numb);
 
 }
 

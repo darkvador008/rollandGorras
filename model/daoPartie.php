@@ -66,26 +66,62 @@ class daoPartie {
         return 'hello';
     }
 
-    public static function scorePlus($score,$partieID,$joueur){
-    	switch ($score){
+    public function revert ($var1,$var2){
+    	$tmp=$var1;
+    	$var1=$var2;
+    	$var2=$tmp;
+
+    }
+
+    public static function scorePlus($scorej1,$scorej2,$partie_id,$numButton){
+
+    	//pour insérer sur le bon joueur
+    	if ($numButton==2){
+    		$tmp=$scorej1;
+    		$scorej1=$scorej2;
+    		$scorej2=$tmp;
+    	}
+
+    	self::connectDB();
+    	//si numButton=1 on update scorej1 et inversement
+
+    	switch ($scorej1){
     		case 0:
     		case 15:
-	    		$score+=15;
+	    		$scorej1+=15;
 	    		break;
 	    	case 30:
-	    		$score+=10;
+	    		$scorej1+=10;
 	    		break;
 	    	case 40:
-	    		$score+=5;
-	    		break;
-	    	case 45: //avantage
-	    		$score=0;
-	    		//jeu gagné
+	    		//j1 bouge pas et j2 perd l'avantage
+	    		if ($scorej2==45){
+	    			$scorej2-=5;
+	    		}
+	    		$scorej1+=5;
 	    		break;
 
+	    	case 45: //avantage
+	    		$scorej1=0;
+	    		$scorej2=0;
+	    		//j1 a gagné un set
+	    		break;
+    	if ($numButton==2){
+    		$tmp=$scorej1;
+    		$scorej1=$scorej2;
+    		$scorej2=$tmp;
+    	}
 
     	}
-    	$sql = "UPDATE partie SET  ";
+    	if ($numButton==2){
+    		$sql = "UPDATE partie SET scorej2='".$scorej1."',scorej1='".$scorej2."' where id=".$partie_id ;
+    	}
+    	else{
+    		$sql = "UPDATE partie SET scorej1='".$scorej1."',scorej2='".$scorej2."' where id=".$partie_id ;
+    	}
+    	echo $sql;
+    	mysql_query($sql);
+    	self::deconnect();
 
     }
 
