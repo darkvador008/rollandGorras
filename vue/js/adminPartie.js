@@ -15,8 +15,8 @@ $(document).ready(function() {
                 $('#'+i).find('.p1').html(response[i][1]+ " VS "+ response[i][2]);
                 $('#'+i).find('.scrj1').html(response[i][1]+ " : "+ response[i][3]);
                 $('#'+i).find('.scrj2').html(response[i][2]+ " : "+ response[i][4]);
-                $('#'+i).find('#plus1').attr("id",i+"-plus-1-"+response[i][0]);
-                $('#'+i).find('#plus2').attr("id",i+"-plus-2-"+response[i][0]);
+                $('#'+i).find('.plus1').attr("id",i+"-plus-1-"+response[i][0]);
+                $('#'+i).find('.plus2').attr("id",i+"-plus-2-"+response[i][0]);
                 //$('div.p1').html(response[0][1]+ " VS "+ response[1][1]);
                 //$('div.scrj1').html(response[0][1]+"  : "+response[0][3]);
                 //$('div.scrj2').html(response[1][1]+"  : "+response[0][4]);
