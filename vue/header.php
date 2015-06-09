@@ -95,5 +95,5 @@
         </header>
         <!-- Content Section -->
 
-<?php print("$nom_projet/index.php?page=_login"); ?>
+
 		

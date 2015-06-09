@@ -8,8 +8,8 @@
 
 /* * ** Chemins de l'application ** */
 $nom_projet = "/rollandGorras";
-$racine = "/opt/lampp/htdocs" . $nom_projet;
-//$racine = "c:/wamp/www" . $nom_projet;
+//$racine = "/opt/lampp/htdocs" . $nom_projet;
+$racine = "c:/wamp/www" . $nom_projet;
 /* * ********				** */
 
 // début de la session
@@ -136,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             ctrl_admin_creer_partie();
         }
     } else {
-       // echo("<script>console.log('aaa');</script>");
+        // echo("<script>console.log('aaa');</script>");
         echo 'ctrl principal else post';
         ctrl_index();
     }
