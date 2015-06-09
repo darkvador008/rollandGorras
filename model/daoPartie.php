@@ -42,7 +42,7 @@ class daoPartie {
 			
 		}
 		self::deconnect();
-
+		
 		return json_encode($rez);
 	}
 	
@@ -64,6 +64,29 @@ class daoPartie {
 
     public static function getTest() {
         return 'hello';
+    }
+
+    public static function scorePlus($score,$partieID,$joueur){
+    	switch ($score){
+    		case 0:
+    		case 15:
+	    		$score+=15;
+	    		break;
+	    	case 30:
+	    		$score+=10;
+	    		break;
+	    	case 40:
+	    		$score+=5;
+	    		break;
+	    	case 45: //avantage
+	    		$score=0;
+	    		//jeu gagné
+	    		break;
+
+
+    	}
+    	$sql = "UPDATE partie SET  ";
+
     }
 
 }

@@ -17,9 +17,10 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
 		$_SESSION['players'] = $item;
 
 }
-elseif(isset($_POST['scorej1']) && isset($_POST['scorej2'])){
-	//click sur boutton + ou -
-	echo "click click";
+
+
+elseif(isset($_POST['scorej1']) && isset($_POST['scorej2']) && ($_POST['action']=='plus')){
+	echo "click sur boutton+";
 	$sj1 = $_POST['scorej1'];
 	$sj2 = $_POST['scorej2'];
 

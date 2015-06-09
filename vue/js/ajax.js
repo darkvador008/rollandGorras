@@ -85,9 +85,9 @@
                 break;
 
         }
-        //build a post data structure
+        //bcorej1,$scouild a post data structure
         console.log(j1);
-        var myData = 'playerID1=' + $("#"+j1+" option:selected").val() + '&' + 'playerID2=' + $("#j2 option:selected").val() + '&' + 'terrainID=1';
+        var myData = 'playerID1=' + $("#"+j1+" option:selected").val() + '&' + 'playerID2=' + $("#"+j2+" option:selected").val() + '&' + 'terrainID=1';
         console.log(myData);
 
         jQuery.ajax({

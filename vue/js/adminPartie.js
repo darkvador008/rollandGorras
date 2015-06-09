@@ -11,28 +11,32 @@ $(document).ready(function() {
         success: function(response) {
             console.log(response);
             
-            //console.log("nom1 "+noms[0]+" nom2 "+noms[1]);
-            $('div.p1').html(response[0][1]+ " VS "+ response[1][1]);
-            $('div.scrj1').html(response[0][3]);
-            $('div.scrj2').html(response[0][4]);
+            for (var i = 0; i <4; i++) {
+                $('#'+i).find('.p1').html(response[i][1]+ " VS "+ response[i][2]);
+                $('#'+i).find('.scrj1').html(response[i][1]+ " : "+ response[i][3]);
+                $('#'+i).find('.scrj2').html(response[i][2]+ " : "+ response[i][4]);
+                //$('div.p1').html(response[0][1]+ " VS "+ response[1][1]);
+                //$('div.scrj1').html(response[0][1]+"  : "+response[0][3]);
+                //$('div.scrj2').html(response[1][1]+"  : "+response[0][4]);
+            }
 
         },
         error: function(xhr, ajaxOptions, thrownError) {
-            alert(thrownError);
+            console.log(thrownError);
         }
     });
-
+ 
     //##### pour le boutton +
-    $("#plus").click(function(e) { //ici il va falloir prendre sur le name et faire un switch sur l'id comme dans addpartie à moins que t'aies une meilleure solution
+    $("#plus").click(function(e) {  ////ici il va falloir prendre sur le name et faire un switch sur l'id comme dans addpartie à moins que t'aies une meilleure solution
         console.log('plus clicked');
         e.preventDefault();
 
         //build a post data structure
-        var myData = "scorej1="+$("div.scrj1").text()+"&scorej2="+$("div.scrj1").text();
+        var myData = "action=plus&"+"scorej1="+$("div.scrj1").text()+"&scorej2="+$("div.scrj1").text();
         console.log(myData);
         jQuery.ajax({
             type: "POST", // HTTP method POST or GET
-            url: "index.php?page=_admin_joueur", //Where to make Ajax calls
+            url: "index.php?page=_admin_joueur?", //Where to make Ajax calls
             dataType: "text", // Data type, HTML, json etc.
             data: myData, //Form variables
             success: function(response) {
