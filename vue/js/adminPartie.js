@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+
     var myData = 'tour=1';// Il faudra mettre une var de session "tour" et ici il faudra mettre la valeur
     // de la session dans tour pour afficher le bon nombre de partie quand la page charge
 
@@ -33,18 +34,20 @@ $(document).ready(function () {
     //##### pour le boutton +
     $("[name='bouton']").click(function (e) {
         e.preventDefault();
-        console.log(e.target.id);
+        console.log("etarget: " + e.target.id);
+        var lm=$(this).attr("id");
         //alert(e.target.id);
         //console.log(e.target.id);//ex: 2-minus1-48,2eme panel premier boutton -, partie id:48
-        var numButton = e.target.id.split("-", 4)[2];
-        var partie_id = e.target.id.split("-", 4)[3];
-        var panelNum = e.target.id.split("-", 4)[0];//4 panels. start at '0'
-        console.log(partie_id);
-        console.log(numButton);
+        var numButton = lm.split("-", 4)[2];
+        var partie_id = lm.split("-", 4)[3];
+        var panelNum = lm.split("-", 4)[0];//4 panels. start at '0'
+
         //build a post data structure
         var scorej1 = $("#" + panelNum).find("div.scrj1").text().split(": ", 2)[1];
         var scorej2 = $("#" + panelNum).find("div.scrj2").text().split(": ", 2)[1];
-
+        console.log(partie_id);
+        console.log(numButton);
+        console.log(e.target.id.split("-", 4)[1]);
 
         var myData = "action=plus&" + "scorej1=" + scorej1 + "&scorej2=" + scorej2 + "&partie_id=" + partie_id + "&numButton=" + numButton;
         console.log(myData);
@@ -57,7 +60,7 @@ $(document).ready(function () {
                 //ici afficher le score. Il faudra renvoyer et recup ici
                 //un objet json avec les sets et scores
                 console.log(response);
-                location.reload();
+                //location.reload();
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert(thrownError);
@@ -67,7 +70,7 @@ $(document).ready(function () {
 
 
     //##### pour le boutton -
-    $("[name='bouton2']").click(function (e) {
+    $("[name='bouton2']").on('click',function (e) {
         e.preventDefault();
         console.log(e.target.id);
         //alert(e.target.id);
@@ -94,7 +97,7 @@ $(document).ready(function () {
                 //ici afficher le score. Il faudra renvoyer et recup ici
                 //un objet json avec les sets et scores
                 console.log(response);
-                location.reload();
+                //location.reload();
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert(thrownError);

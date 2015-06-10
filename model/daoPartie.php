@@ -83,8 +83,6 @@ class daoPartie {
 
         switch ($scorej1) {
             case 0:
-                $scorej1+=15;
-                break;
             case 15:
                 $scorej1+=15;
                 break;
@@ -103,6 +101,7 @@ class daoPartie {
                 $scorej1 = 0;
                 $scorej2 = 0;
                 //j1 a gagné un set
+                $sq2="";
                 break;
                 if ($numButton == 2) {
                     $tmp = $scorej1;
@@ -151,11 +150,7 @@ class daoPartie {
                 //$scorej2 = 0;
                 //j1 a gagné un set
                 break;
-                if ($numButton == 2) {
-                    $tmp = $scorej1;
-                    $scorej1 = $scorej2;
-                    $scorej2 = $tmp;
-                }
+
         }
         if ($numButton == 2) {
             $sql = "UPDATE partie SET scorej2='" . $scorej1 . "',scorej1='" . $scorej2 . "' where id=" . $partie_id;
