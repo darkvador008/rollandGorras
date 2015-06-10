@@ -70,6 +70,8 @@ class daoPartie {
     }
 
     public static function scorePlus($scorej1, $scorej2, $partie_id, $numButton) {
+        $scorej1TMP = $scorej1;
+        $scorej2TMP = $scorej2;
 
         //pour insérer sur le bon joueur
         if ($numButton == 2) {
@@ -98,10 +100,14 @@ class daoPartie {
                 break;
 
             case 45: //avantage
+                $partID = $partie_id;
+                echo'scorej1[' . $scorej1TMP . '] scorej2[' . $scorej2TMP . ']';
+                daoPartie::addSet($partID, $scorej1TMP, $scorej2TMP);
                 $scorej1 = 0;
                 $scorej2 = 0;
                 //j1 a gagné un set
-                $sq2="";
+                $sq2 = "";
+
                 break;
                 if ($numButton == 2) {
                     $tmp = $scorej1;
@@ -115,7 +121,7 @@ class daoPartie {
             $sql = "UPDATE partie SET scorej1='" . $scorej1 . "',scorej2='" . $scorej2 . "' where id=" . $partie_id;
         }
         echo $sql;
-        mysql_query($sql);
+        @mysql_query($sql);
         self::deconnect();
     }
 
@@ -150,7 +156,6 @@ class daoPartie {
                 //$scorej2 = 0;
                 //j1 a gagné un set
                 break;
-
         }
         if ($numButton == 2) {
             $sql = "UPDATE partie SET scorej2='" . $scorej1 . "',scorej1='" . $scorej2 . "' where id=" . $partie_id;
@@ -159,6 +164,44 @@ class daoPartie {
         }
         echo $sql;
         mysql_query($sql);
+        self::deconnect();
+    }
+
+    
+    // Ajout ou met à jour un set
+    public static function addSet($partieID, $joueur1, $joueur2) {
+        // Pas besoin d'ouvrir ou fermer la connexion DB car déjà ouverte
+        $sql = "";
+        if (daoPartie::getSetExist($partieID) == 0) {
+            // on crée le set
+            if ($joueur1 == 45) {
+                $sql = "INSERT INTO `garrosdb`.`set` (`idSet`, `partie_id`, `j1`, `j2`) VALUES (NULL, '" . $partieID . "', '1', '0')";
+            } else {
+                $sql = "INSERT INTO `garrosdb`.`set` (`idSet`, `partie_id`, `j1`, `j2`) VALUES (NULL, '" . $partieID . "', '0', '1')";
+            }
+        } else {
+            // on met à jour le set
+            if ($joueur1 == 45) {
+                $sql = "UPDATE `set` SET `j1`=`j1`+1 WHERE `partie_id`=" . $partieID;
+            } elseif ($joueur2 == 45) {
+                $sql = "UPDATE `set` SET `j2`=`j2`+1 WHERE `partie_id`=" . $partieID;
+            }
+        }
+        mysql_query($sql);
+    }
+
+    // retourne si la partie existe ou non
+    public static function getSetExist($partieID) {
+
+        self::connectDB();
+        $sql = "SELECT Count(distinct idSet) AS valeur FROM `set` where `partie_id`=" . $partieID;
+        $res = mysql_query($sql);
+        $row = mysql_fetch_row($res);
+        if ($row[0] == 1) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
         self::deconnect();
     }
 

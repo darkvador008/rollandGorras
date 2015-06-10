@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.12
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Jun 08, 2015 at 07:23 PM
--- Server version: 5.6.16
--- PHP Version: 5.5.11
+-- Host: 127.0.0.1
+-- Generation Time: Jun 10, 2015 at 09:57 PM
+-- Server version: 5.6.17
+-- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -39,18 +39,17 @@ CREATE TABLE IF NOT EXISTS `partie` (
   KEY `playerID1` (`playerID1`),
   KEY `playerID2` (`playerID2`),
   KEY `terrainID` (`terrainID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=52 ;
 
 --
 -- Dumping data for table `partie`
 --
 
 INSERT INTO `partie` (`id`, `playerID1`, `playerID2`, `jour`, `terrainID`, `tour`, `scorej1`, `scorej2`) VALUES
-(1, 187, 189, NULL, 1, 1, 0, 0),
-(10, 187, 190, '2015-06-08', 1, 1, 0, 0),
-(15, 189, 190, '2015-06-08', 1, 1, 0, 0),
-(16, 190, 190, '2015-06-08', 1, 1, 0, 0),
-(21, 190, 189, '2015-06-08', 1, 1, 0, 0),
+(48, 187, 189, '2015-06-09', 1, 1, 0, 0),
+(49, 190, 191, '2015-06-09', 1, 1, 0, 0),
+(50, 192, 193, '2015-06-09', 1, 1, 0, 0),
+(51, 194, 191, '2015-06-09', 1, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -64,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `player` (
   `nationalite` varchar(30) CHARACTER SET utf8 DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=191 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=195 ;
 
 --
 -- Dumping data for table `player`
@@ -73,7 +72,11 @@ CREATE TABLE IF NOT EXISTS `player` (
 INSERT INTO `player` (`id`, `nom`, `nationalite`, `image`) VALUES
 (187, 'zdqd', 'azd', ''),
 (189, 'df', 'eee', ''),
-(190, 'zze', 'Ã©eÃ©', '');
+(190, 'zze', 'Ã©eÃ©', ''),
+(191, 'truc', '', ''),
+(192, 'much', '', ''),
+(193, 'djoko', '', ''),
+(194, 'jp', '', '');
 
 -- --------------------------------------------------------
 
@@ -98,13 +101,24 @@ CREATE TABLE IF NOT EXISTS `point` (
 --
 
 CREATE TABLE IF NOT EXISTS `set` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idSet` int(11) NOT NULL AUTO_INCREMENT,
   `partie_id` int(11) NOT NULL,
   `j1` int(11) NOT NULL,
   `j2` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `partie_id` (`partie_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`idSet`,`partie_id`),
+  UNIQUE KEY `partie_id` (`partie_id`),
+  KEY `partie_id_2` (`partie_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `set`
+--
+
+INSERT INTO `set` (`idSet`, `partie_id`, `j1`, `j2`) VALUES
+(3, 48, 0, 5),
+(4, 49, 4, 2),
+(5, 51, 0, 1),
+(6, 50, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -153,6 +167,12 @@ ALTER TABLE `partie`
   ADD CONSTRAINT `fk_player1` FOREIGN KEY (`playerID1`) REFERENCES `player` (`id`),
   ADD CONSTRAINT `fk_player2` FOREIGN KEY (`playerID2`) REFERENCES `player` (`id`),
   ADD CONSTRAINT `fk_terrain` FOREIGN KEY (`terrainID`) REFERENCES `terrain` (`id`);
+
+--
+-- Constraints for table `set`
+--
+ALTER TABLE `set`
+  ADD CONSTRAINT `fk_partie_id` FOREIGN KEY (`partie_id`) REFERENCES `partie` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
