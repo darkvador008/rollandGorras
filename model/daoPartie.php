@@ -20,8 +20,7 @@ class daoPartie {
 				FROM `partie` a
 				JOIN player b ON b.id = a.playerID1 
 				JOIN player c ON c.id = a.playerID2 ";
-				//WHERE tour=" . $tour;
-
+        //WHERE tour=" . $tour;
 // il y a un bug ici avec le where tour pour l'instant comme il est pas incrémonté dans le POST
         $res = mysql_query($sql);
         $parties = array();
@@ -70,17 +69,14 @@ class daoPartie {
     }
 
     public static function scorePlus($scorej1, $scorej2, $partie_id, $numButton) {
-        $scorej1TMP = $scorej1;
-        $scorej2TMP = $scorej2;
-
+        self::connectDB();
+        $tour = self::getTourPartie($partie_id);
         //pour insérer sur le bon joueur
         if ($numButton == 2) {
             $tmp = $scorej1;
             $scorej1 = $scorej2;
             $scorej2 = $tmp;
         }
-
-        self::connectDB();
         //si numButton=1 on update scorej1 et inversement
 
         switch ($scorej1) {
@@ -100,11 +96,8 @@ class daoPartie {
                 break;
 
             case 45: //avantage
-                $partID = $partie_id;
-                echo'scorej1[' . $scorej1TMP . '] scorej2[' . $scorej2TMP . ']';
-                $tour = self::getTourPartie($partID);
-                daoPartie::addSet($partID, $scorej1TMP, $scorej2TMP, $tour);
-                $scorej1 = 0;
+                self::addSet($partie_id, $scorej1, $scorej2, $tour);
+                $scorej1 = 0;    // j'ai testé dans une fonction séparée mais il se remettait pas à zéro alors ...bizzarre
                 $scorej2 = 0;
                 //j1 a gagné un set
                 $sq2 = "";
@@ -180,11 +173,11 @@ class daoPartie {
             } else {
                 $sql = "INSERT INTO `garrosdb`.`set` (`idSet`, `partie_id`, `j1`, `j2`, `numSet`) VALUES (NULL, '" . $partieID . "', '0', '1','1')";
             }
-        } elseif (self::getGagnantSetExist($partieID, $numSet)==1) {
+        } elseif (self::getGagnantSetExist($partieID, $numSet) == 1) {
             // Si il y a un gagnant dans le set
             self::setIncrementTourPartie($partieID);
             $tourTMP = self::getTourPartie($partieID);
-            echo 'GAAAAAAAAAAAAAAGNAAAAAAAAAAAAAAAANT NUM TOUUUR['.$tourTMP.']';
+            echo 'GAAAAAAAAAAAAAAGNAAAAAAAAAAAAAAAANT NUM TOUUUR[' . $tourTMP . ']';
             if ($joueur1 == 45) {
                 $sql = "INSERT INTO `garrosdb`.`set` (`idSet`, `partie_id`, `j1`, `j2`, `numSet` ) VALUES (NULL, '" . $partieID . "', '1', '0','" . $tourTMP . "')";
             } else {
