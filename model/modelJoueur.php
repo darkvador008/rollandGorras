@@ -58,6 +58,7 @@ class item {
     // renvoie les joueurs de demi finale
     static function getJoueurDemiFinale() {
         include_once 'daoJoueur.php';
+       // include_once 'daoPartie.php';
         //$items= daoJoueur::getListeJoueur();
         $items = daoJoueur::getListeJoueur();
         return $items;

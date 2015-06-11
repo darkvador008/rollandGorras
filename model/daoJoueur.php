@@ -63,6 +63,12 @@ class daoJoueur{
 	public static function getTest(){
 		return 'hello';
 	}
+        
+        
+       public static function getJoueurDemiFinale(){
+           
+           
+       }
 
 }
 ?>
