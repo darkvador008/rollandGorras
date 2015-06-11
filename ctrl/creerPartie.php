@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
 
     $item = item::getJoueurs();
+    $itemJoueurDemi = item::getJoueurDemiFinale();
     $_SESSION['players'] = $item;
     include_once"$racine/vue/creerParties.php";
 } else { // méthode POST

@@ -1,66 +1,68 @@
 <?php
 
 /**
-* 
-*/
-class joueur{
-	private $item = array();
-	function __construct()
-	{
-		# code...
-	}
-}
+ * 
+ */
+class joueur {
 
+    private $item = array();
 
-function joueurLoad(){
-	include_once 'daoJoueur.php';
-	$items_panier = daoJoueur::getListeJoueur();
-	if (is_null($items_panier)){
-		$this->items = array();
-		
-	}
-	else
-	{}
-
+    function __construct() {
+        # code...
+    }
 
 }
 
-function addJoueur($nom,$nationalite,$imgAvatar){
-	include_once 'daoJoueur.php';
-	 daoJoueur::addJoueur($nom,$nationalite,$imgAvatar);
-}
-function delJoueur($idj){
-	include_once 'daoJoueur.php';
-	 daoJoueur::delJoueur($idj);
-}
-function getIDPlayer($name){
-	include_once 'daoJoueur.php';
-	 daoJoueur::getIDPlayer($name);
+function joueurLoad() {
+    include_once 'daoJoueur.php';
+    $items_panier = daoJoueur::getListeJoueur();
+    if (is_null($items_panier)) {
+        $this->items = array();
+    } else {
+        
+    }
 }
 
+function addJoueur($nom, $nationalite, $imgAvatar) {
+    include_once 'daoJoueur.php';
+    daoJoueur::addJoueur($nom, $nationalite, $imgAvatar);
+}
+
+function delJoueur($idj) {
+    include_once 'daoJoueur.php';
+    daoJoueur::delJoueur($idj);
+}
+
+function getIDPlayer($name) {
+    include_once 'daoJoueur.php';
+    daoJoueur::getIDPlayer($name);
+}
 
 class item {
-	
-	public $nom="haha";
-	public $nationalite;
 
-	static function getJoueurs(){
-		include_once 'daoJoueur.php';
-		//$items= daoJoueur::getListeJoueur();
-		$items=daoJoueur::getListeJoueur();
-		return $items;
-	}
+    public $nom = "haha";
+    public $nationalite;
 
-	static function getTest(){
+    static function getJoueurs() {
+        include_once 'daoJoueur.php';
+        //$items= daoJoueur::getListeJoueur();
+        $items = daoJoueur::getListeJoueur();
+        return $items;
+    }
 
-		return "haha";
-	}
+    static function getTest() {
 
+        return "haha";
+    }
 
-
+    // renvoie les joueurs de demi finale
+    static function getJoueurDemiFinale() {
+        include_once 'daoJoueur.php';
+        //$items= daoJoueur::getListeJoueur();
+        $items = daoJoueur::getListeJoueur();
+        return $items;
+    }
 
 }
-
-
 
 ?>
