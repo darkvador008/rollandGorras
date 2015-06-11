@@ -10,7 +10,7 @@
 }
 .btnCreer{
 
-	margin-left: 10px
+	margin-left: 30px
 }
 .containerPartie{
 
@@ -22,16 +22,30 @@
 .tb{
 	border: 1px solid black;
 }
+.goright{
+    position: absolute;
+    right: 0px;
+    width: 820px;
+}
+
+.creer{
+	width:800px;
+	margin:0 auto;
+}
 .crtPrt{
 	width: 100%;
 	display: inline-block;
 }
+
 
 .sel{
 	max-width: 120px;
 
 	margin-bottom: 2px;
 	width:100%;
+}
+.ssel{
+	margin-right: 45px;
 }
 .scorebtn{
 	margin-top: 2px;

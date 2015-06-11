@@ -117,6 +117,7 @@ class daoPartie {
         echo $sql;
         @mysql_query($sql);
         self::deconnect();
+
     }
 
     // pour retirer les points
