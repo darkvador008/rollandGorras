@@ -19,10 +19,10 @@ class daoPartie {
         $sql = "SELECT a.id as id,a.playerID1 as playerID1, a.playerID2 as playerID2, a.scorej1 as scorej1, a.scorej2 as scorej2, b.nom as nom1, c.nom as nom2
 				FROM `partie` a
 				JOIN player b ON b.id = a.playerID1 
-				JOIN player c ON c.id = a.playerID2 
-				WHERE tour=" . $tour;
+				JOIN player c ON c.id = a.playerID2 ";
+				//WHERE tour=" . $tour;
 
-
+// il y a un bug ici avec le where tour pour l'instant comme il est pas incrémonté dans le POST
         $res = mysql_query($sql);
         $parties = array();
         $partie = array();
@@ -102,7 +102,8 @@ class daoPartie {
             case 45: //avantage
                 $partID = $partie_id;
                 echo'scorej1[' . $scorej1TMP . '] scorej2[' . $scorej2TMP . ']';
-                daoPartie::addSet($partID, $scorej1TMP, $scorej2TMP);
+                $tour = self::getTourPartie($partID);
+                daoPartie::addSet($partID, $scorej1TMP, $scorej2TMP, $tour);
                 $scorej1 = 0;
                 $scorej2 = 0;
                 //j1 a gagné un set
@@ -167,24 +168,36 @@ class daoPartie {
         self::deconnect();
     }
 
-    
     // Ajout ou met à jour un set
-    public static function addSet($partieID, $joueur1, $joueur2) {
+    public static function addSet($partieID, $joueur1, $joueur2, $numSet) {
         // Pas besoin d'ouvrir ou fermer la connexion DB car déjà ouverte
         $sql = "";
         if (daoPartie::getSetExist($partieID) == 0) {
             // on crée le set
+            echo 'NOUVEAUUUUUUUUUUUUUSEEEEEEEEEEETTT';
             if ($joueur1 == 45) {
-                $sql = "INSERT INTO `garrosdb`.`set` (`idSet`, `partie_id`, `j1`, `j2`) VALUES (NULL, '" . $partieID . "', '1', '0')";
+                $sql = "INSERT INTO `garrosdb`.`set` (`idSet`, `partie_id`, `j1`, `j2`, `numSet` ) VALUES (NULL, '" . $partieID . "', '1', '0','1')";
             } else {
-                $sql = "INSERT INTO `garrosdb`.`set` (`idSet`, `partie_id`, `j1`, `j2`) VALUES (NULL, '" . $partieID . "', '0', '1')";
+                $sql = "INSERT INTO `garrosdb`.`set` (`idSet`, `partie_id`, `j1`, `j2`, `numSet`) VALUES (NULL, '" . $partieID . "', '0', '1','1')";
+            }
+        } elseif (self::getGagnantSetExist($partieID, $numSet)==1) {
+            // Si il y a un gagnant dans le set
+            self::setIncrementTourPartie($partieID);
+            $tourTMP = self::getTourPartie($partieID);
+            echo 'GAAAAAAAAAAAAAAGNAAAAAAAAAAAAAAAANT NUM TOUUUR['.$tourTMP.']';
+            if ($joueur1 == 45) {
+                $sql = "INSERT INTO `garrosdb`.`set` (`idSet`, `partie_id`, `j1`, `j2`, `numSet` ) VALUES (NULL, '" . $partieID . "', '1', '0','" . $tourTMP . "')";
+            } else {
+                $sql = "INSERT INTO `garrosdb`.`set` (`idSet`, `partie_id`, `j1`, `j2`, `numSet`) VALUES (NULL, '" . $partieID . "', '0', '1','" . $tourTMP . "')";
             }
         } else {
+            // si il y a pas de gagnant dans le set
             // on met à jour le set
+            echo 'MISE AJOUUUUUUUUUUUUUR';
             if ($joueur1 == 45) {
-                $sql = "UPDATE `set` SET `j1`=`j1`+1 WHERE `partie_id`=" . $partieID;
+                $sql = "UPDATE `set` SET `j1`=`j1`+1 WHERE `partie_id`=" . $partieID . " AND numSet=" . $numSet;
             } elseif ($joueur2 == 45) {
-                $sql = "UPDATE `set` SET `j2`=`j2`+1 WHERE `partie_id`=" . $partieID;
+                $sql = "UPDATE `set` SET `j2`=`j2`+1 WHERE `partie_id`=" . $partieID . " AND numSet=" . $numSet;
             }
         }
         mysql_query($sql);
@@ -194,7 +207,7 @@ class daoPartie {
     public static function getSetExist($partieID) {
 
         self::connectDB();
-        $sql = "SELECT Count(distinct idSet) AS valeur FROM `set` where `partie_id`=" . $partieID;
+        $sql = "SELECT Count(distinct partie_id) AS valeur FROM `set` where `partie_id`=" . $partieID;
         $res = mysql_query($sql);
         $row = mysql_fetch_row($res);
         if ($row[0] == 1) {
@@ -203,6 +216,43 @@ class daoPartie {
             return FALSE;
         }
         self::deconnect();
+    }
+
+    // retourne à quel tour on est
+    public static function getTourPartie($partieID) {
+//        self::connectDB();
+        $sql = "SELECT `tour` FROM `partie` WHERE `id`=" . $partieID;
+        $res = mysql_query($sql);
+        $row = mysql_fetch_row($res);
+
+//        self::deconnect();
+        return $row[0];
+    }
+
+    // vérifie le gagnant d'un set, pour un nouveau set
+    public static function getGagnantSetExist($partieID, $numTour) {
+//        self::connectDB();
+        $sql = "SELECT COUNT(DISTINCT idSet) AS valeur FROM `set` 
+                WHERE (`partie_id`=" . $partieID . " and `numSet`=" . $numTour . ")
+                AND (`j1`>=6 OR `j2` >=6) 
+                AND (`j1`-2>=`j2` OR `j2`-2>=`j1`)";
+        $res = mysql_query($sql);
+        $row = mysql_fetch_row($res);
+        if ($row[0] == 1) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+//        self::deconnect();
+    }
+
+    //augmente d'un tour la partie
+    public static function setIncrementTourPartie($partieID) {
+//        self::connectDB();
+        $sql = "UPDATE `partie` SET `tour`=`tour`+1 WHERE `id`=" . $partieID;
+        mysql_query($sql);
+
+//        self::deconnect();
     }
 
 }
