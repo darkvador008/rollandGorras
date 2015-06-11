@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2015 at 09:57 PM
+-- Generation Time: Jun 11, 2015 at 02:04 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -46,8 +46,8 @@ CREATE TABLE IF NOT EXISTS `partie` (
 --
 
 INSERT INTO `partie` (`id`, `playerID1`, `playerID2`, `jour`, `terrainID`, `tour`, `scorej1`, `scorej2`) VALUES
-(48, 187, 189, '2015-06-09', 1, 1, 0, 0),
-(49, 190, 191, '2015-06-09', 1, 1, 0, 0),
+(48, 187, 189, '2015-06-09', 1, 3, 0, 0),
+(49, 190, 191, '2015-06-09', 1, 3, 15, 0),
 (50, 192, 193, '2015-06-09', 1, 1, 0, 0),
 (51, 194, 191, '2015-06-09', 1, 1, 0, 0);
 
@@ -105,20 +105,22 @@ CREATE TABLE IF NOT EXISTS `set` (
   `partie_id` int(11) NOT NULL,
   `j1` int(11) NOT NULL,
   `j2` int(11) NOT NULL,
+  `numSet` int(11) NOT NULL COMMENT 'valeur 1 2 ou 3',
   PRIMARY KEY (`idSet`,`partie_id`),
-  UNIQUE KEY `partie_id` (`partie_id`),
   KEY `partie_id_2` (`partie_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
 -- Dumping data for table `set`
 --
 
-INSERT INTO `set` (`idSet`, `partie_id`, `j1`, `j2`) VALUES
-(3, 48, 0, 5),
-(4, 49, 4, 2),
-(5, 51, 0, 1),
-(6, 50, 1, 0);
+INSERT INTO `set` (`idSet`, `partie_id`, `j1`, `j2`, `numSet`) VALUES
+(10, 48, 6, 0, 1),
+(17, 48, 6, 0, 2),
+(19, 48, 1, 0, 3),
+(20, 49, 1, 6, 1),
+(21, 49, 6, 8, 2),
+(22, 49, 0, 1, 3);
 
 -- --------------------------------------------------------
 
