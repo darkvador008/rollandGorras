@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2015 at 02:04 AM
+-- Generation Time: Jun 12, 2015 at 02:26 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -32,24 +32,28 @@ CREATE TABLE IF NOT EXISTS `partie` (
   `playerID2` int(11) NOT NULL,
   `jour` date DEFAULT NULL,
   `terrainID` int(11) NOT NULL,
-  `tour` int(11) NOT NULL,
+  `numSet` int(11) NOT NULL,
   `scorej1` int(11) NOT NULL,
   `scorej2` int(11) NOT NULL,
+  `finish` tinyint(1) NOT NULL,
+  `tour` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `playerID1` (`playerID1`),
   KEY `playerID2` (`playerID2`),
   KEY `terrainID` (`terrainID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=52 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
 
 --
 -- Dumping data for table `partie`
 --
 
-INSERT INTO `partie` (`id`, `playerID1`, `playerID2`, `jour`, `terrainID`, `tour`, `scorej1`, `scorej2`) VALUES
-(48, 187, 189, '2015-06-09', 1, 3, 0, 0),
-(49, 190, 191, '2015-06-09', 1, 3, 15, 0),
-(50, 192, 193, '2015-06-09', 1, 1, 0, 0),
-(51, 194, 191, '2015-06-09', 1, 1, 0, 0);
+INSERT INTO `partie` (`id`, `playerID1`, `playerID2`, `jour`, `terrainID`, `numSet`, `scorej1`, `scorej2`, `finish`, `tour`) VALUES
+(48, 187, 189, '2015-06-09', 1, 3, 1, 0, 1, 1),
+(49, 190, 191, '2015-06-09', 1, 3, 0, 1, 1, 1),
+(50, 192, 193, '2015-06-09', 1, 3, 1, 0, 1, 1),
+(51, 194, 191, '2015-06-09', 1, 3, 1, 0, 1, 1),
+(52, 187, 192, '2015-06-12', 1, 1, 0, 0, 0, 2),
+(53, 194, 191, '2015-06-12', 1, 1, 0, 0, 0, 2);
 
 -- --------------------------------------------------------
 
@@ -108,19 +112,25 @@ CREATE TABLE IF NOT EXISTS `set` (
   `numSet` int(11) NOT NULL COMMENT 'valeur 1 2 ou 3',
   PRIMARY KEY (`idSet`,`partie_id`),
   KEY `partie_id_2` (`partie_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
 
 --
 -- Dumping data for table `set`
 --
 
 INSERT INTO `set` (`idSet`, `partie_id`, `j1`, `j2`, `numSet`) VALUES
-(10, 48, 6, 0, 1),
-(17, 48, 6, 0, 2),
-(19, 48, 1, 0, 3),
-(20, 49, 1, 6, 1),
-(21, 49, 6, 8, 2),
-(22, 49, 0, 1, 3);
+(30, 48, 6, 0, 1),
+(31, 48, 6, 0, 2),
+(32, 48, 6, 1, 3),
+(33, 49, 6, 0, 1),
+(34, 49, 1, 6, 2),
+(35, 49, 1, 6, 3),
+(36, 50, 0, 6, 1),
+(37, 50, 6, 2, 2),
+(38, 50, 1, 6, 3),
+(39, 51, 1, 6, 1),
+(40, 51, 1, 6, 2),
+(41, 51, 6, 2, 3);
 
 -- --------------------------------------------------------
 
