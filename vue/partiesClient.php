@@ -7,8 +7,8 @@
     <tr>
         <td class='JH'>&nbsp;
             <label class="form-control label  label-info sel01" id="sel07" onchange="checkDuplicate()">
-                Joueur1
-            </label>
+                Joueur1 <div class="pointSel01">aaaaaaaaaaaaaaa</div>
+            </label> 
         </td>
 
         <td width='25%'class='JH' rowspan=2>&nbsp;
@@ -22,7 +22,9 @@
                 Joueur21
             </label>
         </td>
-        <td width='25%'class='JH' rowspan=8><a name='b0'>&nbsp;</a></td>
+        <td width='25%'class='JH' rowspan=8> <label class="form-control label label-success sel31" id="sel07" onchange="checkDuplicate()">
+                Finaliste
+            </label></td>
     </tr>
     <tr>
         <td class='JHS'><a name='b14'>&nbsp;</a></td>
