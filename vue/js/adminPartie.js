@@ -13,16 +13,35 @@ $(document).ready(function () {
             console.log(response);
 
             for (var i = 0; i < 4; i++) {
+                var n1 = response[i][1].length;
+                var n2 = response[i][2].length;
+                var spacesn1 = 10 - n1;
+                var spacesn2 = 10 - n2;
+
+                var lesSetj1 = "";
+                var lesSetj2 = "";
+                for (a = 5; a < response[i].length; a++) {
+                    lesSetj1 = lesSetj1 + " " + response[i][a]+" ";
+                    lesSetj2 = lesSetj2 + " " + response[i][a + 1]+" ";
+                    a++;
+                }
+//                console.log(response[i][1].length + " " + response[i][1]);
+//                console.log(response[i][2].length + " " + response[i][2]);
+//                console.log(spacesn1 + " " + spacesn2);
                 $('#' + i).find('.p1').html(response[i][1] + " VS " + response[i][2]);
-                $('#' + i).find('.scrj1').html(response[i][1] + " : " + response[i][3]);
-                $('#' + i).find('.scrj2').html(response[i][2] + " : " + response[i][4]);
+                $('#' + i).find('.scrj1').html(response[i][1] + "\u00A0".repeat(spacesn1) + lesSetj1 + ": " + response[i][3]);
+                $('#' + i).find('.scrj2').html(response[i][2] + "\u00A0".repeat(spacesn2) + lesSetj2 + " : " + response[i][4]);
                 $('#' + i).find('.plus1').attr("id", i + "-plus-1-" + response[i][0]);
                 $('#' + i).find('.plus2').attr("id", i + "-plus-2-" + response[i][0]);
                 $('#' + i).find('.minus1').attr("id", i + "-minus-1-" + response[i][0]);
                 $('#' + i).find('.minus2').attr("id", i + "-minus-2-" + response[i][0]);
+
+                //$('#' + i).find('.set').html( lesSet);
+
                 //$('div.p1').html(response[0][1]+ " VS "+ response[1][1]);
                 //$('div.scrj1').html(response[0][1]+"  : "+response[0][3]);
                 //$('div.scrj2').html(response[1][1]+"  : "+response[0][4]);
+
             }
 
         },
@@ -35,7 +54,7 @@ $(document).ready(function () {
     $("[name='bouton']").click(function (e) {
         e.preventDefault();
         console.log("etarget: " + e.target.id);
-        var lm=$(this).attr("id");
+        var lm = $(this).attr("id");
         //alert(e.target.id);
         //console.log(e.target.id);//ex: 2-minus1-48,2eme panel premier boutton -, partie id:48
         var numButton = lm.split("-", 4)[2];
@@ -70,7 +89,7 @@ $(document).ready(function () {
 
 
     //##### pour le boutton -
-    $("[name='bouton2']").on('click',function (e) {
+    $("[name='bouton2']").on('click', function (e) {
         e.preventDefault();
         console.log(e.target.id);
         //alert(e.target.id);
