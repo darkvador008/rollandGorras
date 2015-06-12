@@ -202,7 +202,10 @@ class daoPartie {
                 } else if ($tour == 2) {
                     if (self::checkFinaleAvaible() == 1) {
                         self::createFinale();
-                        
+                    }
+                } else if ($tour == 3) {
+                    if (self::checkGagnantFinaleAvaible() == 1) {
+                        echo 'ET VOILAAAAAAAAAAAAAA LE TOURNOI EST FINI !!!!!!!!!! '; //je sais pas quoi mettre pour la fin 
                     }
                 }
                 echo ' / PARTIE FINIE / ';
@@ -370,7 +373,6 @@ class daoPartie {
 
         $sql = "INSERT INTO partie VALUES ('', '$idJ1', '$idJ2','$date', 1, 1,0,0,0,3)";
         mysql_query($sql);
-
     }
 
     // vérifie si on peut créer les demi finales
@@ -391,6 +393,18 @@ class daoPartie {
         $res = mysql_query($sql);
         $row = mysql_fetch_row($res);
         if ($row[0] == 2) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    // vérifie si il y a un gagnant pour la finale
+    public static function checkGagnantFinaleAvaible() {
+        $sql = "SELECT count(`id`) FROM `partie` WHERE `tour` =3 and `finish` =1";
+        $res = mysql_query($sql);
+        $row = mysql_fetch_row($res);
+        if ($row[0] == 1) {
             return TRUE;
         } else {
             return FALSE;
