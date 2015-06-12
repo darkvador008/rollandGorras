@@ -11,6 +11,12 @@ function getParties($tour) {
     return $parties;
 }
 
+function getAllParties() {
+    include_once 'daoPartie.php';
+    $parties = daoPartie::getAllParties();
+    return $parties;
+}
+
 function scorePlus($scorej1, $scorej2, $partieID, $numButton) {
     include_once'daoPartie.php';
     daoPartie::scorePlus($scorej1, $scorej2, $partieID, $numButton);

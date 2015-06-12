@@ -39,8 +39,50 @@ class daoPartie {
 
             //$tmp = array();
             $tmp = self::getAllSetPartie($partie[0]);
-            for ($i = 0; $i <= count($tmp)-1; $i++) {
-                 $partie[$i+5] = $tmp[$i];
+            for ($i = 0; $i <= count($tmp) - 1; $i++) {
+                $partie[$i + 5] = $tmp[$i];
+            }
+
+            $rez[$cpt] = $partie;
+            $partie = array();
+            $cpt++;
+        }
+        self::deconnect();
+
+        return json_encode($rez);
+    }
+    
+    
+    
+     public static function getAllParties() {
+
+        self::connectDB();
+        //$sql = "SELECT * FROM partie where tour=".$tour;
+        $sql = "SELECT a.id as id,a.playerID1 as playerID1, a.playerID2 as playerID2, a.scorej1 as scorej1, a.scorej2 as scorej2, b.nom as nom1, c.nom as nom2   
+				FROM `partie` a
+				JOIN player b ON b.id = a.playerID1 
+				JOIN player c ON c.id = a.playerID2 
+                                
+                                WHERE 1" ;
+// il y a un bug ici avec le where tour pour l'instant comme il est pas incrémonté dans le POST
+        $res = mysql_query($sql);
+        $parties = array();
+        $partie = array();
+        $cpt = 0;
+        $rez = array();
+        while ($ligne = mysql_fetch_assoc($res)) {
+            $partie[0] = $ligne['id'];
+            $partie[1] = $ligne['nom1'];
+            //$parties[2]=$ligne['playerID1'];
+            //$parties[3]=$ligne['playerID2'];
+            $partie[2] = $ligne['nom2'];
+            $partie[3] = $ligne['scorej1'];
+            $partie[4] = $ligne['scorej2'];
+
+            //$tmp = array();
+            $tmp = self::getAllSetPartie($partie[0]);
+            for ($i = 0; $i <= count($tmp) - 1; $i++) {
+                $partie[$i + 5] = $tmp[$i];
             }
 
             $rez[$cpt] = $partie;

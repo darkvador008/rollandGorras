@@ -134,6 +134,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         } elseif ($_SESSION['page'] == '_admin_creer_partie') {
             //echo("<script>console.log('controleur post _admin_creer_partie');</script>");
             ctrl_admin_creer_partie();
+        } elseif ($_SESSION['page'] == '_parties_client') {
+            ctrl_parties_client();
         }
     } else {
         // echo("<script>console.log('aaa');</script>");
