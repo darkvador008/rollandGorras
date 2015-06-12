@@ -48,6 +48,8 @@ else {
         include_once"$racine/model/modelPartie.php";
 
         $tour = $_POST['tour'];
+       //$tour=2;
+       $tour=3;
         $parties = getParties($tour);
         echo $parties;
     }

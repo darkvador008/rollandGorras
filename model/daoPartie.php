@@ -71,6 +71,7 @@ class daoPartie {
     public static function scorePlus($scorej1, $scorej2, $partie_id, $numButton) {
         self::connectDB();
         $numSet = self::getNumSet($partie_id);
+        $tour = self::getTour($partie_id);
         //pour insérer sur le bon joueur
         if ($numButton == 2) {
             $tmp = $scorej1;
@@ -98,9 +99,9 @@ class daoPartie {
             case 45: //avantage
 
                 if ($numButton == 2) {
-                    self::addSet($partie_id, $scorej2, $scorej1, $numSet);
+                    self::addSet($partie_id, $scorej2, $scorej1, $numSet, $tour);
                 } else {
-                    self::addSet($partie_id, $scorej1, $scorej2, $numSet);
+                    self::addSet($partie_id, $scorej1, $scorej2, $numSet, $tour);
                 }
 
 
@@ -179,7 +180,7 @@ class daoPartie {
     }
 
     // Ajout ou met à jour un set
-    public static function addSet($partieID, $joueur1, $joueur2, $numSet) {
+    public static function addSet($partieID, $joueur1, $joueur2, $numSet, $tour) {
         echo '(score j1[' . $joueur1 . '] score J2[' . $joueur2 . ']  )';
         // Pas besoin d'ouvrir ou fermer la connexion DB car déjà ouverte
         $sql = "";
@@ -194,8 +195,15 @@ class daoPartie {
         } elseif (self::getGagnantSetExist($partieID, $numSet) == 1) {
             if ($numSet == 3) {
                 self::setPartieFinish($partieID);
-                if (self::checkDemiFinaleAvaible() == 1) { // on vérifie si c'est possible
-                    self :: createDemiFinale();
+                if ($tour == 1) {
+                    if (self::checkDemiFinaleAvaible() == 1) { // on vérifie si c'est possible
+                        self :: createDemiFinale();
+                    }
+                } else if ($tour == 2) {
+                    if (self::checkFinaleAvaible() == 1) {
+                        self::createFinale();
+                        
+                    }
                 }
                 echo ' / PARTIE FINIE / ';
             } else {
@@ -241,6 +249,17 @@ class daoPartie {
     public static function getNumSet($partieID) {
 //        self::connectDB();
         $sql = "SELECT `numSet` FROM `partie` WHERE `id`=" . $partieID;
+        $res = mysql_query($sql);
+        $row = mysql_fetch_row($res);
+
+//        self::deconnect();
+        return $row[0];
+    }
+
+    // renvoie le tour de la partie
+    public static function getTour($partieID) {
+//        self::connectDB();
+        $sql = "SELECT `tour` FROM `partie` WHERE `id`=" . $partieID;
         $res = mysql_query($sql);
         $row = mysql_fetch_row($res);
 
@@ -308,8 +327,8 @@ class daoPartie {
     // vérifie que les 4 parties sont terminée, et crée les deux nouvelles partie avec les gagnant
     public static function createDemiFinale() {
 
-        $sql = "SELECT `playerID1` as GAGNANT FROM `partie` WHERE `scorej1`=1
-               UNION SELECT `playerID2` as GAGNANT FROM `partie` WHERE `scorej2`=1";
+        $sql = "SELECT `playerID1` as GAGNANT FROM `partie` WHERE `scorej1`=1 and `tour`=1
+               UNION SELECT `playerID2` as GAGNANT FROM `partie` WHERE `scorej2`=1 and `tour`=1";
         $res = mysql_query($sql);
 
         $items = array();
@@ -321,16 +340,37 @@ class daoPartie {
         $idJ3 = $items[2];
         $idJ4 = $items[3];
         ;
-        echo 'LISTE FINALE ' . $idJ1 . ' ' . $idJ2 . ' ' . $idJ3 . ' ' . $idJ4;
+        echo 'LISTE DEMI FINALE ' . $idJ1 . ' ' . $idJ2 . ' ' . $idJ3 . ' ' . $idJ4;
 
 
         $date = date_default_timezone_get();
         $date = date('Y-m-d', strtotime(str_replace('-', '/', $date)));
 
         $sql = "INSERT INTO partie VALUES ('', '$idJ1', '$idJ2','$date', 1, 1,0,0,0,2)";
-         mysql_query($sql);
+        mysql_query($sql);
         $sql = "INSERT INTO partie VALUES ('', '$idJ3', '$idJ4','$date', 1, 1,0,0,0,2)";
         mysql_query($sql);
+    }
+
+    // crée la partie finale
+    public static function createFinale() {
+        $sql = "SELECT `playerID1` as GAGNANT FROM `partie` WHERE `scorej1`=1 and `tour`=2
+               UNION SELECT `playerID2` as GAGNANT FROM `partie` WHERE `scorej2`=1 and `tour`=2";
+        $res = mysql_query($sql);
+
+        $items = array();
+        while ($ligne = mysql_fetch_assoc($res)) {
+            $items[] = $ligne['GAGNANT'];
+        }
+        $idJ1 = $items[0];
+        $idJ2 = $items[1];
+        echo 'LISTE DEMI FINALE ' . $idJ1 . ' ' . $idJ2;
+        $date = date_default_timezone_get();
+        $date = date('Y-m-d', strtotime(str_replace('-', '/', $date)));
+
+        $sql = "INSERT INTO partie VALUES ('', '$idJ1', '$idJ2','$date', 1, 1,0,0,0,3)";
+        mysql_query($sql);
+
     }
 
     // vérifie si on peut créer les demi finales
@@ -343,6 +383,26 @@ class daoPartie {
         } else {
             return FALSE;
         }
+    }
+
+    // vérifie si on peut créer les demi finales
+    public static function checkFinaleAvaible() {
+        $sql = "SELECT count(`id`) FROM `partie` WHERE `tour` =2 and `finish` =1";
+        $res = mysql_query($sql);
+        $row = mysql_fetch_row($res);
+        if ($row[0] == 2) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    // met à jour le terrain de la partie 
+    public static function updateTerrain($partie, $terrainID) {
+        self::connectDB();
+        $sql = "UPDATE partie SET `terrainID`=" . $terrainID . " where id=" . $partie;
+        mysql_query($sql);
+        self::deconnect();
     }
 
 }
