@@ -16,10 +16,11 @@ class daoPartie {
 
         self::connectDB();
         //$sql = "SELECT * FROM partie where tour=".$tour;
-        $sql = "SELECT a.id as id,a.playerID1 as playerID1, a.playerID2 as playerID2, a.scorej1 as scorej1, a.scorej2 as scorej2, b.nom as nom1, c.nom as nom2
+        $sql = "SELECT a.id as id,a.playerID1 as playerID1, a.playerID2 as playerID2, a.scorej1 as scorej1, a.scorej2 as scorej2, b.nom as nom1, c.nom as nom2   
 				FROM `partie` a
 				JOIN player b ON b.id = a.playerID1 
 				JOIN player c ON c.id = a.playerID2 
+                                
                                 WHERE tour=" . $tour;
 // il y a un bug ici avec le where tour pour l'instant comme il est pas incrémonté dans le POST
         $res = mysql_query($sql);
@@ -36,7 +37,14 @@ class daoPartie {
             $partie[3] = $ligne['scorej1'];
             $partie[4] = $ligne['scorej2'];
 
+            //$tmp = array();
+            $tmp = self::getAllSetPartie($partie[0]);
+            for ($i = 0; $i <= count($tmp)-1; $i++) {
+                 $partie[$i+5] = $tmp[$i];
+            }
+
             $rez[$cpt] = $partie;
+            $partie = array();
             $cpt++;
         }
         self::deconnect();
@@ -419,5 +427,18 @@ class daoPartie {
         self::deconnect();
     }
 
+    public static function getAllSetPartie($partie) {
+        $sql = "SELECT * FROM `set` WHERE `partie_id`='" . $partie . "'";
+        $res = mysql_query($sql);
+        $setTMP = array();
+        while ($ligne = mysql_fetch_assoc($res)) {
+            array_push($setTMP, $ligne['j1']);
+            array_push($setTMP, $ligne['j2']);
+        }
+
+        return $setTMP;
+    }
+
 }
+
 ?>

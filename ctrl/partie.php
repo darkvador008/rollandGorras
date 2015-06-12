@@ -49,9 +49,11 @@ else {
 
         $tour = $_POST['tour'];
        //$tour=2;
-       $tour=3;
+       $tour=1;
         $parties = getParties($tour);
         echo $parties;
+        
+       
     }
 }
 ?>
