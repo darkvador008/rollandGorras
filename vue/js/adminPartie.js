@@ -21,8 +21,8 @@ $(document).ready(function () {
                 var lesSetj1 = "";
                 var lesSetj2 = "";
                 for (a = 5; a < response[i].length; a++) {
-                    lesSetj1 = lesSetj1 + " " + response[i][a]+" ";
-                    lesSetj2 = lesSetj2 + " " + response[i][a + 1]+" ";
+                    lesSetj1 = lesSetj1 + " " + response[i][a] + " ";
+                    lesSetj2 = lesSetj2 + " " + response[i][a + 1] + " ";
                     a++;
                 }
 //                console.log(response[i][1].length + " " + response[i][1]);

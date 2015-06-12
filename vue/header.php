@@ -59,29 +59,16 @@
                             //echo 'Votre login est '.$_SESSION['login'].' et votre mot de passe est '.$_SESSION['password'].'.';
                             //echo '<br />';
                             // On affiche un lien pour fermer notre session
-                            echo '<li><a href="' . $nom_projet . '/model/logout.php">logout</a></li>';
+                            echo ' </ul><ul class="nav pull-right"><a href="' . $nom_projet . '/model/logout.php">logout</a></ul>';
                         } else {
-                            echo 'Les variables ne sont pas déclarées.';
+                            echo '  </ul><ul class="nav pull-right"><a href="' . $nom_projet . '/index.php?page=_login">login</a></ul>';
                         }
                         ?>
 
 
 
-                    </ul>
-                    <ul class="nav pull-right">
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
-                            <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
-                                <form role="form" method="post" action=<?php print($nom_projet."/index.php?page=_login"); ?>>
-                                    <input style="margin-bottom: 15px;" type="text" placeholder="Login"  name="login" required="">
-                                    <input style="margin-bottom: 15px;" type="password" placeholder="Password"  name="password" required="">
+                   
 
-                                    <button type="submit" class="btn btn-info btn-sm" name="adminLogin_btcLogin">S'identifier</button>
-                                    <br>
-                                </form>
-                            </div>
-                        </li>
-                    </ul>
 
                 </div>
                 <!-- /.navbar-collapse -->
@@ -96,4 +83,4 @@
         <!-- Content Section -->
 
 
-		
+
