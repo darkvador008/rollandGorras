@@ -478,6 +478,55 @@ class daoPartie {
         return $setTMP;
     }
 
+    // envoie les info pour le live
+    public static function getLive() {
+
+        self::connectDB();
+        //$sql = "SELECT * FROM partie where tour=".$tour;
+        $sql = "SELECT a.id as id,
+                a.playerID1 as playerID1,
+                b.nom as nom1, 
+                a.playerID2 as playerID2,
+                c.nom as nom2, 
+                a.`finish` as finish, 
+                a.scorej1 as scorej1, 
+                a.scorej2 as scorej2 
+
+                FROM `partie` a
+                JOIN player b ON b.id = a.playerID1 
+                JOIN player c ON c.id = a.playerID2 
+                WHERE a.finish=0";
+
+        $res = mysql_query($sql);
+        $parties = array();
+        $partie = array();
+        $cpt = 0;
+        $rez = array();
+        while ($ligne = mysql_fetch_assoc($res)) {
+            $partie[0] = $ligne['id'];
+            $partie[1] = $ligne['nom1'];
+            //$parties[2]=$ligne['playerID1'];
+            //$parties[3]=$ligne['playerID2'];
+            $partie[2] = $ligne['nom2'];
+            $partie[3] = $ligne['finish'];
+            $partie[4] = $ligne['scorej1'];
+            $partie[5] = $ligne['scorej2'];
+
+            //$tmp = array();
+//            $tmp = self::getAllSetPartie($partie[0]);
+//            for ($i = 0; $i <= count($tmp) - 1; $i++) {
+//                $partie[$i + 6] = $tmp[$i];
+//            }
+
+            $rez[$cpt] = $partie;
+            $partie = array();
+            $cpt++;
+        }
+        self::deconnect();
+
+        return json_encode($rez);
+    }
+
 }
 
 ?>

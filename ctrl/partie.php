@@ -8,13 +8,21 @@
 
 // Premier appel à la page méthode GET
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
-    $msg = "";
-    include_once"$racine/model/modelPartie.php";
-    include_once"$racine/model/modelJoueur.php";
 
-    $item = item::getJoueurs();
-    include_once"$racine/vue/admin/partie.php";
-    $_SESSION['players'] = $item;
+    if ($_GET['page'] == '_live') {
+        echo 'get live';
+        include_once"$racine/model/modelPartie.php";
+        $parties = getLive();
+        include_once"$racine/vue/live.php";
+    } else {
+        $msg = "";
+        include_once"$racine/model/modelPartie.php";
+        include_once"$racine/model/modelJoueur.php";
+
+        $item = item::getJoueurs();
+        include_once"$racine/vue/admin/partie.php";
+        $_SESSION['players'] = $item;
+    }
 }
 
 // Pour l'ajout d'un point dans la gestion admin partie
@@ -43,17 +51,19 @@ elseif (isset($_POST['scorej1']) && isset($_POST['scorej2']) && isset($_POST['pa
 
 //POST
 else {
-    if (isset($_POST['tour'])) {
+    if ($_GET['page'] == '_live') {
+        include_once"$racine/model/modelPartie.php";
+        $parties = getLive();
+        echo $parties;
+    } elseif (isset($_POST['tour'])) {
         include_once"$racine/model/modelJoueur.php";
         include_once"$racine/model/modelPartie.php";
 
         $tour = $_POST['tour'];
-       //$tour=2;
-       $tour=1;
+        //$tour=2;
+        $tour = 1;
         $parties = getParties($tour);
         echo $parties;
-        
-       
     }
 }
 ?>

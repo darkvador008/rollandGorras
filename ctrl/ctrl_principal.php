@@ -110,6 +110,13 @@ function ctrl_index() {
     include_once "$racine/ctrl/login.php";
 }
 
+function ctrl_live() {
+    global $racine, $nom_projet;
+    $_SESSION['page'] = "_live";
+
+    include_once "$racine/ctrl/partie.php";
+}
+
 /*
  *
  * 		DEBUT CONTROLEUR
@@ -136,6 +143,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             ctrl_admin_creer_partie();
         } elseif ($_SESSION['page'] == '_parties_client') {
             ctrl_parties_client();
+        }elseif ($_SESSION['page'] == '_live') {
+            ctrl_live();
         }
     } else {
         // echo("<script>console.log('aaa');</script>");
@@ -180,6 +189,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if ($_GET['page'] == '_joueur') {
 
             ctrl_joueur();
+        }
+        if ($_GET['page'] == '_live') {
+            ctrl_live();
         }
     } else {
         echo 'ctrl principal get';

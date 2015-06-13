@@ -32,4 +32,10 @@ function revert($var1, $var2) {
     daoPartie::revert($var1, $var2);
 }
 
+function getLive(){
+    include_once'daoPartie.php';
+    $partie=daoPartie::getLive();
+    return $partie;
+}
+
 ?>

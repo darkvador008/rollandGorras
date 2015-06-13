@@ -44,7 +44,9 @@
                         <li>
                             <a href="<?php print("$nom_projet/index.php?page=_parties_client"); ?>">Parties</a>
                         </li>
-
+                        <li>
+                            <a href="<?php print("$nom_projet/index.php?page=_live"); ?>">Live</a>
+                        </li>
 
                         <?php
                         // On démarre la session (ceci est indispensable dans toutes les pages de notre section membre)
@@ -67,7 +69,7 @@
 
 
 
-                   
+
 
 
                 </div>
@@ -78,7 +80,7 @@
         <!-- Full Width Image Header with Logo -->
         <!-- Image backgrounds are set within the full-width-pics.css file. -->
         <header class="image-bg-fluid-height">
-            <img class="img-responsive img-center imgHeader" src="tenis.jpg"  alt="">
+            <img class="img-responsive img-center imgHeader " src="tenis.jpg"  alt="">
         </header>
         <!-- Content Section -->
 
