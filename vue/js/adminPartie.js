@@ -12,7 +12,8 @@ $(document).ready(function () {
         success: function (response) {
             console.log(response);
             
-            var Tour = response[1][20];
+            var Tour = response[0][20];
+//            console.log(Tour);
             var nbTour = 4;
             if(Tour==1){
                 nbTour=4;
@@ -23,7 +24,8 @@ $(document).ready(function () {
             }
             $.removeCookie('nbTour');
             $.cookie("nbTour", nbTour);
-            for (var i = 0; i < 4; i++) {
+            
+            for (var i = 0; i < nbTour; i++) {
                 var n1 = response[i][1].length;
                 var n2 = response[i][2].length;
                 var spacesn1 = 10 - n1;

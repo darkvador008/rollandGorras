@@ -61,7 +61,7 @@ else {
 
         $tour = $_POST['tour'];
         //$tour=2;
-        $tour = 1;
+        $tour = getTourMax();
         $parties = getParties($tour);
         echo $parties;
     }

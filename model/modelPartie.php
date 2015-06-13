@@ -17,6 +17,12 @@ function getAllParties() {
     return $parties;
 }
 
+function getTourMax() {
+    include_once 'daoPartie.php';
+    $tour = daoPartie::getTourMax();
+    return $tour;
+}
+
 function scorePlus($scorej1, $scorej2, $partieID, $numButton) {
     include_once'daoPartie.php';
     daoPartie::scorePlus($scorej1, $scorej2, $partieID, $numButton);
@@ -32,9 +38,9 @@ function revert($var1, $var2) {
     daoPartie::revert($var1, $var2);
 }
 
-function getLive(){
+function getLive() {
     include_once'daoPartie.php';
-    $partie=daoPartie::getLive();
+    $partie = daoPartie::getLive();
     return $partie;
 }
 

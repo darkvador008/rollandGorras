@@ -36,7 +36,7 @@ class daoPartie {
             $partie[2] = $ligne['nom2'];
             $partie[3] = $ligne['scorej1'];
             $partie[4] = $ligne['scorej2'];
-            $partie[20] = 1;
+            $partie[20] = $tour;
             //$tmp = array();
             $tmp = self::getAllSetPartie($partie[0]);
             for ($i = 0; $i <= count($tmp) - 1; $i++) {
@@ -231,6 +231,7 @@ class daoPartie {
     // Ajout ou met à jour un set
     public static function addSet($partieID, $joueur1, $joueur2, $numSet, $tour) {
         echo '(score j1[' . $joueur1 . '] score J2[' . $joueur2 . ']  )';
+        echo 'touuuuuuuuuuuuuuuuuur =' . $tour;
         // Pas besoin d'ouvrir ou fermer la connexion DB car déjà ouverte
         $sql = "";
         if (daoPartie::getSetExist($partieID) == 0) {
@@ -259,6 +260,13 @@ class daoPartie {
                     }
                 } else if ($tour == 2) {
                     if (self::checkFinaleAvaible() == 1) {
+                        if ($joueur1 == 45) { // on met 1 pour le point du gagnant
+                            echo'J1111111111111111111111111111111111';
+                            self::setJ1Gagnant($partieID);
+                        } else {
+                            echo 'J2222222222222222222222222222222222';
+                            self::setJ2Gagnant($partieID);
+                        }
                         self::createFinale();
                     }
                 } else if ($tour == 3) {
@@ -536,6 +544,17 @@ class daoPartie {
         self::deconnect();
 
         return json_encode($rez);
+    }
+
+    public static function getTourMax() {
+        self::connectDB();
+        $sql = "SELECT max(`tour`) as TOUR FROM `partie`";
+        $res = mysql_query($sql);
+        $row = mysql_fetch_row($res);
+        $result = 10;
+        $result = $row[0];
+        return $result;
+        self::deconnect();
     }
 
 }
