@@ -156,9 +156,11 @@ class daoPartie {
                     if ($scorej1 == 45) { // on met 1 pour le point du gagnant
                         $scorej1 = 1;
                         $scorej2 = 0;
+//                        self::setJ1Gagnant($partie_id);
                     } else {
                         $scorej1 = 1;
                         $scorej2 = 0;
+//                        self::setJ2Gagnant($partie_id);
                     }
                 } else { // la partie est pas fini donc on remet à zéro pour continuer
                     $scorej1 = 0;
@@ -243,7 +245,16 @@ class daoPartie {
             if ($numSet == 3) {
                 self::setPartieFinish($partieID);
                 if ($tour == 1) {
-                    if (self::checkDemiFinaleAvaible() == 1) { // on vérifie si c'est possible
+                    if (self::checkDemiFinaleAvaible() == true) { // on vérifie si c'est possible
+                        if ($joueur1 == 45) { // on met 1 pour le point du gagnant
+                            echo'J1111111111111111111111111111111111';
+                            self::setJ1Gagnant($partieID);
+                        } else {
+                            echo 'J2222222222222222222222222222222222';
+                            self::setJ2Gagnant($partieID);
+                        }
+
+
                         self :: createDemiFinale();
                     }
                 } else if ($tour == 2) {
@@ -389,7 +400,6 @@ class daoPartie {
         $idJ2 = $items[1];
         $idJ3 = $items[2];
         $idJ4 = $items[3];
-        ;
         echo 'LISTE DEMI FINALE ' . $idJ1 . ' ' . $idJ2 . ' ' . $idJ3 . ' ' . $idJ4;
 
 
@@ -414,7 +424,7 @@ class daoPartie {
         }
         $idJ1 = $items[0];
         $idJ2 = $items[1];
-        echo 'LISTE DEMI FINALE ' . $idJ1 . ' ' . $idJ2;
+        echo 'LISTE FINALE ' . $idJ1 . ' ' . $idJ2;
         $date = date_default_timezone_get();
         $date = date('Y-m-d', strtotime(str_replace('-', '/', $date)));
 
@@ -427,6 +437,7 @@ class daoPartie {
         $sql = "SELECT count(`id`) FROM `partie` WHERE `tour` =1 and `finish` =1";
         $res = mysql_query($sql);
         $row = mysql_fetch_row($res);
+        echo'rrrrrrrrrrrrrrrrrrrrrroooooow' . $row[0];
         if ($row[0] == 4) {
             return TRUE;
         } else {
