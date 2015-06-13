@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             ctrl_admin_partie();
         } elseif ($_SESSION['page'] == '_login') {
             echo 'retour';
-            echo("<script>console.log('aaa');</script>");
+//            echo("<script>console.log('aaa');</script>");
 
             ctrl_gestion_login();
         } elseif ($_SESSION['page'] == '_admin_creer_partie') {

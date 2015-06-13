@@ -15,7 +15,7 @@ $(document).ready(function () {
 
 
 
-            $('.pointSel01').html("aa");
+//            $('.pointSel01').html("aa");
             //$('.sel08').html(response[3][2]);
 
             /*   

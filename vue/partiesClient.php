@@ -7,7 +7,7 @@
     <tr>
         <td class='JH'>&nbsp;
             <label class="form-control label  label-info sel01" id="sel07" onchange="checkDuplicate()">
-                Joueur1 <div class="pointSel01">aaaaaaaaaaaaaaa</div>
+                Joueur1
             </label> 
         </td>
 

@@ -11,7 +11,18 @@ $(document).ready(function () {
         data: myData, //Form variables
         success: function (response) {
             console.log(response);
-
+            
+            var Tour = response[1][20];
+            var nbTour = 4;
+            if(Tour==1){
+                nbTour=4;
+            }else if (Tour==2){
+                nbTour=2;
+            }else{
+                nbTour=1;
+            }
+            $.removeCookie('nbTour');
+            $.cookie("nbTour", nbTour);
             for (var i = 0; i < 4; i++) {
                 var n1 = response[i][1].length;
                 var n2 = response[i][2].length;
@@ -79,7 +90,7 @@ $(document).ready(function () {
                 //ici afficher le score. Il faudra renvoyer et recup ici
                 //un objet json avec les sets et scores
                 console.log(response);
-                //location.reload();
+//                location.reload();
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert(thrownError);

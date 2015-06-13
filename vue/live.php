@@ -3,8 +3,10 @@
 <script src="vue/js/js.cookie.js"></script>
 <?php
 if (isset($_COOKIE['nbPartieLive'])) {
+    $nbPartieLive = 0;
     $nbPartieLive = intval($_COOKIE['nbPartieLive']);
     unset($_COOKIE['nbPartieLive']);
+//    var_dump($nbPartieLive);
     setcookie("nbPartieLive", "", time() - 3600);
 }
 ?>
@@ -30,28 +32,22 @@ for ($i = 0; $i < $nbPartieLive; $i++) {
 
     <div class="col-md-6" id="<?php echo $i ?>" >
         <!--panel-->
-        <div class="panel panel-default">
-            <div class="panel-heading p1">Joueur1     VS      Joueur2</div>
-            <div class="panel-body">
+        <div class="panel panel-primary">
+          <div class="panel-heading  p1"> <!--  Joueur1     VS      Joueur2>--> </div
+            <div class="panel-body ">
                 <div class="row">
-                    <div class="col-md-4 scrj1">Score Joueur 1</div>
-                    <div class="col-md-4">
-                        <!--blabla-->
+                    <div class="col-md-4 "></div>
+                    <div class="col-md-4 ">Set</div>
+                    <div class="col-md-4 ">Score</div>
 
-                    </div>
-                    <div class="col-md-4">
-                        <!--blabla-->
 
-                    </div>
+                    <div class="col-md-4 scrj1"><!--Score Joueur 1>--></div>
+                    <div class="col-md-4 set1"><!--SetJ1--></div>
+                    <div class="col-md-4 point1"><!--PointJ1--></div>
                     <br/>
-                    <div class="col-md-4 scrj2" >Score Joueur 2</div><div class="col-md-4">
-                        <!--blabla-->
-
-                    </div>
-                    <div class="col-md-4">
-                        <!--blabla-->
-
-                    </div>
+                    <div class="col-md-4 scrj2" ><!--Score Joueur 2>--></div>
+                    <div class="col-md-4 set2"><!--SetJ2--></div>
+                    <div class="col-md-4 point2"><!--pointJ2--></div>
 
 
                 </div>

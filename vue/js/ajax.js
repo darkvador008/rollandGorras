@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     //##### send add record Ajax request to _admin_joueur #########
-    $("#addPlayer").click(function(e) {
+    $("#addPlayer").click(function (e) {
         console.log('bbbbbbbbbbbbbbbbbbbbbb');
         e.preventDefault();
 
@@ -70,28 +70,35 @@ $(document).ready(function () {
         console.log(e.target.id);
         var j1 = new String();
         var j2 = new String();
+        var ter = new String();
         switch (e.target.id) {
             case 'addPartie':
                 j1 = "j1";
                 j2 = "j2";
+                ter = "ter1";
                 break;
             case 'addPartie2':
                 j1 = "j12";
                 j2 = "j22";
+                ter = "ter2";
                 break;
             case 'addPartie3':
                 j1 = "j13";
                 j2 = "j23";
+                ter = "ter3";
                 break;
             case 'addPartie4':
                 j1 = "j14";
                 j2 = "j24";
+                ter = "ter4";
                 break;
 
         }
         //bcorej1,$scouild a post data structure
         console.log(j1);
-        var myData = 'playerID1=' + $("#" + j1 + " option:selected").val() + '&' + 'playerID2=' + $("#" + j2 + " option:selected").val() + '&' + 'terrainID=1';
+        var myData = 'playerID1=' + $("#" + j1 + " option:selected").val()
+                + '&' + 'playerID2=' + $("#" + j2 + " option:selected").val()
+                + '&' + 'terrainID=' + $("#" + ter + " option:selected").val();
         console.log(myData);
 
         jQuery.ajax({

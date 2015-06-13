@@ -36,7 +36,7 @@ class daoPartie {
             $partie[2] = $ligne['nom2'];
             $partie[3] = $ligne['scorej1'];
             $partie[4] = $ligne['scorej2'];
-
+            $partie[20] = 1;
             //$tmp = array();
             $tmp = self::getAllSetPartie($partie[0]);
             for ($i = 0; $i <= count($tmp) - 1; $i++) {
@@ -512,11 +512,11 @@ class daoPartie {
             $partie[4] = $ligne['scorej1'];
             $partie[5] = $ligne['scorej2'];
 
-            //$tmp = array();
-//            $tmp = self::getAllSetPartie($partie[0]);
-//            for ($i = 0; $i <= count($tmp) - 1; $i++) {
-//                $partie[$i + 6] = $tmp[$i];
-//            }
+            $tmp = array();
+            $tmp = self::getAllSetPartie($partie[0]);
+            for ($i = 0; $i <= count($tmp) - 1; $i++) {
+                $partie[$i + 6] = $tmp[$i];
+            }
 
             $rez[$cpt] = $partie;
             $partie = array();

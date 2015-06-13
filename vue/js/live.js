@@ -12,8 +12,36 @@ $(document).ready(function () {
             for (var i = 0; i < response.length; i++) {
                 if (response[i] != null) {
                     $('#' + i).find('.p1').html(response[i][1] + ' VS ' + response[i][2]);
-                    $('#' + i).find('.scrj1').html(response[i][1] + ' : ' + response[i][4]);
-                    $('#' + i).find('.scrj2').html(response[i][2] + ' : ' + response[i][5]);
+                    var setj1 = "";
+                    var setJ2 = "";
+                    if (response[i][6] != null) {
+                        setj1 = setj1 + " " + response[i][6] + " / "
+                    }
+                    if (response[i][7] != null) {
+                        setJ2 = setJ2 + " " + response[i][7] + " / "
+                    }
+
+                    if (response[i][8] != null) {
+                        setj1 = setj1 + " " + response[i][8] + " / "
+                    }
+
+                    if (response[i][9] != null) {
+                        setJ2 = setJ2 + " " + response[i][9] + " / "
+                    }
+                    if (response[i][10] != null) {
+                        setj1 = setj1 + " " + response[i][10] + "  "
+                    }
+                    if (response[i][11] != null) {
+                        setJ2 = setJ2 + " " + response[i][11] + "  "
+                    }
+
+                    $('#' + i).find('.scrj1').html(response[i][1]);
+                    $('#' + i).find('.set1').html(setj1);
+                    $('#' + i).find('.point1').html(response[i][4]);
+
+                    $('#' + i).find('.scrj2').html(response[i][2]);
+                    $('#' + i).find('.set2').html(setJ2);
+                    $('#' + i).find('.point2').html(response[i][5]);
                 }
 
             }
@@ -45,8 +73,38 @@ $(document).ready(function () {
                 for (var i = 0; i < response.length; i++) {
                     if (response[i] != null) {
                         $('#' + i).find('.p1').html(response[i][1] + ' VS ' + response[i][2]);
-                        $('#' + i).find('.scrj1').html(response[i][1] + ' : ' + response[i][4]);
-                        $('#' + i).find('.scrj2').html(response[i][2] + ' : ' + response[i][5]);
+                        var setj1 = "";
+                        var setJ2 = "";
+                        if (response[i][6] != null) {
+                            setj1 = setj1 + " " + response[i][6] + " / "
+                        }
+                        if (response[i][7] != null) {
+                            setJ2 = setJ2 + " " + response[i][7] + " / "
+                        }
+
+                        if (response[i][8] != null) {
+                            setj1 = setj1 + " " + response[i][8] + " / "
+                        }
+
+                        if (response[i][9] != null) {
+                            setJ2 = setJ2 + " " + response[i][9] + " / "
+                        }
+                        if (response[i][10] != null) {
+                            setj1 = setj1 + " " + response[i][10] + "  "
+                        }
+                        if (response[i][11] != null) {
+                            setJ2 = setJ2 + " " + response[i][11] + "  "
+                        }
+
+
+                    $('#' + i).find('.scrj1').html(response[i][1]);
+                    $('#' + i).find('.set1').html(setj1);
+                    $('#' + i).find('.point1').html(response[i][4]);
+
+                    $('#' + i).find('.scrj2').html(response[i][2]);
+                    $('#' + i).find('.set2').html(setJ2);
+                    $('#' + i).find('.point2').html(response[i][5]);
+
                     }
 
                 }
