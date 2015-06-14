@@ -55,8 +55,8 @@ if (isset($_SESSION['login']) && isset($_SESSION['password'])) {
                             <br>
 
                             <div class="col-md-2 scrj2" ><!--nomJ2--></div>
-                            <div class="col-md-2 setj1"><!--set J2--></div>
-                            <div class="col-md-3 pointj1"><!--Point J2--></div>
+                            <div class="col-md-2 setj2"><!--set J2--></div>
+                            <div class="col-md-3 pointj2"><!--Point J2--></div>
                             <div class="col-md-2">
                                 <button type="button" class="btn btn-default scorebtntop plus2" aria-label="Left Align" name="bouton">
                                     <span class="glyphicon glyphicon-plus" aria-hidden="true" ></span>

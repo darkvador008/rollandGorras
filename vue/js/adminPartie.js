@@ -79,8 +79,8 @@ $(document).ready(function () {
         var panelNum = lm.split("-", 4)[0];//4 panels. start at '0'
 
         //build a post data structure
-        var scorej1 = $("#" + panelNum).find("div.scrj1").text().split(": ", 2)[1];
-        var scorej2 = $("#" + panelNum).find("div.scrj2").text().split(": ", 2)[1];
+        var scorej1 = $("#" + panelNum).find(".pointj1").text();
+        var scorej2 = $("#" + panelNum).find(".pointj2").text();
         console.log(partie_id);
         console.log(numButton);
         console.log(e.target.id.split("-", 4)[1]);
@@ -118,8 +118,8 @@ $(document).ready(function () {
         console.log(numButton);
         console.log(e.target.id.split("-", 4)[1]);
         //build a post data structure
-        var scorej1 = $("#" + panelNum).find("div.scrj1").text().split(": ", 2)[1];
-        var scorej2 = $("#" + panelNum).find("div.scrj2").text().split(": ", 2)[1];
+        var scorej1 = $("#" + panelNum).find(".pointj1").text();
+        var scorej2 = $("#" + panelNum).find(".pointj2").text();
 
 
         var myData = "action=minus&" + "scorej1=" + scorej1 + "&scorej2=" + scorej2 + "&partie_id=" + partie_id + "&numButton=" + numButton;
