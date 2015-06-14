@@ -43,5 +43,9 @@ function getLive() {
     $partie = daoPartie::getLive();
     return $partie;
 }
+function updateTerrain($terrain,$partie_id) {
+    include_once'daoPartie.php';
+    daoPartie::updateTerrain($terrain,$partie_id);
+}
 
 ?>

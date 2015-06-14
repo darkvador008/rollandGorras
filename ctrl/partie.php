@@ -49,6 +49,14 @@ elseif (isset($_POST['scorej1']) && isset($_POST['scorej2']) && isset($_POST['pa
     scoreMinus($sj1, $sj2, $partie_id, $numb);
 }
 
+elseif (isset($_POST['terrain'])){
+    include_once"$racine/model/modelPartie.php";
+    $terrain=$_POST['terrain'];
+    $partie_id=$_POST['partie_id'];
+    updateTerrain($partie_id,$terrain);
+
+}
+
 //POST
 else {
     if ($_GET['page'] == '_live') {
@@ -65,5 +73,6 @@ else {
         $parties = getParties($tour);
         echo $parties;
     }
+
 }
 ?>

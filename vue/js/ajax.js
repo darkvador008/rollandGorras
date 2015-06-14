@@ -22,6 +22,37 @@ $(document).ready(function () {
                 alert(thrownError);
             }
         });
+    });    
+    $("[name='upTerr']").click(function (e) {
+        console.log('upterrain');
+        e.preventDefault();
+        console.log(e.target.id);
+        var idd =e.target.id.substr(1,1);
+        var terrain_id=$("#ter"+e.target.id.substr(1,1)).val();
+        idd--;
+        console.log('sb'+idd)
+        // var partie_id = $('#'+sb).find('bouton');//lm.split("-", 4)[3];
+         var partie_id = $('[id*="plus"]').eq(idd+2).attr('id').split("-", 4)[3];
+         //var partie_id=.split("-", 4)[3];
+         console.log('test'+ partie_id + 'terrain id' + terrain_id);
+        //build a post data structure
+        var myData = "terrain="+terrain_id+ "&partie_id="+partie_id;
+        console.log(myData);
+
+        jQuery.ajax({
+            type: "POST", // HTTP method POST or GET
+            url: "index.php?page=_admin_partie", //Where to make Ajax calls
+            dataType: "text", // Data type, HTML, json etc.
+            data: myData, //Form variables
+            success: function (response) {
+                console.log(response);
+               
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(thrownError);
+            }
+        });
     });
 
 

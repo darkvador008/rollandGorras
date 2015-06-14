@@ -53,6 +53,7 @@ $(document).ready(function () {
                 $('#' + i).find('.pointj1').html(response[i][3]);
                 $('#' + i).find('.pointj2').html(response[i][4]);
 
+
                 //$('#' + i).find('.set').html( lesSet);
 
                 //$('div.p1').html(response[0][1]+ " VS "+ response[1][1]);
