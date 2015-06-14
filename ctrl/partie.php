@@ -10,7 +10,7 @@
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
     if ($_GET['page'] == '_live') {
-        echo 'get live';
+        //echo 'get live';
         include_once"$racine/model/modelPartie.php";
         $parties = getLive();
         include_once"$racine/vue/live.php";
@@ -58,21 +58,24 @@ elseif (isset($_POST['terrain'])){
 }
 
 //POST
-else {
-    if ($_GET['page'] == '_live') {
+elseif ($_GET['page'] == '_live') {
         include_once"$racine/model/modelPartie.php";
-        $parties = getLive();
+        //$parties = getLive();
+        //echo $parties;
+        //echo 'heeeeeeeeeeeey';
+        //$tour = $_POST['tour'];
+        $parties = getAllParties();
         echo $parties;
-    } elseif (isset($_POST['tour'])) {
-        include_once"$racine/model/modelJoueur.php";
-        include_once"$racine/model/modelPartie.php";
+} elseif (isset($_POST['tour'])) {
+    include_once"$racine/model/modelJoueur.php";
+    include_once"$racine/model/modelPartie.php";
 
-        $tour = $_POST['tour'];
-        //$tour=2;
-        $tour = getTourMax();
-        $parties = getParties($tour);
-        echo $parties;
-    }
-
+    $tour = $_POST['tour'];
+    $tour=2;
+    //$tour = getTourMax();
+    $parties = getParties($tour);
+    echo $parties;
 }
+
+
 ?>

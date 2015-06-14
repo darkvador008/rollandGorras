@@ -1,5 +1,11 @@
 $(document).ready(function () {
-    var myData = 'tour=1';
+    $('[id*="sub"]').click(function (e) {
+
+    var id = e.target.id;
+    i=id.split('-',2)[1];
+    console.log(id);
+
+    var myData = "";
     jQuery.ajax({
         type: "POST", // HTTP method POST or GET
         url: "index.php?page=_live", //Where to make Ajax calls
@@ -7,10 +13,13 @@ $(document).ready(function () {
         data: myData, //Form variables
         success: function (response) {
             console.log(response);
+
             $.removeCookie('nbPartieLive');
             $.cookie("nbPartieLive", response.length);
-            for (var i = 0; i < response.length; i++) {
+            //for (var i = 0; i < response.length; i++) {
                 if (response[i] != null) {
+
+                    $('#'+e.target.id).remove();
                     $('#' + i).find('.p1').html(response[i][1] + ' VS ' + response[i][2]);
                     var setj1 = "";
                     var setJ2 = "";
@@ -44,7 +53,7 @@ $(document).ready(function () {
                     $('#' + i).find('.point2').html(response[i][5]);
                 }
 
-            }
+            //}
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(thrownError);
@@ -70,7 +79,6 @@ $(document).ready(function () {
                 console.log(response);
 //                $.removeCookie('nbPartieLive');
 //                $.cookie("nbPartieLive", response.length);
-                for (var i = 0; i < response.length; i++) {
                     if (response[i] != null) {
                         $('#' + i).find('.p1').html(response[i][1] + ' VS ' + response[i][2]);
                         var setj1 = "";
@@ -107,7 +115,7 @@ $(document).ready(function () {
 
                     }
 
-                }
+                
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 console.log(thrownError);
@@ -115,4 +123,6 @@ $(document).ready(function () {
             }
         });
     }, 5000);
+});
+
 });
