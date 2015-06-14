@@ -141,17 +141,27 @@ class daoPartie {
                     $scorej2-=5;
                 }
                 $scorej1+=5;
-                
+
                 //////////////////////////
                 if ($scorej2 < 40) {
 
                     if ($numButton == 2) {
-                        self::addSet($partie_id, $scorej2 , 45, $numSet, $tour);
+                        self::addSet($partie_id, $scorej2, 45, $numSet, $tour);
                     } else {
-                        self::addSet($partie_id, 45, $scorej2 , $numSet, $tour);
+                        self::addSet($partie_id, 45, $scorej2, $numSet, $tour);
                     }
-                    $scorej1 = 0;
-                    $scorej2 = 0;
+                    if (self::checkPartieFinish($partie_id) == 1) { // vérifie si la partie est terminée
+                        if ($scorej1 == 45) { // on met 1 pour le point du gagnant
+                            $scorej1 = 1;
+                            $scorej2 = 0;
+                        } else {
+                            $scorej1 = 1;
+                            $scorej2 = 0;
+                        }
+                    } else { // la partie est pas fini donc on remet à zéro pour continuer
+                        $scorej1 = 0;
+                        $scorej2 = 0;
+                    }
                 }
 
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2015 at 01:52 PM
+-- Generation Time: Jun 14, 2015 at 11:28 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `partie` (
   KEY `playerID1` (`playerID1`),
   KEY `playerID2` (`playerID2`),
   KEY `terrainID` (`terrainID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=173 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=181 ;
 
 --
 -- Dumping data for table `partie`
@@ -50,11 +50,10 @@ CREATE TABLE IF NOT EXISTS `partie` (
 INSERT INTO `partie` (`id`, `playerID1`, `playerID2`, `jour`, `terrainID`, `numSet`, `scorej1`, `scorej2`, `finish`, `tour`) VALUES
 (97, 187, 189, '2015-06-13', 1, 3, 1, 0, 1, 1),
 (98, 190, 191, '2015-06-13', 1, 3, 1, 0, 1, 1),
-(99, 192, 193, '2015-06-13', 1, 3, 1, 0, 1, 1),
-(100, 194, 195, '2015-06-13', 2, 3, 0, 1, 1, 1),
-(168, 187, 190, '2015-06-14', 1, 3, 0, 1, 1, 2),
-(169, 192, 195, '2015-06-14', 1, 3, 1, 0, 1, 2),
-(172, 192, 190, '2015-06-14', 1, 1, 15, 0, 0, 3);
+(99, 192, 193, '2015-06-13', 1, 3, 0, 1, 1, 1),
+(100, 194, 195, '2015-06-13', 2, 3, 1, 0, 1, 1),
+(179, 187, 190, '2015-06-14', 1, 2, 0, 0, 0, 2),
+(180, 194, 193, '2015-06-14', 1, 1, 45, 30, 0, 2);
 
 -- --------------------------------------------------------
 
@@ -114,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `set` (
   `numSet` int(11) NOT NULL COMMENT 'valeur 1 2 ou 3',
   PRIMARY KEY (`idSet`,`partie_id`),
   KEY `partie_id_2` (`partie_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=74 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=89 ;
 
 --
 -- Dumping data for table `set`
@@ -129,16 +128,12 @@ INSERT INTO `set` (`idSet`, `partie_id`, `j1`, `j2`, `numSet`) VALUES
 (56, 98, 6, 2, 3),
 (57, 99, 6, 2, 1),
 (58, 99, 6, 3, 2),
-(59, 99, 8, 6, 3),
-(60, 100, 6, 0, 1),
-(61, 100, 6, 2, 2),
-(67, 168, 6, 1, 1),
-(68, 168, 6, 2, 2),
-(69, 168, 0, 6, 3),
-(70, 169, 6, 0, 1),
-(71, 169, 6, 0, 2),
-(72, 169, 6, 0, 3),
-(73, 172, 1, 0, 1);
+(74, 100, 3, 6, 1),
+(75, 99, 1, 6, 3),
+(76, 100, 6, 2, 2),
+(77, 100, 2, 6, 3),
+(87, 179, 6, 1, 1),
+(88, 179, 1, 0, 2);
 
 -- --------------------------------------------------------
 
