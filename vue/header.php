@@ -57,13 +57,14 @@
                             echo'<li><a href="' . $nom_projet . '/index.php?page=_admin_joueur">Admin Joueur</a></li>';
                             echo'<li><a href="' . $nom_projet . '/index.php?page=_admin_partie">Admin Partie</a></li>';
                             echo'<li><a href="' . $nom_projet . '/index.php?page=_admin_creer_partie">Admin Creer Partie</a></li>';
+                            echo'<li><a href="' . $nom_projet . '/index.php?page=_admin_supprimer_partie">Admin Supprimer Partie</a></li>';
 
                             //echo 'Votre login est '.$_SESSION['login'].' et votre mot de passe est '.$_SESSION['password'].'.';
                             //echo '<br />';
                             // On affiche un lien pour fermer notre session
-                            echo ' </ul><ul class="nav pull-right"><a href="' . $nom_projet . '/model/logout.php">logout</a></ul>';
+                            echo '</ul><li><ul class="nav pull-right"><a href="' . $nom_projet . '/model/logout.php" class="glyphicon glyphicon-off"> Logout</a></ul> </li>';
                         } else {
-                            echo '  </ul><ul class="nav pull-right"><a href="' . $nom_projet . '/index.php?page=_login">login</a></ul>';
+                            echo '</ul><li><ul class="nav pull-right"><a href="' . $nom_projet . '/index.php?page=_login" class="glyphicon glyphicon-off"> Login</a></ul></li>';
                         }
                         ?>
 

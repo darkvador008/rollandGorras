@@ -11,20 +11,20 @@ $(document).ready(function () {
         data: myData, //Form variables
         success: function (response) {
             console.log(response);
-            
+
             var Tour = response[0][20];
 //            console.log(Tour);
             var nbTour = 4;
-            if(Tour==1){
-                nbTour=4;
-            }else if (Tour==2){
-                nbTour=2;
-            }else{
-                nbTour=1;
+            if (Tour == 1) {
+                nbTour = 4;
+            } else if (Tour == 2) {
+                nbTour = 2;
+            } else {
+                nbTour = 1;
             }
             $.removeCookie('nbTour');
             $.cookie("nbTour", nbTour);
-            
+
             for (var i = 0; i < nbTour; i++) {
                 var n1 = response[i][1].length;
                 var n2 = response[i][2].length;
@@ -33,21 +33,25 @@ $(document).ready(function () {
 
                 var lesSetj1 = "";
                 var lesSetj2 = "";
-                for (a = 5; a < response[i].length; a++) {
-                    lesSetj1 = lesSetj1 + " " + response[i][a] + " ";
-                    lesSetj2 = lesSetj2 + " " + response[i][a + 1] + " ";
+                for (a = 5; a < 11; a++) {
+                    lesSetj1 = lesSetj1 + " / " + response[i][a] + " ";
+                    lesSetj2 = lesSetj2 + " / " + response[i][a + 1] + " ";
                     a++;
                 }
 //                console.log(response[i][1].length + " " + response[i][1]);
 //                console.log(response[i][2].length + " " + response[i][2]);
 //                console.log(spacesn1 + " " + spacesn2);
                 $('#' + i).find('.p1').html(response[i][1] + " VS " + response[i][2]);
-                $('#' + i).find('.scrj1').html(response[i][1] + "\u00A0".repeat(spacesn1) + lesSetj1 + ": " + response[i][3]);
-                $('#' + i).find('.scrj2').html(response[i][2] + "\u00A0".repeat(spacesn2) + lesSetj2 + " : " + response[i][4]);
+                $('#' + i).find('.scrj1').html(response[i][1] + ": "  );
+                $('#' + i).find('.scrj2').html(response[i][2] + " : " );
                 $('#' + i).find('.plus1').attr("id", i + "-plus-1-" + response[i][0]);
                 $('#' + i).find('.plus2').attr("id", i + "-plus-2-" + response[i][0]);
                 $('#' + i).find('.minus1').attr("id", i + "-minus-1-" + response[i][0]);
                 $('#' + i).find('.minus2').attr("id", i + "-minus-2-" + response[i][0]);
+                $('#' + i).find('.setj1').html(lesSetj1);
+                $('#' + i).find('.setj2').html(lesSetj2);
+                $('#' + i).find('.pointj1').html(response[i][3]);
+                $('#' + i).find('.pointj2').html(response[i][4]);
 
                 //$('#' + i).find('.set').html( lesSet);
 
