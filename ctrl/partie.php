@@ -60,19 +60,19 @@ elseif (isset($_POST['terrain'])){
 //POST
 elseif ($_GET['page'] == '_live') {
         include_once"$racine/model/modelPartie.php";
-        //$parties = getLive();
+        $parties = getLive();
         //echo $parties;
         //echo 'heeeeeeeeeeeey';
         //$tour = $_POST['tour'];
-        $parties = getAllParties();
+        //$parties = getAllParties();
         echo $parties;
 } elseif (isset($_POST['tour'])) {
     include_once"$racine/model/modelJoueur.php";
     include_once"$racine/model/modelPartie.php";
 
     $tour = $_POST['tour'];
-    $tour=2;
-    //$tour = getTourMax();
+    //$tour=2;
+    $tour = getTourMax();
     $parties = getParties($tour);
     echo $parties;
 }

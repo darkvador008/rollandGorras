@@ -8,6 +8,8 @@ $(document).ready(function() {
         dataType: "json", // Data type, HTML, json etc.
         data: myData, //Form variables
         success: function(response) {
+            $.removeCookie('nbPartieLive');
+            $.cookie("nbPartieLive", response.length);
             console.log(response);
             for (var i = 0; i < 7; i++) {
                 if (response[i] != null) {
