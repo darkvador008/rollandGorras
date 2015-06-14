@@ -1,4 +1,14 @@
 <?php require "$racine/vue/header.php"; ?>
+
+
+<?php
+// On démarre la session (ceci est indispensable dans toutes les pages de notre section membre)
+//session_start ();
+// On récupère nos variables de session
+if (isset($_SESSION['login']) && isset($_SESSION['password'])) {
+    ?>
+
+
 <div class="container creer">
     <h1> Créez les parties du tournoi</h1>
     <div class="crtPrt row">
@@ -203,4 +213,15 @@
     <button type="button" class="btn btn-warning " name="reset" onclick="rez()">Reset</button>
 </form>
 </div>
+
+
+<?php
+} else {
+    echo '
+    <div class="alert alert-danger fade in"> <a href="index.php?page=_login" class="close" data-dismiss="alert">&times;</a>
+        <strong><center>Erreur !</strong> Veuillez vous loguer ! Vous pouvez fermer ce message.</center>
+    </div>
+<br><br><br><br>';
+}
+?>     <!--Fin du if de session-->
 <?php require "$racine/vue/footer.php"; ?>

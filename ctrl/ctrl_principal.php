@@ -106,8 +106,9 @@ function ctrl_parties_client() {
 
 function ctrl_index() {
     global $racine, $nom_projet;
-    $_SESSION['page'] = "_login";
-    include_once "$racine/ctrl/login.php";
+//    $_SESSION['page'] = "_live";
+//    include_once "$racine/ctrl/partie.php";
+    header('Location: index.php?page=_live'); 
 }
 
 function ctrl_live() {
@@ -134,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             //echo 'retour admin partie'; je vire ça pour pas avoir de bruit dans mes response ajax
             ctrl_admin_partie();
         } elseif ($_SESSION['page'] == '_login') {
-            echo 'retour';
+//            echo 'retour';
 //            echo("<script>console.log('aaa');</script>");
 
             ctrl_gestion_login();
@@ -194,8 +195,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             ctrl_live();
         }
     } else {
-        echo 'ctrl principal get';
-        affMenuPrincipal();
+       // echo 'ctrl principal get';
+        //affMenuPrincipal();
+        
+        ctrl_index();
     }
 }
 ?>
