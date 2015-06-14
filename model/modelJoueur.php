@@ -23,9 +23,9 @@ function joueurLoad() {
     }
 }
 
-function addJoueur($nom, $nationalite, $imgAvatar) {
+function addJoueur($nom, $nationalite) {
     include_once 'daoJoueur.php';
-    daoJoueur::addJoueur($nom, $nationalite, $imgAvatar);
+    daoJoueur::addJoueur($nom, $nationalite);
 }
 
 function delJoueur($idj) {

@@ -129,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if ($_SESSION['page'] == '_admin') {
             echo 'retour admin';
         } elseif ($_SESSION['page'] == '_admin_joueur') {
-            echo 'retour admin joueur';
+            //echo 'retour admin joueur';
             ctrl_admin_joueur();
         } elseif ($_SESSION['page'] == '_admin_partie') {
             //echo 'retour admin partie'; je vire ça pour pas avoir de bruit dans mes response ajax
