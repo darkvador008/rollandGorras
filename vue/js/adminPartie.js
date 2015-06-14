@@ -33,17 +33,41 @@ $(document).ready(function () {
 
                 var lesSetj1 = "";
                 var lesSetj2 = "";
-                for (a = 5; a < 11; a++) {
-                    lesSetj1 = lesSetj1 + " / " + response[i][a] + " ";
-                    lesSetj2 = lesSetj2 + " / " + response[i][a + 1] + " ";
-                    a++;
-                }
+
+//                for (a = 5; a < 11; a++) {
+
+                    if (response[i] != null) {
+                        if (response[i][5] != null) {
+                            lesSetj1 = lesSetj1 + " " + response[i][5] + " / "
+                        }
+                        if (response[i][6] != null) {
+                            lesSetj2 = lesSetj2 + " " + response[i][6] + " / "
+                        }
+
+                        if (response[i][7] != null) {
+                            lesSetj1 = lesSetj1 + " " + response[i][7] + " / "
+                        }
+
+                        if (response[i][8] != null) {
+                            lesSetj2 = lesSetj2 + " " + response[i][8] + " / "
+                        }
+                        if (response[i][9] != null) {
+                            lesSetj1 = lesSetj1 + " " + response[i][9] + "  "
+                        }
+                        if (response[i][10] != null) {
+                            lesSetj2 = lesSetj2 + " " + response[i][10] + "  "
+                        }
+                    }
+//                    lesSetj1 = lesSetj1 + " / " + response[i][a] + " ";
+//                    lesSetj2 = lesSetj2 + " / " + response[i][a + 1] + " ";
+//                    a++;
+//                }
 //                console.log(response[i][1].length + " " + response[i][1]);
 //                console.log(response[i][2].length + " " + response[i][2]);
 //                console.log(spacesn1 + " " + spacesn2);
                 $('#' + i).find('.p1').html(response[i][1] + " VS " + response[i][2]);
-                $('#' + i).find('.scrj1').html(response[i][1] + ": "  );
-                $('#' + i).find('.scrj2').html(response[i][2] + " : " );
+                $('#' + i).find('.scrj1').html(response[i][1] + ": ");
+                $('#' + i).find('.scrj2').html(response[i][2] + " : ");
                 $('#' + i).find('.plus1').attr("id", i + "-plus-1-" + response[i][0]);
                 $('#' + i).find('.plus2').attr("id", i + "-plus-2-" + response[i][0]);
                 $('#' + i).find('.minus1').attr("id", i + "-minus-1-" + response[i][0]);
