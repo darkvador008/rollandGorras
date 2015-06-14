@@ -39,8 +39,8 @@ for ($i = 0; $i < $nbPartieLive; $i++) {
           
                 <div class="row">
                     <div class="col-md-4 "></div>
-                    <div class="col-md-4 "></div>
-                    <div class="col-md-4 "></div>
+                    <div class="col-md-4 ">Set</div>
+                    <div class="col-md-4 ">Score</div>
                    
                     <div><button id="<?php echo 'sub-'.$i ?>">S'abonner </button></div>
                     <div class="col-md-4 scrj1"><!--Score Joueur 1>--></div>
