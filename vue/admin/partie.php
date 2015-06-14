@@ -66,7 +66,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['password'])) {
                         Set
                     </div>-->
                 </div>
-                <?php if ($nbTour == 2 || $nbTour == 3){ ?>
+                <?php if ($nbTour == 2 || $nbTour == 1){ ?>
                 <div>            <select class="form-control sel col-md-2" id="<?php echo 'ter'.$i  ?>" name="terr">
                     <option value="1">Terrain 1</option>
                     <option value="2">Terrain 2</option>
