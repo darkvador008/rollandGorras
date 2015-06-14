@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+    var arr=[];
     //Pour afficher les noms au chargement
     var myData = "";
     jQuery.ajax({
@@ -29,14 +30,14 @@ $(document).ready(function() {
 
 
 
-
     //click sur contains "sub"
     $('[id*="sub"]').click(function(e) {
 
         var id = e.target.id;
         i = id.split('-', 2)[1];
         console.log(id);
-
+        arr.push(i);
+        console.log(arr);
         var myData = "";
         jQuery.ajax({
             type: "POST", // HTTP method POST or GET
@@ -111,6 +112,8 @@ $(document).ready(function() {
                     console.log(response);
                     //                $.removeCookie('nbPartieLive');
                     //                $.cookie("nbPartieLive", response.length);
+                    for (var ii = 0; ii < arr.length; ii++) {
+                        i=arr[ii];
                     if (response[i] != null) {
                         $('#' + i).find('.p1').html(response[i][1] + ' VS ' + response[i][2]);
                         var setj1 = "";
@@ -147,7 +150,7 @@ $(document).ready(function() {
 
                     }
 
-
+                    }
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     console.log(thrownError);
