@@ -80,7 +80,7 @@
         <!-- Full Width Image Header with Logo -->
         <!-- Image backgrounds are set within the full-width-pics.css file. -->
         <header class="image-bg-fluid-height">
-            <img class="img-responsive img-center imgHeader " src="tenis.jpg"  alt="">
+            <img class="img-responsive img-center imgHeader " src="<?php print("$nom_projet/vue/img/tenis.jpg");?>"  alt="">
         </header>
         <!-- Content Section -->
 

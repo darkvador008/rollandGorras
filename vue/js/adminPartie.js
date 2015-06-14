@@ -92,7 +92,7 @@ $(document).ready(function () {
                 //ici afficher le score. Il faudra renvoyer et recup ici
                 //un objet json avec les sets et scores
                 console.log(response);
-//                location.reload();
+                location.reload();
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert(thrownError);
