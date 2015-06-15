@@ -146,17 +146,27 @@ class daoPartie {
                 if ($scorej2 < 40) {
 
                     if ($numButton == 2) {
-                        self::addSet($partie_id, $scorej2, 45, $numSet, $tour);
+                        self::addSet($partie_id, $scorej2, 45, $numSet, $tour, $numButton);
                     } else {
-                        self::addSet($partie_id, 45, $scorej2, $numSet, $tour);
+                        self::addSet($partie_id, 45, $scorej2, $numSet, $tour, $numButton);
                     }
                     if (self::checkPartieFinish($partie_id) == 1) { // vérifie si la partie est terminée
-                        if ($scorej1 == 45) { // on met 1 pour le point du gagnant
-                            $scorej1 = 1;
-                            $scorej2 = 0;
+                        if (self::getGagnantAllSet($partie_id) == 1) { // on met 1 pour le point du gagnant
+                            if ($numButton == 2) {
+                                $scorej1 = 0;
+                                $scorej2 = 1;
+                            } else {
+                                $scorej1 = 1;
+                                $scorej2 = 0;
+                            }
                         } else {
-                            $scorej1 = 1;
-                            $scorej2 = 0;
+                            if ($numButton == 2) {
+                                $scorej1 = 1;
+                                $scorej2 = 0;
+                            } else {
+                                $scorej1 = 0;
+                                $scorej2 = 1;
+                            }
                         }
                     } else { // la partie est pas fini donc on remet à zéro pour continuer
                         $scorej1 = 0;
@@ -170,17 +180,27 @@ class daoPartie {
             case 45: //avantage
 
                 if ($numButton == 2) {
-                    self::addSet($partie_id, $scorej2, $scorej1, $numSet, $tour);
+                    self::addSet($partie_id, $scorej2, $scorej1, $numSet, $tour, $numButton);
                 } else {
-                    self::addSet($partie_id, $scorej1, $scorej2, $numSet, $tour);
+                    self::addSet($partie_id, $scorej1, $scorej2, $numSet, $tour, $numButton);
                 }
                 if (self::checkPartieFinish($partie_id) == 1) { // vérifie si la partie est terminée
-                    if ($scorej1 == 45) { // on met 1 pour le point du gagnant
-                        $scorej1 = 1;
-                        $scorej2 = 0;
-                    } else {
-                        $scorej1 = 1;
-                        $scorej2 = 0;
+                    if (self::getGagnantAllSet($partie_id) == 1) { //Si joueur 1 gagne
+                        if ($numButton == 2) {
+                            $scorej1 = 0;
+                            $scorej2 = 1;
+                        } else {
+                            $scorej1 = 1;
+                            $scorej2 = 0;
+                        }
+                    } else { // si joueur 2 gagne
+                        if ($numButton == 2) {
+                            $scorej1 = 1;
+                            $scorej2 = 0;
+                        } else {
+                            $scorej1 = 0;
+                            $scorej2 = 1;
+                        }
                     }
                 } else { // la partie est pas fini donc on remet à zéro pour continuer
                     $scorej1 = 0;
@@ -189,12 +209,13 @@ class daoPartie {
                 //j1 a gagné un set
 
                 break;
-                if ($numButton == 2) {
-                    $tmp = $scorej1;
-                    $scorej1 = $scorej2;
-                    $scorej2 = $tmp;
-                }
+//                if ($numButton == 2) {
+//                    $tmp = $scorej1;
+//                    $scorej1 = $scorej2;
+//                    $scorej2 = $tmp;
+//                }
         }
+
         if ($numButton == 2) {
             $sql = "UPDATE partie SET scorej2='" . $scorej1 . "',scorej1='" . $scorej2 . "' where id=" . $partie_id;
         } else {
@@ -248,7 +269,7 @@ class daoPartie {
     }
 
     // Ajout ou met à jour un set
-    public static function addSet($partieID, $joueur1, $joueur2, $numSet, $tour) {
+    public static function addSet($partieID, $joueur1, $joueur2, $numSet, $tour, $numButton) {
         echo '(score j1[' . $joueur1 . '] score J2[' . $joueur2 . ']  )';
         echo 'touuuuuuuuuuuuuuuuuur =' . $tour;
         // Pas besoin d'ouvrir ou fermer la connexion DB car déjà ouverte
@@ -266,11 +287,22 @@ class daoPartie {
                 self::setPartieFinish($partieID);
                 if ($tour == 1) {
                     if (self::checkDemiFinaleAvaible() == true) { // on vérifie si c'est possible
-                        if ($joueur1 == 45) { // on met 1 pour le point du gagnant
-                            echo'J1111111111111111111111111111111111';
+//                        if ($joueur1 == 45) { // on met 1 pour le point du gagnant
+//                            if ($numButton == 2) {// besoin d'inversion
+//                                self::setJ1Gagnant($partieID);
+//                            } else {
+//                                self::setJ2Gagnant($partieID);
+//                            }
+//                        } else {
+//                            if ($numButton == 2) {
+//                                self::setJ2Gagnant($partieID);
+//                            } else {
+//                                self::setJ1Gagnant($partieID);
+//                            }
+//                        }
+                        if (self::getGagnantAllSet($partieID) == 1) {
                             self::setJ1Gagnant($partieID);
                         } else {
-                            echo 'J2222222222222222222222222222222222';
                             self::setJ2Gagnant($partieID);
                         }
 
@@ -279,11 +311,22 @@ class daoPartie {
                     }
                 } else if ($tour == 2) {
                     if (self::checkFinaleAvaible() == 1) {
-                        if ($joueur1 == 45) { // on met 1 pour le point du gagnant
-                            echo'J1111111111111111111111111111111111';
+//                        if ($joueur1 == 45) { // on met 1 pour le point du gagnant
+//                            if ($numButton == 2) {// besoin d'inversion
+//                                self::setJ1Gagnant($partieID);
+//                            } else {
+//                                self::setJ2Gagnant($partieID);
+//                            }
+//                        } else {
+//                            if ($numButton == 2) {
+//                                self::setJ1Gagnant($partieID);
+//                            } else {
+//                                self::setJ2Gagnant($partieID);
+//                            }
+//                        }
+                        if (self::getGagnantAllSet($partieID) == 1) {
                             self::setJ1Gagnant($partieID);
                         } else {
-                            echo 'J2222222222222222222222222222222222';
                             self::setJ2Gagnant($partieID);
                         }
                         self::createFinale();
@@ -415,7 +458,7 @@ class daoPartie {
     // vérifie que les 4 parties sont terminée, et crée les deux nouvelles partie avec les gagnant
     public static function createDemiFinale() {
 
-        $sql = "SELECT `playerID1` as GAGNANT FROM `partie` WHERE `scorej1`=1 and `tour`=1
+        $sql = " SELECT `playerID1` as GAGNANT FROM `partie` WHERE `scorej1`=1 and `tour`=1
                UNION SELECT `playerID2` as GAGNANT FROM `partie` WHERE `scorej2`=1 and `tour`=1";
         $res = mysql_query($sql);
 
@@ -574,6 +617,31 @@ class daoPartie {
         $result = $row[0];
         return $result;
         self::deconnect();
+    }
+
+    // si gagnant j1 gagnant renvoie vrais sinon c'est j2 le gagnant 
+    public static function getGagnantAllSet($partie) {
+        $sql = "SELECT sum(`j1`) as j1,sum(`j2`) as j2 FROM `set` WHERE `partie_id`=" . $partie;
+        $res = mysql_query($sql);
+
+        $j1 = 50;
+        $j2 = 51;
+        echo($j1 . "  888888888      " . $j2);
+        echo($j1 . "  888888888      " . $j2 . "                  ");
+
+        while ($ligne = mysql_fetch_assoc($res)) {
+            $j1 = intval($ligne['j1']);
+            $j2 = intval($ligne['j2']);
+        }
+        echo($j1 . "  888888888      " . $j2 . "       /");
+        echo ($j1 > $j2);
+        echo('   ' . $j2 > $j1);
+
+        if ($j1 > $j2) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
 
 }
