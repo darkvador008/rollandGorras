@@ -6,16 +6,16 @@ class daoPartie {
     private static $db;
 
     private static function connectDB() {
-        // connexion au serveur mysql
+// connexion au serveur mysql
         self::$link = @mysql_connect("localhost", "root", "");
-        // connexion à la DB garrosdb
+// connexion à la DB garrosdb
         self::$db = mysql_select_db("garrosdb");
     }
 
     public static function getParties($tour) {
 
         self::connectDB();
-        //$sql = "SELECT * FROM partie where tour=".$tour;
+//$sql = "SELECT * FROM partie where tour=".$tour;
         $sql = "SELECT a.id as id,a.playerID1 as playerID1, a.playerID2 as playerID2, a.scorej1 as scorej1, a.scorej2 as scorej2, b.nom as nom1, c.nom as nom2   
 				FROM `partie` a
 				JOIN player b ON b.id = a.playerID1 
@@ -31,13 +31,13 @@ class daoPartie {
         while ($ligne = mysql_fetch_assoc($res)) {
             $partie[0] = $ligne['id'];
             $partie[1] = $ligne['nom1'];
-            //$parties[2]=$ligne['playerID1'];
-            //$parties[3]=$ligne['playerID2'];
+//$parties[2]=$ligne['playerID1'];
+//$parties[3]=$ligne['playerID2'];
             $partie[2] = $ligne['nom2'];
             $partie[3] = $ligne['scorej1'];
             $partie[4] = $ligne['scorej2'];
             $partie[20] = $tour;
-            //$tmp = array();
+//$tmp = array();
             $tmp = self::getAllSetPartie($partie[0]);
             for ($i = 0; $i <= count($tmp) - 1; $i++) {
                 $partie[$i + 5] = $tmp[$i];
@@ -55,7 +55,7 @@ class daoPartie {
     public static function getAllParties() {
 
         self::connectDB();
-        //$sql = "SELECT * FROM partie where tour=".$tour;
+//$sql = "SELECT * FROM partie where tour=".$tour;
         $sql = "SELECT a.id as id,a.playerID1 as playerID1, a.playerID2 as playerID2,a.`finish` as finish, a.scorej1 as scorej1, a.scorej2 as scorej2, b.nom as nom1, c.nom as nom2 "
                 . "FROM `partie` a"
                 . " JOIN player b ON b.id = a.playerID1 "
@@ -69,14 +69,14 @@ class daoPartie {
         while ($ligne = mysql_fetch_assoc($res)) {
             $partie[0] = $ligne['id'];
             $partie[1] = $ligne['nom1'];
-            //$parties[2]=$ligne['playerID1'];
-            //$parties[3]=$ligne['playerID2'];
+//$parties[2]=$ligne['playerID1'];
+//$parties[3]=$ligne['playerID2'];
             $partie[2] = $ligne['nom2'];
             $partie[3] = $ligne['finish'];
             $partie[4] = $ligne['scorej1'];
             $partie[5] = $ligne['scorej2'];
 
-            //$tmp = array();
+//$tmp = array();
             $tmp = self::getAllSetPartie($partie[0]);
             for ($i = 0; $i <= count($tmp) - 1; $i++) {
                 $partie[$i + 6] = $tmp[$i];
@@ -120,13 +120,13 @@ class daoPartie {
         $numSet = self::getNumSet($partie_id);
         $tour = self::getTour($partie_id);
 
-        //pour insérer sur le bon joueur
+//pour insérer sur le bon joueur
         if ($numButton == 2) {
             $tmp = $scorej1;
             $scorej1 = $scorej2;
             $scorej2 = $tmp;
         }
-        //si numButton=1 on update scorej1 et inversement
+//si numButton=1 on update scorej1 et inversement
 //        if (self::isTieBreak($partie_id)) {
 //            $scorej1 = 99;
 //        }
@@ -139,18 +139,18 @@ class daoPartie {
                 $scorej1+=10;
                 break;
             case 40:
-                //j1 bouge pas et j2 perd l'avantage
+//j1 bouge pas et j2 perd l'avantage
                 if ($scorej2 == 45) {
                     $scorej2-=5;
                 }
                 $scorej1+=5;
 
-                //////////////////////////
+//////////////////////////
                 if ($scorej2 < 40) {
-                    if ($numSet == 2 && self::isGagnantMacthSet2($partie_id) == 11) {
+                    if ($numSet == 2 && self::isGagnantMacthSet2($partie_id) == 11 && self::isMinimumSetForWin($partie_id) ) {
                         self::setPartieFinish($partie_id);
                         self::setJ1Gagnant($partie_id);
-                    } elseif ($numSet == 2 && self::isGagnantMacthSet2($partie_id) == 12) {
+                    } elseif ($numSet == 2 && self::isGagnantMacthSet2($partie_id) == 12 && self::isMinimumSetForWin($partie_id)) {
                         self::setPartieFinish($partie_id);
                         self::setJ2Gagnant($partie_id);
                     } else {
@@ -188,11 +188,18 @@ class daoPartie {
                 break;
 
             case 45: //avantage
-
-                if ($numButton == 2) {
-                    self::addSet($partie_id, $scorej2, $scorej1, $numSet, $tour, $numButton);
+                if ($numSet == 2 && self::isGagnantMacthSet2($partie_id) == 11 && self::isMinimumSetForWin($partie_id)) {
+                    self::setPartieFinish($partie_id);
+                    self::setJ1Gagnant($partie_id);
+                } elseif ($numSet == 2 && self::isGagnantMacthSet2($partie_id) == 12 && self::isMinimumSetForWin($partie_id)) {
+                    self::setPartieFinish($partie_id);
+                    self::setJ2Gagnant($partie_id);
                 } else {
-                    self::addSet($partie_id, $scorej1, $scorej2, $numSet, $tour, $numButton);
+                    if ($numButton == 2) {
+                        self::addSet($partie_id, $scorej2, $scorej1, $numSet, $tour, $numButton);
+                    } else {
+                        self::addSet($partie_id, $scorej1, $scorej2, $numSet, $tour, $numButton);
+                    }
                 }
                 if (self::checkPartieFinish($partie_id) == 1) { // vérifie si la partie est terminée
                     if (self::getGagnantAllSet($partie_id) == 1) { //Si joueur 1 gagne
@@ -216,7 +223,7 @@ class daoPartie {
                     $scorej1 = 0;
                     $scorej2 = 0;
                 }
-                //j1 a gagné un set
+//j1 a gagné un set
 
                 break;
 //                if ($numButton == 2) {
@@ -231,15 +238,15 @@ class daoPartie {
         } else {
             $sql = "UPDATE partie SET scorej1='" . $scorej1 . "',scorej2='" . $scorej2 . "' where id=" . $partie_id;
         }
-        //echo $sql;
+//echo $sql;
         @mysql_query($sql);
         self::deconnect();
     }
 
-    // pour retirer les points
+// pour retirer les points
     public static function scoreMinus($scorej1, $scorej2, $partie_id, $numButton) {
 
-        //pour insérer sur le bon joueur
+//pour insérer sur le bon joueur
         if ($numButton == 2) {
             $tmp = $scorej1;
             $scorej1 = $scorej2;
@@ -247,7 +254,7 @@ class daoPartie {
         }
 
         self::connectDB();
-        //si numButton=1 on update scorej1 et inversement
+//si numButton=1 on update scorej1 et inversement
 
         switch ($scorej1) {
             case 0:
@@ -264,8 +271,8 @@ class daoPartie {
 
             case 45:
                 $scorej1 -= 5;
-                //$scorej2 = 0;
-                //j1 a gagné un set
+//$scorej2 = 0;
+//j1 a gagné un set
                 break;
         }
         if ($numButton == 2) {
@@ -278,14 +285,14 @@ class daoPartie {
         self::deconnect();
     }
 
-    // Ajout ou met à jour un set
+// Ajout ou met à jour un set
     public static function addSet($partieID, $joueur1, $joueur2, $numSet, $tour, $numButton) {
         echo '(score j1[' . $joueur1 . '] score J2[' . $joueur2 . ']  )';
         echo 'touuuuuuuuuuuuuuuuuur =' . $tour;
-        // Pas besoin d'ouvrir ou fermer la connexion DB car déjà ouverte
+// Pas besoin d'ouvrir ou fermer la connexion DB car déjà ouverte
         $sql = "";
         if (daoPartie::getSetExist($partieID) == 0) {
-            // on crée le set
+// on crée le set
             echo ' / NOUVEAU SET / ';
             if ($joueur1 == 45) {
                 $sql = "INSERT INTO `garrosdb`.`set` (`idSet`, `partie_id`, `j1`, `j2`, `numSet` ) VALUES (NULL, '" . $partieID . "', '1', '0','1')";
@@ -322,7 +329,7 @@ class daoPartie {
                 }
                 echo ' / PARTIE FINIE / ';
             } else {
-                // Si il y a un gagnant dans le set
+// Si il y a un gagnant dans le set
                 self::setIncrementSetPartie($partieID);
                 $nbSetTMP = self::getNumSet($partieID);
                 echo ' /GAGNANT NOUVEAU SET / ';
@@ -333,8 +340,8 @@ class daoPartie {
                 }
             }
         } else {
-            // si il y a pas de gagnant dans le set
-            // on met à jour le set
+// si il y a pas de gagnant dans le set
+// on met à jour le set
             echo ' /MISE A JOUR DU SET';
             if ($joueur1 == 45) {
                 $sql = "UPDATE `set` SET `j1`=`j1`+1 WHERE `partie_id`=" . $partieID . " AND numSet=" . $numSet;
@@ -345,7 +352,7 @@ class daoPartie {
         mysql_query($sql);
     }
 
-    // retourne si la partie existe ou non
+// retourne si la partie existe ou non
     public static function getSetExist($partieID) {
 
         self::connectDB();
@@ -360,7 +367,7 @@ class daoPartie {
         self::deconnect();
     }
 
-    // retourne à quel set on est
+// retourne à quel set on est
     public static function getNumSet($partieID) {
 //        self::connectDB();
         $sql = "SELECT `numSet` FROM `partie` WHERE `id`=" . $partieID;
@@ -371,7 +378,7 @@ class daoPartie {
         return $row[0];
     }
 
-    // renvoie le tour de la partie
+// renvoie le tour de la partie
     public static function getTour($partieID) {
 //        self::connectDB();
         $sql = "SELECT `tour` FROM `partie` WHERE `id`=" . $partieID;
@@ -382,7 +389,7 @@ class daoPartie {
         return $row[0];
     }
 
-    // vérifie le gagnant d'un set, pour un nouveau set
+// vérifie le gagnant d'un set, pour un nouveau set
     public static function getGagnantSetExist($partieID, $numSet) {
 //        self::connectDB();
         $sql = "SELECT COUNT(DISTINCT idSet) AS valeur FROM `set` 
@@ -399,7 +406,7 @@ class daoPartie {
 //        self::deconnect();
     }
 
-    //augmente d'un set la partie
+//augmente d'un set la partie
     public static function setIncrementSetPartie($partieID) {
 //        self::connectDB();
         $sql = "UPDATE `partie` SET `numSet`=`numSet`+1 WHERE `id`=" . $partieID;
@@ -408,9 +415,9 @@ class daoPartie {
 //        self::deconnect();
     }
 
-    // retourne vrais si la partie complète est terminée
+// retourne vrais si la partie complète est terminée
     public static function checkPartieFinish($partie) {
-        //self::connectDB();
+//self::connectDB();
         $sql = "SELECT Count(distinct id) AS valeur FROM `partie` where `id`=" . $partie . " and `finish`=1";
         $res = mysql_query($sql);
         $row = mysql_fetch_row($res);
@@ -421,13 +428,13 @@ class daoPartie {
         }
     }
 
-    // met que la partie est terminée
+// met que la partie est terminée
     public static function setPartieFinish($partie) {
         $sql = "UPDATE `partie` SET `finish`=1 WHERE `id`=" . $partie;
         mysql_query($sql);
     }
 
-    // ne fonctionne pas car il est remis a zéro dans le bouton +
+// ne fonctionne pas car il est remis a zéro dans le bouton +
     public static function setJ1Gagnant($partie) {
 
         $sql2 = "UPDATE `partie` SET `scorej1`=1 WHERE `id`=" . $partie;
@@ -439,7 +446,7 @@ class daoPartie {
         mysql_query($sql);
     }
 
-    // vérifie que les 4 parties sont terminée, et crée les deux nouvelles partie avec les gagnant
+// vérifie que les 4 parties sont terminée, et crée les deux nouvelles partie avec les gagnant
     public static function createDemiFinale() {
 
         $sql = " SELECT `playerID1` as GAGNANT FROM `partie` WHERE `scorej1`=1 and `tour`=1
@@ -466,7 +473,7 @@ class daoPartie {
         mysql_query($sql);
     }
 
-    // crée la partie finale
+// crée la partie finale
     public static function createFinale() {
         $sql = "SELECT `playerID1` as GAGNANT FROM `partie` WHERE `scorej1`=1 and `tour`=2
                UNION SELECT `playerID2` as GAGNANT FROM `partie` WHERE `scorej2`=1 and `tour`=2";
@@ -486,7 +493,7 @@ class daoPartie {
         mysql_query($sql);
     }
 
-    // vérifie si on peut créer les demi finales
+// vérifie si on peut créer les demi finales
     public static function checkDemiFinaleAvaible() {
         $sql = "SELECT count(`id`) FROM `partie` WHERE `tour` =1 and `finish` =1";
         $res = mysql_query($sql);
@@ -499,7 +506,7 @@ class daoPartie {
         }
     }
 
-    // vérifie si on peut créer les demi finales
+// vérifie si on peut créer les demi finales
     public static function checkFinaleAvaible() {
         $sql = "SELECT count(`id`) FROM `partie` WHERE `tour` =2 and `finish` =1";
         $res = mysql_query($sql);
@@ -511,7 +518,7 @@ class daoPartie {
         }
     }
 
-    // vérifie si il y a un gagnant pour la finale
+// vérifie si il y a un gagnant pour la finale
     public static function checkGagnantFinaleAvaible() {
         $sql = "SELECT count(`id`) FROM `partie` WHERE `tour` =3 and `finish` =1";
         $res = mysql_query($sql);
@@ -523,7 +530,7 @@ class daoPartie {
         }
     }
 
-    // met à jour le terrain de la partie 
+// met à jour le terrain de la partie 
     public static function updateTerrain($partie, $terrainID) {
         self::connectDB();
         $sql = "UPDATE partie SET `terrainID`=" . $terrainID . " where id=" . $partie;
@@ -543,11 +550,11 @@ class daoPartie {
         return $setTMP;
     }
 
-    // envoie les info pour le live
+// envoie les info pour le live
     public static function getLive() {
 
         self::connectDB();
-        //$sql = "SELECT * FROM partie where tour=".$tour;
+//$sql = "SELECT * FROM partie where tour=".$tour;
         $sql = "SELECT a.id as id,
                 a.playerID1 as playerID1,
                 b.nom as nom1, 
@@ -570,8 +577,8 @@ class daoPartie {
         while ($ligne = mysql_fetch_assoc($res)) {
             $partie[0] = $ligne['id'];
             $partie[1] = $ligne['nom1'];
-            //$parties[2]=$ligne['playerID1'];
-            //$parties[3]=$ligne['playerID2'];
+//$parties[2]=$ligne['playerID1'];
+//$parties[3]=$ligne['playerID2'];
             $partie[2] = $ligne['nom2'];
             $partie[3] = $ligne['finish'];
             $partie[4] = $ligne['scorej1'];
@@ -603,7 +610,7 @@ class daoPartie {
         self::deconnect();
     }
 
-    // si gagnant j1 gagnant renvoie vrais sinon c'est j2 le gagnant 
+// si gagnant j1 gagnant renvoie vrais sinon c'est j2 le gagnant 
     public static function getGagnantAllSet($partie) {
         $sql = "SELECT sum(`j1`) as j1,sum(`j2`) as j2 FROM `set` WHERE `partie_id`=" . $partie;
         $res = mysql_query($sql);
@@ -649,10 +656,10 @@ class daoPartie {
         }
     }
 
-    // Quand on est au 2 ieme set
-    // Joueur 1 gagne = 11
-    //joueur  2 gagne = 12
-    // il faut faire un troisième set 10
+// Quand on est au 2 ieme set
+// Joueur 1 gagne = 11
+//joueur  2 gagne = 12
+// il faut faire un troisième set 10
     public static function isGagnantMacthSet2($partie_id) {
         $numset = self::getNumSet($partie_id);
 
@@ -679,6 +686,30 @@ class daoPartie {
             return 12;
         } else {
             return 10;
+        }
+    }
+
+    public static function isMinimumSetForWin($partie_id) {
+
+        $sql = "select j1,j2
+            FROM `set`
+            WHERE `partie_id`=275 and `numSet`=(select max(`numSet`) as val
+            FROM `set`
+            WHERE `partie_id`=275)";
+
+        $res = mysql_query($sql);
+        $j1set = 50;
+        $j2set = 52;
+
+        while ($ligne = mysql_fetch_assoc($res)) {
+            $j1set = $ligne['j1'];
+            $j2set = $ligne['j2'];
+        }
+
+        if ($j1set > 5 || $j2set > 5) {
+            return true;
+        } else {
+            return FALSE;
         }
     }
 
