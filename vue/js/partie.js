@@ -7,12 +7,12 @@ function checkDuplicate(j1, j2) {
     var selTwo3 = document.getElementById("j23").value;
     var selOne4 = document.getElementById("j14").value;
     var selTwo4 = document.getElementById("j24").value;
-    var selOne5 = document.getElementById("j15").value;
-    var selTwo5 = document.getElementById("j25").value;
+//    var selOne5 = document.getElementById("j15").value;
+//    var selTwo5 = document.getElementById("j25").value;
 //    var selOne = j1;
 //    var selTwo = j2;
 
-    if (selOne === selTwo || selOne2 === selTwo2 || selOne3 === selTwo3 || selOne4 === selTwo4 || selOne5 === selTwo5) { 
+    if (selOne === selTwo || selOne2 === selTwo2 || selOne3 === selTwo3 || selOne4 === selTwo4 ) { 
         alert("select are the same");
     }
 }
