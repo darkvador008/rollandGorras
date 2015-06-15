@@ -55,7 +55,7 @@
                         if (isset($_SESSION['login']) && isset($_SESSION['password'])) {
 
                             echo'<li><a href="' . $nom_projet . '/index.php?page=_admin_joueur">Gestion de joueur</a></li>';
-                            echo'<li><a href="' . $nom_projet . '/index.php?page=_admin_partie">Gestion des parties</a></li>';
+                            echo'<li><a href="' . $nom_projet . '/index.php?page=_admin_partie">Gestion des scores</a></li>';
                             echo'<li><a href="' . $nom_projet . '/index.php?page=_admin_creer_partie">Création de partie</a></li>';
                             
 

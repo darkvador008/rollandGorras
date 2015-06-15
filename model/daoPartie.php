@@ -127,9 +127,9 @@ class daoPartie {
             $scorej2 = $tmp;
         }
         //si numButton=1 on update scorej1 et inversement
-        if (self::isTieBreak($partie_id)) {
-            $scorej1 = 99;
-        }
+//        if (self::isTieBreak($partie_id)) {
+//            $scorej1 = 99;
+//        }
         switch ($scorej1) {
             case 0:
             case 15:
@@ -147,11 +147,18 @@ class daoPartie {
 
                 //////////////////////////
                 if ($scorej2 < 40) {
-
-                    if ($numButton == 2) {
-                        self::addSet($partie_id, $scorej2, 45, $numSet, $tour, $numButton);
+                    if ($numSet == 2 && self::isGagnantMacthSet2($partie_id) == 11) {
+                        self::setPartieFinish($partie_id);
+                        self::setJ1Gagnant($partie_id);
+                    } elseif ($numSet == 2 && self::isGagnantMacthSet2($partie_id) == 12) {
+                        self::setPartieFinish($partie_id);
+                        self::setJ2Gagnant($partie_id);
                     } else {
-                        self::addSet($partie_id, 45, $scorej2, $numSet, $tour, $numButton);
+                        if ($numButton == 2) {
+                            self::addSet($partie_id, $scorej2, 45, $numSet, $tour, $numButton);
+                        } else {
+                            self::addSet($partie_id, 45, $scorej2, $numSet, $tour, $numButton);
+                        }
                     }
                     if (self::checkPartieFinish($partie_id) == 1) { // vérifie si la partie est terminée
                         if (self::getGagnantAllSet($partie_id) == 1) { // on met 1 pour le point du gagnant
@@ -290,48 +297,22 @@ class daoPartie {
                 self::setPartieFinish($partieID);
                 if ($tour == 1) {
                     if (self::checkDemiFinaleAvaible() == true) { // on vérifie si c'est possible
-//                        if ($joueur1 == 45) { // on met 1 pour le point du gagnant
-//                            if ($numButton == 2) {// besoin d'inversion
-//                                self::setJ1Gagnant($partieID);
-//                            } else {
-//                                self::setJ2Gagnant($partieID);
-//                            }
-//                        } else {
-//                            if ($numButton == 2) {
-//                                self::setJ2Gagnant($partieID);
-//                            } else {
-//                                self::setJ1Gagnant($partieID);
-//                            }
-//                        }
                         if (self::getGagnantAllSet($partieID) == 1) {
                             self::setJ1Gagnant($partieID);
                         } else {
                             self::setJ2Gagnant($partieID);
                         }
-
 
                         self :: createDemiFinale();
                     }
                 } else if ($tour == 2) {
                     if (self::checkFinaleAvaible() == 1) {
-//                        if ($joueur1 == 45) { // on met 1 pour le point du gagnant
-//                            if ($numButton == 2) {// besoin d'inversion
-//                                self::setJ1Gagnant($partieID);
-//                            } else {
-//                                self::setJ2Gagnant($partieID);
-//                            }
-//                        } else {
-//                            if ($numButton == 2) {
-//                                self::setJ1Gagnant($partieID);
-//                            } else {
-//                                self::setJ2Gagnant($partieID);
-//                            }
-//                        }
                         if (self::getGagnantAllSet($partieID) == 1) {
                             self::setJ1Gagnant($partieID);
                         } else {
                             self::setJ2Gagnant($partieID);
                         }
+
                         self::createFinale();
                     }
                 } else if ($tour == 3) {
@@ -652,19 +633,52 @@ class daoPartie {
 
         $sql = "SELECT j1,j2 FROM `set` WHERE `partie_id`=" . $partie_id . " AND `numSet`=" . $numset;
         $res = mysql_query($sql);
-        $j1set =50;
-        $j2set =52;
-               
-               
+        $j1set = 50;
+        $j2set = 52;
+
+
         while ($ligne = mysql_fetch_assoc($res)) {
             $j1set = $ligne['j1'];
             $j2set = $ligne['j2'];
         }
- 
+
         if ($j1set + $j2set == 12) {
             return TRUE;
         } else {
             return FALSE;
+        }
+    }
+
+    // Quand on est au 2 ieme set
+    // Joueur 1 gagne = 11
+    //joueur  2 gagne = 12
+    // il faut faire un troisième set 10
+    public static function isGagnantMacthSet2($partie_id) {
+        $numset = self::getNumSet($partie_id);
+
+        $sql = "SELECT sum(`j1`) as j1,  sum(`j2`) as j2 FROM `set` WHERE`partie_id`=" . $partie_id;
+        $res = mysql_query($sql);
+        $j1set = 50;
+        $j2set = 52;
+
+
+        while ($ligne = mysql_fetch_assoc($res)) {
+            $j1set = $ligne['j1'];
+            $j2set = $ligne['j2'];
+        }
+
+        if ($j1set >= 12 && $j2set >= 12) {
+            if ($j1set > $j2set) {
+                return 11;
+            } else {
+                return 12;
+            }
+        } elseif ($j1set >= 12 && $j2set < 12) {
+            return 11;
+        } elseif ($j2set >= 12 && $j1set < 12) {
+            return 12;
+        } else {
+            return 10;
         }
     }
 
