@@ -2,6 +2,7 @@
 <script src="vue/js/live.js"></script>
 <script src="vue/js/js.cookie.js"></script>
 <?php
+$nbPartieLive = 4;
 if (isset($_COOKIE['nbPartieLive'])) {
     $nbPartieLive = 4;
     $nbPartieLive = intval($_COOKIE['nbPartieLive']);
@@ -42,7 +43,7 @@ for ($i = 0; $i < $nbPartieLive; $i++) {
                     <div class="col-md-4 ">Set</div>
                     <div class="col-md-4 ">Score</div>
                    
-                    <div><button id="<?php echo 'sub-'.$i ?>">S'abonner </button></div>
+                    <div>&nbsp;<button id="<?php echo 'sub-'.$i ?>" class="btn btn-default">S'abonner </button></div>
                     <div class="col-md-4 scrj1"><!--Score Joueur 1>--></div>
                     <div class="col-md-4 set1"><!--SetJ1--></div>
                     <div class="col-md-4 point1"><!--PointJ1--></div>

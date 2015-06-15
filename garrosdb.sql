@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2015 at 11:28 PM
+-- Generation Time: Jun 15, 2015 at 06:04 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -41,19 +41,20 @@ CREATE TABLE IF NOT EXISTS `partie` (
   KEY `playerID1` (`playerID1`),
   KEY `playerID2` (`playerID2`),
   KEY `terrainID` (`terrainID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=181 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=278 ;
 
 --
 -- Dumping data for table `partie`
 --
 
 INSERT INTO `partie` (`id`, `playerID1`, `playerID2`, `jour`, `terrainID`, `numSet`, `scorej1`, `scorej2`, `finish`, `tour`) VALUES
-(97, 187, 189, '2015-06-13', 1, 3, 1, 0, 1, 1),
-(98, 190, 191, '2015-06-13', 1, 3, 1, 0, 1, 1),
-(99, 192, 193, '2015-06-13', 1, 3, 0, 1, 1, 1),
-(100, 194, 195, '2015-06-13', 2, 3, 1, 0, 1, 1),
-(179, 187, 190, '2015-06-14', 1, 2, 0, 0, 0, 2),
-(180, 194, 193, '2015-06-14', 1, 1, 45, 30, 0, 2);
+(182, 187, 189, '2015-06-15', 1, 3, 1, 0, 1, 1),
+(183, 190, 191, '2015-06-15', 1, 3, 1, 0, 1, 1),
+(184, 192, 193, '2015-06-15', 1, 3, 0, 1, 1, 1),
+(185, 194, 195, '2015-06-15', 1, 3, 1, 0, 1, 1),
+(274, 187, 190, '2015-06-15', 1, 3, 1, 0, 1, 2),
+(275, 194, 193, '2015-06-15', 1, 2, 1, 0, 1, 2),
+(277, 187, 194, '2015-06-15', 1, 1, 0, 0, 0, 3);
 
 -- --------------------------------------------------------
 
@@ -65,23 +66,23 @@ CREATE TABLE IF NOT EXISTS `player` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(60) CHARACTER SET utf8 NOT NULL,
   `nationalite` varchar(30) CHARACTER SET utf8 DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=196 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=197 ;
 
 --
 -- Dumping data for table `player`
 --
 
-INSERT INTO `player` (`id`, `nom`, `nationalite`, `image`) VALUES
-(187, 'Djokovic', 'Africaine', ''),
-(189, 'Wawrinka', 'Russe', ''),
-(190, 'Berdych', 'Allemand', ''),
-(191, 'Nadal', 'Francaise', ''),
-(192, 'Murray', 'Belge', ''),
-(193, 'Nishikori', 'Japonaise', ''),
-(194, 'Raonic', 'Belge', ''),
-(195, 'Federer', 'Francaise', NULL);
+INSERT INTO `player` (`id`, `nom`, `nationalite`) VALUES
+(187, 'Djokovic', 'Africaine'),
+(189, 'Wawrinka', 'Russe'),
+(190, 'Berdych', 'Allemand'),
+(191, 'Nadal', 'Francaise'),
+(192, 'Murray', 'Belge'),
+(193, 'Nishikori', 'Japonaise'),
+(194, 'Raonic', 'Belge'),
+(195, 'Federer', 'Francaise'),
+(196, 'zaa', 'ezaeaz');
 
 -- --------------------------------------------------------
 
@@ -113,27 +114,31 @@ CREATE TABLE IF NOT EXISTS `set` (
   `numSet` int(11) NOT NULL COMMENT 'valeur 1 2 ou 3',
   PRIMARY KEY (`idSet`,`partie_id`),
   KEY `partie_id_2` (`partie_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=89 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=117 ;
 
 --
 -- Dumping data for table `set`
 --
 
 INSERT INTO `set` (`idSet`, `partie_id`, `j1`, `j2`, `numSet`) VALUES
-(51, 97, 1, 6, 1),
-(52, 97, 1, 6, 2),
-(53, 97, 6, 1, 3),
-(54, 98, 6, 2, 1),
-(55, 98, 2, 6, 2),
-(56, 98, 6, 2, 3),
-(57, 99, 6, 2, 1),
-(58, 99, 6, 3, 2),
-(74, 100, 3, 6, 1),
-(75, 99, 1, 6, 3),
-(76, 100, 6, 2, 2),
-(77, 100, 2, 6, 3),
-(87, 179, 6, 1, 1),
-(88, 179, 1, 0, 2);
+(96, 182, 6, 0, 1),
+(97, 182, 6, 0, 2),
+(99, 182, 0, 6, 3),
+(100, 183, 6, 0, 1),
+(101, 183, 6, 0, 2),
+(102, 183, 0, 6, 3),
+(103, 184, 0, 6, 1),
+(104, 184, 0, 6, 2),
+(105, 184, 6, 0, 3),
+(106, 185, 6, 0, 1),
+(107, 185, 6, 0, 2),
+(108, 185, 0, 6, 3),
+(109, 275, 8, 6, 1),
+(110, 275, 6, 0, 2),
+(113, 274, 6, 1, 1),
+(114, 274, 6, 0, 2),
+(115, 274, 6, 1, 3),
+(116, 277, 1, 0, 1);
 
 -- --------------------------------------------------------
 

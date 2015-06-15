@@ -48,4 +48,9 @@ function updateTerrain($terrain,$partie_id) {
     daoPartie::updateTerrain($terrain,$partie_id);
 }
 
+
+function getTournoiBegin(){
+    include_once'daoPartie.php';
+    return daoPartie::getTournoiBegin();
+}
 ?>

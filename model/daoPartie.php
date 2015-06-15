@@ -147,7 +147,7 @@ class daoPartie {
 
 //////////////////////////
                 if ($scorej2 < 40) {
-                    if ($numSet == 2 && self::isGagnantMacthSet2($partie_id) == 11 && self::isMinimumSetForWin($partie_id) ) {
+                    if ($numSet == 2 && self::isGagnantMacthSet2($partie_id) == 11 && self::isMinimumSetForWin($partie_id)) {
                         self::setPartieFinish($partie_id);
                         self::setJ1Gagnant($partie_id);
                     } elseif ($numSet == 2 && self::isGagnantMacthSet2($partie_id) == 12 && self::isMinimumSetForWin($partie_id)) {
@@ -711,6 +711,19 @@ class daoPartie {
         } else {
             return FALSE;
         }
+    }
+
+    // vérifie si on peut créer les demi finales
+    public static function getTournoiBegin() {
+        self::connectDB();
+        $sql = "SELECT count(`id`) as id FROM `partie` WHERE `tour` =1";
+        $res = mysql_query($sql);
+        $result=10;
+        while ($ligne = mysql_fetch_assoc($res)) {
+            $result = $ligne['id'];
+        }
+        return intval($result);
+        self::deconnect();
     }
 
 }
