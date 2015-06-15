@@ -119,6 +119,7 @@ class daoPartie {
         self::connectDB();
         $numSet = self::getNumSet($partie_id);
         $tour = self::getTour($partie_id);
+
         //pour insérer sur le bon joueur
         if ($numButton == 2) {
             $tmp = $scorej1;
@@ -126,7 +127,9 @@ class daoPartie {
             $scorej2 = $tmp;
         }
         //si numButton=1 on update scorej1 et inversement
-
+        if (self::isTieBreak($partie_id)) {
+            $scorej1 = 99;
+        }
         switch ($scorej1) {
             case 0:
             case 15:
@@ -638,6 +641,27 @@ class daoPartie {
         echo('   ' . $j2 > $j1);
 
         if ($j1 > $j2) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    public static function isTieBreak($partie_id) {
+        $numset = self::getNumSet($partie_id);
+
+        $sql = "SELECT j1,j2 FROM `set` WHERE `partie_id`=" . $partie_id . " AND `numSet`=" . $numset;
+        $res = mysql_query($sql);
+        $j1set =50;
+        $j2set =52;
+               
+               
+        while ($ligne = mysql_fetch_assoc($res)) {
+            $j1set = $ligne['j1'];
+            $j2set = $ligne['j2'];
+        }
+ 
+        if ($j1set + $j2set == 12) {
             return TRUE;
         } else {
             return FALSE;

@@ -33,16 +33,16 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.php">Ronlad Gorras</a>
+                    <a class="navbar-brand" href="index.php">Rolland Gorras</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="<?php print("$nom_projet/index.php?page=_joueur"); ?>">Joueurs</a>
+                            <a href="<?php print("$nom_projet/index.php?page=_joueur"); ?>">Liste des Joueurs</a>
                         </li>
                         <li>
-                            <a href="<?php print("$nom_projet/index.php?page=_parties_client"); ?>">Parties</a>
+                            <a href="<?php print("$nom_projet/index.php?page=_parties_client"); ?>">Tournoi</a>
                         </li>
                         <li>
                             <a href="<?php print("$nom_projet/index.php?page=_live"); ?>">Live</a>
@@ -54,10 +54,10 @@
                         // On récupère nos variables de session
                         if (isset($_SESSION['login']) && isset($_SESSION['password'])) {
 
-                            echo'<li><a href="' . $nom_projet . '/index.php?page=_admin_joueur">Admin Joueur</a></li>';
-                            echo'<li><a href="' . $nom_projet . '/index.php?page=_admin_partie">Admin Partie</a></li>';
-                            echo'<li><a href="' . $nom_projet . '/index.php?page=_admin_creer_partie">Admin Creer Partie</a></li>';
-                            echo'<li><a href="' . $nom_projet . '/index.php?page=_admin_supprimer_partie">Admin Supprimer Partie</a></li>';
+                            echo'<li><a href="' . $nom_projet . '/index.php?page=_admin_joueur">Gestion de joueur</a></li>';
+                            echo'<li><a href="' . $nom_projet . '/index.php?page=_admin_partie">Gestion des parties</a></li>';
+                            echo'<li><a href="' . $nom_projet . '/index.php?page=_admin_creer_partie">Création de partie</a></li>';
+                            
 
                             //echo 'Votre login est '.$_SESSION['login'].' et votre mot de passe est '.$_SESSION['password'].'.';
                             //echo '<br />';
