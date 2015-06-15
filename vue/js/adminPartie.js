@@ -66,6 +66,12 @@ $(document).ready(function () {
 //                console.log(response[i][2].length + " " + response[i][2]);
 //                console.log(spacesn1 + " " + spacesn2);
                 $('#' + i).find('.p1').html(response[i][1] + " VS " + response[i][2]);
+                if (response[i][3]==45){
+                    var av1='40A';
+                }
+                if (response[i][4]==45){
+                    var av2='40A';
+                }
                 $('#' + i).find('.scrj1').html(response[i][1] + ": ");
                 $('#' + i).find('.scrj2').html(response[i][2] + " : ");
                 $('#' + i).find('.plus1').attr("id", i + "-plus-1-" + response[i][0]);
@@ -74,8 +80,21 @@ $(document).ready(function () {
                 $('#' + i).find('.minus2').attr("id", i + "-minus-2-" + response[i][0]);
                 $('#' + i).find('.setj1').html(lesSetj1);
                 $('#' + i).find('.setj2').html(lesSetj2);
-                $('#' + i).find('.pointj1').html(response[i][3]);
-                $('#' + i).find('.pointj2').html(response[i][4]);
+                if (response[i][3]==45){
+                   $('#' + i).find('.pointj1').html('40A');
+                }
+                else{
+                    $('#' + i).find('.pointj1').html(response[i][3]);
+                } 
+
+
+                if (response[i][4]==45){
+                   $('#' + i).find('.pointj2').html('40A');
+                }
+                else{
+                    $('#' + i).find('.pointj2').html(response[i][4]);
+                }
+
 
 
                 //$('#' + i).find('.set').html( lesSet);
@@ -104,8 +123,21 @@ $(document).ready(function () {
         var panelNum = lm.split("-", 4)[0];//4 panels. start at '0'
 
         //build a post data structure
-        var scorej1 = $("#" + panelNum).find(".pointj1").text();
-        var scorej2 = $("#" + panelNum).find(".pointj2").text();
+
+        if($("#" + panelNum).find(".pointj1").text()=='40A'){
+            scorej1=45;
+        }
+        else{
+            scorej1=$("#" + panelNum).find(".pointj1").text();
+        }        
+
+        if($("#" + panelNum).find(".pointj2").text()=='40A'){
+            scorej2=45;
+        }
+        else{
+            scorej2=$("#" + panelNum).find(".pointj2").text();
+        }
+
         console.log(partie_id);
         console.log(numButton);
         console.log(e.target.id.split("-", 4)[1]);
