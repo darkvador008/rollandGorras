@@ -14,7 +14,7 @@ if (isset($_COOKIE['nbPartieLive'])) {
 
 
 <div class="container">
-    <center><p>Liste des matches en cours en direct !</p>
+    <center><p><h2>Liste des matches en cours en direct !</h2></p>
         <button type="button" class="btn btn-success" onclick="location.reload();">Rafraichir</button></center><br/>
 </div>
 <?php

@@ -147,50 +147,6 @@ if (isset($_SESSION['login']) && isset($_SESSION['password'])) {
 
 
 
-    <!-- DEMI FINALE -->
-
-    <label>Demi finale:</label><br>
-    <div class="crtPrt row">
-        <!--<div class=" row ssel">-->
-        <select class="form-control sel col-md-3" id="j15" onchange="checkDuplicate(j15, j25)">
-            <option value="player1">Joueur 1</option>
-            <!-- Ici ça doit être les gagnants --> 
-            <?php
-            for ($i = 0; $i < count($itemJoueurDemi); $i++) {
-                echo"<option value='" . $itemJoueurDemi[$i]->monID . "'>";
-                //echo $item[$i]->nom;
-                echo $itemJoueurDemi[$i]->nom;
-                echo '</option>';
-            };
-            ?>
-        </select>
-        <label class="col-md-1 txtc"> VS</label>
-        <select class="form-control sel col-md-4" id="j25" onchange="checkDuplicate(j15, j25)">
-            <option value="player2">Joueur 2</option>
-            <!-- Ici ça doit être les gagnants --> 
-            <?php
-            for ($i = 0; $i < count($itemJoueurDemi); $i++) {
-                echo"<option value='" . $itemJoueurDemi[$i]->monID . "'>";
-                echo $itemJoueurDemi[$i]->nom;
-                echo '</option>';
-            };
-            ?>
-        </select>
-        <label class="col-md-1 txtc"> ON </label>
-
-
-
-
-        <div class="col-md-6"></div>
-        <select class="form-control sel col-md-6" id="ter5">
-            <option value="1">Terrain 1</option>
-            <option value="2">Terrain 2</option>
-            <option value="3">Terrain 3</option>
-            <option value="4">Terrain 4</option>
-        </select>
-        <button type="button" class="btn btn-info btnCreer" id="addPartie5" name="valider" onclick="disableInputs(j15, j25, true), rm(j15, j25)">Valider</button>
-        <!--</div >-->
-    </div >
 
 
 
@@ -199,18 +155,9 @@ if (isset($_SESSION['login']) && isset($_SESSION['password'])) {
 
 
 
-    <div class=" row ssel">
 
-        <div class="col-md-6"></div>
-        <select class="form-control sel col-md-6" id="ter6">
-            <option value="1">Terrain 1</option>
-            <option value="2">Terrain 2</option>
-            <option value="3">Terrain 3</option>
-            <option value="4">Terrain 4</option>
-        </select>
-        <button type="button" class="btn btn-info btnCreer" id="addPartie6" name="valider" onclick="disableInputs(j14, j24, true), rm(j14, j24)">Valider</button>
-    </div >  
-    <button type="button" class="btn btn-warning " name="reset" onclick="rez()">Reset</button>
+    <br><br><br><br><br>
+
 </form>
 </div>
 

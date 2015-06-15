@@ -18,7 +18,7 @@ setcookie("nbTour", "", time() - 3600);
 if (isset($_SESSION['login']) && isset($_SESSION['password'])) {
 ?>
 <div class="container">
-    <center><p>Ajout des points aux partie</p>
+    <center><p><h2>Ajout des points aux parties</h2></p>
     <button type="button" class="btn btn-success" onclick="location.reload();">Rafraichir</button></center><br/>
 </div>
 <div class="containerPartie">

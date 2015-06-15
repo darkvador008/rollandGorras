@@ -3,11 +3,13 @@
 <style>
     //table, th, td {    border: 1px solid black;}
 </style>
+<center><h2>Le tournoi Rolland Gorras </h2></center>
+<br>
 <table border='0' id="seltb" cellspacing='0' width='100%' class="NONE">
     <tr>
         <td class='JH'>&nbsp;
             <label class="form-control label  label-info sel01" id="sel07" onchange="checkDuplicate()">
-<!--                Joueur1-->Quart de finale
+                <!--                Joueur1-->Quart de finale
             </label> 
         </td>
 
@@ -133,5 +135,5 @@
     <td class='JBS'><a name='b7'>&nbsp;</a></td>
 </tr>
 </table>
-<button type="button" id="SubscribeAll" class="btn btn-success">Subscribe to all</button>
+<br><br><br><br>
 <?php require "$racine/vue/footer.php"; ?>

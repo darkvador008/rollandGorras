@@ -5,7 +5,7 @@ Page des joueurs CLIENT
 
 <!-- Affiche la liste des joueurs -->
 <div class="container">
-    <center>La liste des joueurs</center>
+    <center><h2>La liste des joueurs</h2></center>
     
     
     <table class="table table-striped">

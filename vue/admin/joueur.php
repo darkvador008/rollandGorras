@@ -15,6 +15,7 @@ http://www.sanwebe.com/2012/04/ajax-add-delete-sql-records-jquery-php
 // On récupère nos variables de session
 if (isset($_SESSION['login']) && isset($_SESSION['password'])) {
     ?>
+<center><h2>Gestion des joueurs</h2></center><br>
     <!-- Tableau de rajout de joueur-->
     <div class="container">
         <h2>Ajouter Joueur</h2>
